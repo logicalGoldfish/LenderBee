@@ -4,7 +4,7 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
+  - __Product Owner__: Devin Otway
   - __Scrum Master__: teamMember
   - __Development Team Members__: teamMember, teamMember
 
