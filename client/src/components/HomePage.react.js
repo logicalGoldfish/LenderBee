@@ -14,9 +14,10 @@ var React = require('react');
 
 var HomePage = React.createClass({
 
-  getInitialState: function() {
-    // return getTodoState();
-  },
+  // getInitialState: function() {
+  //   return null;
+  //   // return getTodoState();
+  // },
 
   componentDidMount: function() {
     // HomePageStore.addChangeListener(this._onChange);
@@ -32,7 +33,7 @@ var HomePage = React.createClass({
   render: function() {
     return (
       <div>
-        <TopBar/>
+        <TopBar />
         <h1>Welcome, {this.props.userName}</h1>
       </div>
     );
