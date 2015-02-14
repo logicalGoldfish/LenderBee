@@ -9,6 +9,12 @@ var streamify = require('gulp-streamify');
 var nodemon = require('gulp-nodemon');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
+var del = require('del');
+var jshint = require('gulp-jshint');
+var concat = require('gulp-concat');
+var notify = require('gulp-notify');
+var rename = require('gulp-rename');
+var karma = require('karma').server;
 var mui = './node_modules/material-ui/src';
 
 var path = {
@@ -21,17 +27,24 @@ var path = {
   ENTRY_POINT: './client/src/main.jsx',
 };
 
+var handleError = function(err) {
+  console.log('ERROR MSG:', error.toString());
+  this.emit('end');
+};
+
+// Copies html page for production
 gulp.task('copy', function(){
   gulp.src(path.HTML)
     .pipe(gulp.dest(path.DEST));
 });
 
-// removes node_modules for maintenance
+// Removes node_modules for maintenance
 gulp.task('clean-npm', function(){
-  gulp.src('./node_modules/', {read: false}).
-    pipe(clean());
+  gulp.src('./node_modules/', {read: false})
+    .pipe(clean());
 });
 
+// Watches for changes and rebuilds production files
 gulp.task('watch', function() {
   gulp.watch(path.HTML, ['copy']);
   gulp.watch(path.LESS_WATCH, ['less']);
@@ -43,7 +56,7 @@ gulp.task('watch', function() {
     cache: {}, packageCache: {}, fullPaths: true
   }));
 
-  return watcher.on('update', function () {
+  return watcher.on('update', function() {
     watcher.bundle()
       .pipe(source(path.OUT))
       .pipe(gulp.dest(path.DEST_SRC));
@@ -54,6 +67,7 @@ gulp.task('watch', function() {
     .pipe(gulp.dest(path.DEST_SRC));
 });
 
+// Builds files for production
 gulp.task('build', function(){
   browserify({
     entries: [path.ENTRY_POINT],
@@ -62,9 +76,30 @@ gulp.task('build', function(){
     .bundle()
     .pipe(source(path.MINIFIED_OUT))
     .pipe(streamify(uglify(path.MINIFIED_OUT)))
-    .pipe(gulp.dest(path.DEST_BUILD));
+    .on('error', handleError)
+    .pipe(gulp.dest(path.DEST_BUILD))
+    .pipe(notify({message: 'Build task complete'}));
 });
 
+
+// Jshint, concats, uglifies scripts into dist
+// gulp.task('scripts', function() {
+//   return gulp.src('src/scripts/*.js')
+//     .pipe(jshint())
+//     .pipe(jshint.reporter('default'))
+//     .pipe(concat('main.js'))
+//     .pipe(gulp.dest('dist/assets/js'))
+//     .pipe(rename({suffix: '.min'}))
+//     .pipe(uglify({
+//       beautify: true
+//     }))
+//     .on('error', handleError)
+//     .pipe(gulp.dest('dist/assets/js'))
+//     .pipe(notify({message: 'Scripts task complete'}));
+// });
+
+
+// minifies html? Not sure what this does. is copy necessary then?
 gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
     .pipe(htmlreplace({
@@ -73,6 +108,7 @@ gulp.task('replaceHTML', function(){
     .pipe(gulp.dest(path.DEST));
 });
 
+// Starts server and restarts on change
 gulp.task('nodemon', function() {
     nodemon({
       script: 'server/app.js',
@@ -83,7 +119,38 @@ gulp.task('nodemon', function() {
       .on('restart');
   });
 
-gulp.task('production', ['replaceHTML', 'build']);
+gulp.task('lint', function() {
+  return gulp.src(path.OUT)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(jshint.reporter('fail'));
+});
 
-gulp.task('default', ['watch', 'nodemon', 'build']);
+// Runs Karma tests & jsHint
+gulp.task('test', ['lint'], function(done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, function() {
+    done();
+  });
+});
+
+// Deletes what's in dist
+gulp.task('clean', function(cb) {
+  del(['dist/assets/js'], cb)
+});
+
+
+// Builds production files
+gulp.task('production', ['clean', 'replaceHTML', 'build']);
+
+// Default gulp task
+gulp.task('default', ['test', 'watch', 'nodemon']);
+
+
+
+
+
+
 
