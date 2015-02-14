@@ -15,6 +15,14 @@ var concat = require('gulp-concat');
 var notify = require('gulp-notify');
 var rename = require('gulp-rename');
 var karma = require('karma').server;
+var del = require('del');
+var jshint = require('gulp-jshint');
+var concat = require('gulp-concat');
+var notify = require('gulp-notify');
+var rename = require('gulp-rename');
+var karma = require('karma').server;
+var eventStream = require('event-stream');
+var order = require('gulp-order');
 var mui = './node_modules/material-ui/src';
 
 var path = {
@@ -25,6 +33,14 @@ var path = {
   DEST_BUILD: 'client/dist/build',
   DEST_SRC: 'client/dist/src',
   ENTRY_POINT: './client/src/main.jsx',
+};
+
+var paths = {
+  src: {
+    main: 'client/src/*.js',
+    components: 'client/src/*/*.js'
+  },
+  karmaConf: __dirname + '/karma.conf.js'
 };
 
 var handleError = function(err) {
@@ -81,24 +97,6 @@ gulp.task('build', function(){
     .pipe(notify({message: 'Build task complete'}));
 });
 
-
-// Jshint, concats, uglifies scripts into dist
-// gulp.task('scripts', function() {
-//   return gulp.src('src/scripts/*.js')
-//     .pipe(jshint())
-//     .pipe(jshint.reporter('default'))
-//     .pipe(concat('main.js'))
-//     .pipe(gulp.dest('dist/assets/js'))
-//     .pipe(rename({suffix: '.min'}))
-//     .pipe(uglify({
-//       beautify: true
-//     }))
-//     .on('error', handleError)
-//     .pipe(gulp.dest('dist/assets/js'))
-//     .pipe(notify({message: 'Scripts task complete'}));
-// });
-
-
 // minifies html? Not sure what this does. is copy necessary then?
 gulp.task('replaceHTML', function(){
   gulp.src(path.HTML)
@@ -124,12 +122,38 @@ gulp.task('lint', function() {
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(jshint.reporter('fail'));
-});
+
+// Jshint, concats, uglifies scripts into dist
+// gulp.task('scripts', function() {
+//   var appFiles = gulp.src(paths.src.main)
+//     .pipe(jshint())
+//     .pipe(jshint.reporter('default'))
+//     .on('error', handleError)
+//     .pipe(concat('app.temp.js'));
+
+//   var componentFiles = gulp.src(paths.src.components)
+//     .pipe(jshint())
+//     .pipe(jshint.reporter('default'))
+//     .on('error', handleError)
+//     .pipe(concat('components.temp.js'));
+
+//   return eventStream.concat(appFiles, componentFiles)
+//     .pipe(order([
+//       'app.temp.js',
+//       'components.temp.js'
+//     ]))
+//     .pipe(concat('main.js'))
+//     .pipe(gulp.dest('client/dist/assets/js'))
+//     .pipe(rename({suffix: '.min'}))
+//     .pipe(uglify())
+//     .pipe(gulp.dest('client/dist/assets/js'))
+//     .pipe(notify({message: 'Tests and scripts task complete'}));
+// });
 
 // Runs Karma tests & jsHint
 gulp.task('test', ['lint'], function(done) {
   karma.start({
-    configFile: __dirname + '/karma.conf.js',
+    configFile: paths.karmaConf,
     singleRun: true
   }, function() {
     done();
@@ -147,10 +171,3 @@ gulp.task('production', ['clean', 'replaceHTML', 'build']);
 
 // Default gulp task
 gulp.task('default', ['test', 'watch', 'nodemon']);
-
-
-
-
-
-
-
