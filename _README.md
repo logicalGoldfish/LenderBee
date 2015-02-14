@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Devin Otway
+  - __Scrum Master__: Vijay Ram
+  - __Development Team Members__: Samin Sepasi, Chrystine Lee, Matthew Polland
 
 ## Table of Contents
 
