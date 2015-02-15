@@ -6,6 +6,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');
 var streamify = require('gulp-streamify');
+var clean = require('gulp-clean');
 
 var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
@@ -28,6 +29,12 @@ var path = {
 gulp.task('copy', function(){
   gulp.src(path.HTML)
     .pipe(gulp.dest(path.DEST));
+});
+
+// removes node_modules for maintenance
+gulp.task('clean-npm', function(){
+  gulp.src('./node_modules/', {read: false}).
+    pipe(clean());
 });
 
 gulp.task('watch', function() {
