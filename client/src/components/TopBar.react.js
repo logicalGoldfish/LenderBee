@@ -7,12 +7,12 @@ var TopBar = React.createClass({
    */
   render: function() {
     return (
-      <div className="panel panel-warning">
         <div className="panel-body">
-          Welcome, {this.props.name}
-          <div className="sideBar"
+          <a href="#" className="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></a>
+          <span>Welcome, {this.props.name}
+          <a href="#"><img className="profilePicture" src="../css/images/profilePlaceholder.png" /></a>
+          </span>
         </div>
-      </div>
     );
   },
 
