@@ -20,10 +20,9 @@ var path = {
   DEST: 'client/dist',
   DEST_BUILD: 'client/dist/build',
   DEST_SRC: 'client/dist/src',
-  ENTRY_POINT: './client/src/main.js',
+  ENTRY_POINT: './client/src/main.jsx',
 
-  // LESS_SRC: 'styles/index.less',
-  // LESS_WATCH: [mui + 'less/scaffolding.less', mui + '/less/components.less']
+
 };
 
 gulp.task('copy', function(){
