@@ -6,8 +6,8 @@
   /* GET home page. */
   
   router.get('/', function(req, res) {
-    console.log('got to get');
-    res.render('../client/index.html');
+    console.log('sending index.html to client');
+    res.render('../client/dist/index.html');
   });
 
   module.exports = router;

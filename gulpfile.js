@@ -21,8 +21,6 @@ var path = {
   DEST_BUILD: 'client/dist/build',
   DEST_SRC: 'client/dist/src',
   ENTRY_POINT: './client/src/main.jsx',
-
-
 };
 
 gulp.task('copy', function(){
@@ -58,14 +56,14 @@ gulp.task('watch', function() {
     .pipe(gulp.dest(path.DEST_SRC));
 });
 
-gulp.task('less', function() {
-  gulp.src(path.LESS_SRC)
-    //.pipe(sourcemaps.init())
-    .pipe(less())
-    //.pipe(autoprefixer({cascade: false, browsers: ['last 2 versions']}))
-    //.pipe(sourcemaps.write())
-    .pipe(gulp.dest(path.DEST));
-});
+// gulp.task('less', function() {
+//   gulp.src(path.LESS_SRC)
+//     //.pipe(sourcemaps.init())
+//     .pipe(less())
+//     //.pipe(autoprefixer({cascade: false, browsers: ['last 2 versions']}))
+//     //.pipe(sourcemaps.write())
+//     .pipe(gulp.dest(path.DEST));
+// });
 
 gulp.task('build', function(){
   browserify({

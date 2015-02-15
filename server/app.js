@@ -4,14 +4,14 @@
   var express = require('express');
   var path = require('path');
   var logger = require('morgan');
-  var routes = require('./app-config');
+  var router = require('./app-config');
   var app = express();
 
   app.use(logger('dev'));
 
-  app.use(express.static(path.join(__dirname, '../client')));
+  app.use(express.static(path.join(__dirname, '../client/dist')));
 
-  app.use('/', routes);
+  app.use('/', router);
 
   app.set('port', process.env.PORT || 3000);
 
