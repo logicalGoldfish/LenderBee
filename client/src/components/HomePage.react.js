@@ -1,4 +1,3 @@
-/*** @jsx React.DOM */
 var TopBar = require('./TopBar.react');
 var React = require('react');
 
