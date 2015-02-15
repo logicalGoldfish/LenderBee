@@ -7,9 +7,12 @@ var TopBar = React.createClass({
    */
   render: function() {
     return (
-      <nav id="topBar">
-        <a href="#">Link</a>
-      </nav>
+      <div className="panel panel-warning">
+        <div className="panel-body">
+          Welcome, {this.props.name}
+          <div className="sideBar"
+        </div>
+      </div>
     );
   },
 
