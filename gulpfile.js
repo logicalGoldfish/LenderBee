@@ -6,6 +6,7 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');
 var streamify = require('gulp-streamify');
+var clean = require('gulp-clean');
 
 var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
@@ -19,15 +20,18 @@ var path = {
   DEST: 'client/dist',
   DEST_BUILD: 'client/dist/build',
   DEST_SRC: 'client/dist/src',
-  ENTRY_POINT: './client/src/main.js',
-
-  // LESS_SRC: 'styles/index.less',
-  // LESS_WATCH: [mui + 'less/scaffolding.less', mui + '/less/components.less']
+  ENTRY_POINT: './client/src/main.jsx',
 };
 
 gulp.task('copy', function(){
   gulp.src(path.HTML)
     .pipe(gulp.dest(path.DEST));
+});
+
+// removes node_modules for maintenance
+gulp.task('clean-npm', function(){
+  gulp.src('./node_modules/', {read: false}).
+    pipe(clean());
 });
 
 gulp.task('watch', function() {
@@ -52,14 +56,14 @@ gulp.task('watch', function() {
     .pipe(gulp.dest(path.DEST_SRC));
 });
 
-gulp.task('less', function() {
-  gulp.src(path.LESS_SRC)
-    //.pipe(sourcemaps.init())
-    .pipe(less())
-    //.pipe(autoprefixer({cascade: false, browsers: ['last 2 versions']}))
-    //.pipe(sourcemaps.write())
-    .pipe(gulp.dest(path.DEST));
-});
+// gulp.task('less', function() {
+//   gulp.src(path.LESS_SRC)
+//     //.pipe(sourcemaps.init())
+//     .pipe(less())
+//     //.pipe(autoprefixer({cascade: false, browsers: ['last 2 versions']}))
+//     //.pipe(sourcemaps.write())
+//     .pipe(gulp.dest(path.DEST));
+// });
 
 gulp.task('build', function(){
   browserify({
