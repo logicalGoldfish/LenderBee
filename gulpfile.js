@@ -7,8 +7,6 @@ var watchify = require('watchify');
 var reactify = require('reactify');
 var streamify = require('gulp-streamify');
 var nodemon = require('gulp-nodemon');
-
-var less = require('gulp-less');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var mui = './node_modules/material-ui/src';
