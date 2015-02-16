@@ -1,15 +1,6 @@
-var TopBar = require('./TopBar.react');
+var TopBar = require('./TopBar.react.jsx');
+var searchBar = require('./searchBar.react.jsx');
 var React = require('react');
-
-/**
- * Retrieve the current TODO data from the TodoStore
- */
-// function getTodoState() {
-//   return {
-//     // allTodos: TodoStore.getAll(),
-//     // areAllComplete: TodoStore.areAllComplete()
-//   };
-// }
 
 var HomePage = React.createClass({
 
@@ -32,8 +23,8 @@ var HomePage = React.createClass({
   render: function() {
     return (
       <div>
-        <TopBar />
-        <h1>Welcome, {this.props.userName}</h1>
+        <TopBar name="User" />
+        <searchBar />
       </div>
     );
   },

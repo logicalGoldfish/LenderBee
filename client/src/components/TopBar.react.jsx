@@ -1,15 +1,14 @@
-/*** @jsx React.DOM */
 var React = require('react');
 var TopBar = React.createClass({
 
-  /**
-   * @return {object}
-   */
   render: function() {
     return (
-      <nav id="topBar">
-        <a href="#">Link</a>
-      </nav>
+        <div className="panel-body">
+          <a href="#" className="glyphicon glyphicon-menu-hamburger"></a>
+          <span>Welcome, {this.props.name}
+          <a href="#"><img className="profilePicture" src="../css/images/profilePlaceholder.png" /></a>
+          </span>
+        </div>
     );
   },
 
