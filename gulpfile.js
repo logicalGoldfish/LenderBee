@@ -108,20 +108,21 @@ gulp.task('replaceHTML', function(){
 
 // Starts server and restarts on change
 gulp.task('nodemon', function() {
-    nodemon({
-      script: 'server/app.js',
-      env: {
-        'NODE_ENV': 'development'
-      }
-    })
-      .on('restart');
-  });
+  nodemon({
+    script: 'server/app.js',
+    env: {
+      'NODE_ENV': 'development'
+    }
+  })
+    .on('restart');
+});
 
 gulp.task('lint', function() {
   return gulp.src(path.OUT)
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(jshint.reporter('fail'));
+});
 
 // Jshint, concats, uglifies scripts into dist
 // gulp.task('scripts', function() {
