@@ -43,3 +43,31 @@ transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
   border-radius: 50%;
   overflow: hidden;
 }
+
+.carousel {
+  text-align: center;
+}
+
+.carousel ul {
+  list-style: none;
+  padding-left: 0px;
+}
+
+.carousel ul li {
+  display: inline;
+  padding: 5px;
+}
+
+.carousel ul li img {
+  width: 100px;
+  height: 100px;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.arrow {
+  width: 15px;
+  height: 100px;
+}
