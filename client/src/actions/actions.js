@@ -1,6 +1,8 @@
 var Reflux = require('reflux');
 
-var Actions = Reflux.createActions([
+var actions = Reflux.createActions([
   "nextCarousel",
   "prevCarousel"
 ]);
+
+module.exports = actions;
