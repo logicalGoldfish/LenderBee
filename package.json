@@ -30,6 +30,7 @@
     "react": "^0.12.2",
     "react-tap-event-plugin": "^0.1.4",
     "react-tools": "^0.12.2",
+    "reflux": "^0.2.5",
     "require": "^2.4.17"
   },
   "devDependencies": {
