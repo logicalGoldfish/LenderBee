@@ -143,8 +143,8 @@ Thanks for contributing!
 The pull request that you are reviewing should be tested out before merging.
 The branch can be fetched and reviewed on your local computer.
 ```bash
-git remote add <person's name> http://github.com/<person's github>/LenderBee
-git fetch <person's name> <person's branch>:<new branch name>
+git remote add <person name> http://github.com/<person github>/LenderBee
+git fetch <person name> <person branch>:<new branch name>
 git checkout <new branch name>
 ```
 
