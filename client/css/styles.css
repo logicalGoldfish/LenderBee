@@ -16,10 +16,13 @@ span {
   color: black;
 }
 
+.input-group {
+  margin: 20% auto 0 auto;
+  width: 70%;
+}
+
 .form-control {
 display: block;
-margin: 20% auto 0 auto;
-width: 70%;
 height: 34px;
 padding: 6px 12px;
 font-size: 14px;
