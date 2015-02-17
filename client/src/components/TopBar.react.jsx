@@ -1,17 +1,17 @@
 var React = require('react');
 var Reflux = require('reflux');
-var navActions = require('../actions/navActions');
+var actions = require('../actions/actions');
 var navStore = require('../stores/navStore');
 
 var TopBar = React.createClass({
   mixins: [Reflux.connect(navStore)],
   
   handleHamburgerClick: function(evt) {
-      navActions.clickHamburger();
+      actions.clickHamburger();
   },
 
   handleProfileClick: function(evt) {
-    navActions.clickProfilePic();
+    actions.clickProfilePic();
   },
 
   render: function() {

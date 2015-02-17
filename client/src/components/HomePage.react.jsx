@@ -1,6 +1,8 @@
 var TopBar = require('./TopBar.react.jsx');
 var searchBar = require('./searchBar.react.jsx');
 var carousel = require('./carousel.react.jsx');
+var searchResults = require('./searchResults.react.jsx');
+
 var React = require('react');
 
 var HomePage = React.createClass({
@@ -27,6 +29,7 @@ var HomePage = React.createClass({
         <TopBar name="User" />
         <searchBar />
         <carousel />
+        <searchResults />
       </div>
     );
   },

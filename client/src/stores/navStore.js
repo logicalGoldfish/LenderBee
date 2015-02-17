@@ -1,8 +1,8 @@
-var navActions = require('../actions/navActions');
+var actions = require('../actions/actions');
 var Reflux = require('reflux');
 
 var navStore = Reflux.createStore({
-    listenables: [navActions],
+    listenables: [actions],
     onClickProfilePic: function() {
         console.log('PROFILE CLICKED');
     },

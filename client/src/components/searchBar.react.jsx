@@ -1,6 +1,6 @@
 var React = require('react');
 var Reflux = require('reflux');
-var searchActions = require('../actions/searchActions');
+var actions = require('../actions/actions');
 var searchStore = require('../stores/searchStore');
 
 var searchBar = React.createClass({
@@ -8,7 +8,7 @@ var searchBar = React.createClass({
  mixins: [Reflux.connect(searchStore)],
  
  handleSubmit: function() {
-  searchActions.submit();
+  actions.searchSubmit();
   //TODO: Connect to DB and display items
  },
 
