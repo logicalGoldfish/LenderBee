@@ -23,19 +23,19 @@ var PostPage = React.createClass({
       <form className="postForm" action="/api/items/:user" method="post">
         <div className="form-group">
           <label for="itemName">Enter Item</label>
-          <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter Item Name (ie 'Hammer')" />
+          <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter Item Name (ie 'Hammer')" name="title" />
         </div>
         <div className="form-group">
         <label for="itemName">Enter Description</label>
-        <textarea className="form-control" rows="3" placeholder="Describe Your Item"></textarea>
+        <textarea className="form-control" rows="3" placeholder="Describe Your Item" name="description"></textarea>
         </div>
         <div className="form-group">
-          <label for="exampleInputEmail1">Enter Pollen Amount</label>
-          <input type="number" className="form-control" placeholder="$$$" />
+          <label for="exampleInputEmail1">Enter Pollen Price</label>
+          <input type="number" className="form-control" placeholder="$$$" name="pollenprice" />
         </div>
         <div className="form-group">
           <label for="exampleInputFile">Add Photos</label>
-          <input type="file" />
+          <input type="file" name="photos" />
           <p className="help-block">Upload Item Photos</p>
         </div>
         <button type="submit" class="btn btn-warning">Submit</button>

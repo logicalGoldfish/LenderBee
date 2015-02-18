@@ -1,7 +1,7 @@
 var TopBar = require('./topBar.react.jsx');
-var searchBar = require('./searchBar.react.jsx');
-var carousel = require('./carousel.react.jsx');
-var searchResults = require('./searchResults.react.jsx');
+var SearchBar = require('./searchBar.react.jsx');
+var Carousel = require('./carousel.react.jsx');
+var SearchResults = require('./searchResults.react.jsx');
 var PostPage = require('./postPage.react.jsx');
 
 var React = require('react');
@@ -28,9 +28,9 @@ var HomePage = React.createClass({
     return (
       <div>
         <TopBar name="User" />
-        <searchBar />
-        <carousel />
-        <searchResults />
+        <SearchBar />
+        <Carousel />
+        <SearchResults />
         <PostPage />
       </div>
     );
