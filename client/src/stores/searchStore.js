@@ -9,15 +9,15 @@ var searchStore = Reflux.createStore({
     init: function() {
       var that = this;
         request("/api/items/:user", function(res){
-          console.log(JSON.parse(res.text));
           that.data.items = JSON.parse(res.text);
           that.trigger(that.items);
         })
       },
 
     onSearchSubmit: function() {
-        console.log('SEARCH SUBMITTED');
-        $('#searchBar').val('');
+        // this.searchInput = $('#searchBar').val();
+        // console.log('SEARCHINP', this.searchInput);
+        // $('#searchBar').val('');
         this.init();
     },
 

@@ -7,17 +7,35 @@ var searchResults = React.createClass({
  
  mixins: [Reflux.connect(searchStore)],
  
+ searchInput: function() {
+  console.log($('#searchBar').val())
+  // return $('#searchBar').val();
+ },
+ // matchedItems: function() {
+
+ //  console.log('fitler', this.state.items.filter(function(item) {
+ //    return item.name === searchInput;
+ //  }));
+ // },
+ 
   handleSearch: function() {
     actions.searchSubmit();
   //TODO: Connect to DB and display items
  },
 
   render: function() {
-    return (<div className="searchResults">
-      {this.state.items.map(function(item){
-         return (<div><p>{item.name}</p></div>)
-      })}
-    </div>)
+    var matchedItems = this.state.items.filter(function(item){
+      return item.name === $('#searchBar').val();
+    })
+      .map(function(item) {return <li> {item} </li>});
+
+    return (
+      <div>
+        <ul>
+          {matchedItems}
+        </ul>
+      </div>
+    )
   }
 
 });

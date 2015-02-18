@@ -1,4 +1,4 @@
-var TopBar = require('./TopBar.react.jsx');
+var TopBar = require('./topBar.react.jsx');
 var searchBar = require('./searchBar.react.jsx');
 var carousel = require('./carousel.react.jsx');
 var searchResults = require('./searchResults.react.jsx');
