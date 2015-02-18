@@ -1,17 +1,17 @@
 var React = require('react');
 var Reflux = require('reflux');
-var navActions = require('../actions/navActions');
+var actions = require('../actions/actions');
 var navStore = require('../stores/navStore');
 
 var TopBar = React.createClass({
   mixins: [Reflux.connect(navStore)],
   
   handleHamburgerClick: function(evt) {
-      navActions.clickHamburger();
+      actions.clickHamburger();
   },
 
   handleProfileClick: function(evt) {
-    navActions.clickProfilePic();
+    actions.clickProfilePic();
   },
 
   render: function() {
@@ -25,16 +25,7 @@ var TopBar = React.createClass({
     );
   },
 
-  /**
-   * Event handler called within TodoTextInput.
-   * Defining this here allows TodoTextInput to be used in multiple places
-   * in different ways.
-   * @param {string} text
-   */
   _onSave: function(text) {
-    // if (text.trim()){
-    //   TodoActions.create(text);
-    // }
 
   }
 

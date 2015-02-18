@@ -31,7 +31,8 @@
     "react-tap-event-plugin": "^0.1.4",
     "react-tools": "^0.12.2",
     "reflux": "^0.2.5",
-    "require": "^2.4.17"
+    "require": "^2.4.17",
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
     "browser-sync": "^2.0.1",
