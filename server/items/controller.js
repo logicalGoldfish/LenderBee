@@ -1,8 +1,9 @@
 var controller = {};
-controller.create = function(req, res, next) {
-	console.log('inside items controller create (LATER DB)');
-  res.json(req.body);
-};
+
+controller.create = function(req, res, next){
+	console.log('inside items controller create');
+	console.log(req.body);
+}
 
 controller.read = function(req, res, next){
 	console.log('inside items controller sign in');

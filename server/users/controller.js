@@ -1,7 +1,6 @@
 var controller = {};
 controller.create = function(req, res, next){
-	console.log('inside users controller create');
-	res.json({'hi':'hello'});
+	console.log(req.body);
 }
 
 controller.signin = function(req, res, next){
