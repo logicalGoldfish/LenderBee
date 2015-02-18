@@ -20,27 +20,26 @@ var PostPage = React.createClass({
    */
   render: function() {
     return (
-      <form>
+      <form className="postForm" action="/api/items/:user" method="post">
         <div className="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" placeholder="Enter email">
-        </div>
-        <div className="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password">
+          <label for="itemName">Enter Item</label>
+          <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter Item Name (ie 'Hammer')" />
         </div>
         <div className="form-group">
-          <label for="exampleInputFile">File input</label>
-          <input type="file" id="exampleInputFile">
-          <p className="help-block">Example block-level help text here.</p>
+        <label for="itemName">Enter Description</label>
+        <textarea className="form-control" rows="3" placeholder="Describe Your Item"></textarea>
         </div>
-        <div className="checkbox">
-          <label>
-            <input type="checkbox"> Check me out
-          </label>
+        <div className="form-group">
+          <label for="exampleInputEmail1">Enter Pollen Amount</label>
+          <input type="number" className="form-control" placeholder="$$$" />
         </div>
-        <button type="submit" className="btn btn-default">Submit</button>
-      </form>
+        <div className="form-group">
+          <label for="exampleInputFile">Add Photos</label>
+          <input type="file" />
+          <p className="help-block">Upload Item Photos</p>
+        </div>
+        <button type="submit" class="btn btn-warning">Submit</button>
+        </form>
     );
   },
 
@@ -53,4 +52,4 @@ var PostPage = React.createClass({
 
 });
 
-module.exports = HomePage;
+module.exports = PostPage;

@@ -2,6 +2,7 @@ var TopBar = require('./topBar.react.jsx');
 var searchBar = require('./searchBar.react.jsx');
 var carousel = require('./carousel.react.jsx');
 var searchResults = require('./searchResults.react.jsx');
+var PostPage = require('./postPage.react.jsx');
 
 var React = require('react');
 
@@ -30,6 +31,7 @@ var HomePage = React.createClass({
         <searchBar />
         <carousel />
         <searchResults />
+        <PostPage />
       </div>
     );
   },
