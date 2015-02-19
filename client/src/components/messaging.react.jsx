@@ -10,6 +10,7 @@ var messaging = React.createClass({
   mixins: [Reflux.connect(messagingStore)],
 
   render: function(){
+    //creates component for each message and loads them into the array messageGroup
     var messageGroup = this.state.messages.map(function(singleMessage) {
       return (<div><message messageInfo={singleMessage} /></div>);
     });
