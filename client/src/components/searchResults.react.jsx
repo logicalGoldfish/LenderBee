@@ -8,15 +8,9 @@ var searchResults = React.createClass({
  mixins: [Reflux.connect(searchStore)],
  
  searchInput: function() {
-  console.log($('#searchBar').val())
-  // return $('#searchBar').val();
+  console.log($('#searchBar').val());
  },
- // matchedItems: function() {
-
- //  console.log('fitler', this.state.items.filter(function(item) {
- //    return item.name === searchInput;
- //  }));
- // },
+ 
  
   handleSearch: function() {
     actions.searchSubmit();
@@ -27,7 +21,7 @@ var searchResults = React.createClass({
     var matchedItems = this.state.items.filter(function(item){
       return item.name === $('#searchBar').val();
     })
-      .map(function(item) {return <li> {item} </li>});
+      .map(function(item) {return <li> {item.name }| Lender Id:{ item.Lender_id} </li>});
 
     return (
       <div>

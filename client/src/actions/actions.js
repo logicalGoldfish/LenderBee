@@ -5,7 +5,9 @@ var actions = Reflux.createActions([
   "prevCarousel",
   "clickProfilePic", 
   "clickHamburger", 
-  "searchSubmit" 
+  "searchSubmit",
+  "requestLentPage",
+  "requestBorrowedPage"
 ]);
 
 module.exports = actions;

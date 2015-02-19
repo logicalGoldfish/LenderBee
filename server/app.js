@@ -9,11 +9,6 @@ app.set('port', process.env.PORT || 3000);
 
 require('./config.js')(app, express);
 
-
-// app.get('/', function(req, res){
-//   res.render('../client/index.html');
-// });
-
 app.listen(app.get('port'), function(){
   console.log('localhost listening on :' + app.get('port') + ' Ctrl-C to terminate');
 })

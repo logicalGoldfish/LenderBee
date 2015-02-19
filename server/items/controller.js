@@ -7,7 +7,7 @@ controller.create = function(req, res, next) {
 controller.read = function(req, res, next){
 	console.log('inside items controller sign in');
   // console.log('this is REQ', req.body)
-  res.json([{"name":"hammer"},{"name":"spoon"},{"name":"hammer"}]);
+  res.json([{"name":"hammer", "Lender_id": 1, "Borrower_id": 3},{"name":"spoon", "Lender_id": 1, "Borrower_id": 4},{"name":"hammer", "Lender_id": 2, "Borrower_id": 3}]);
 };
 
 controller.update = function(req, res, next){

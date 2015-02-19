@@ -35,7 +35,7 @@ var PostPage = React.createClass({
         </div>
         <div className="form-group">
           <label for="exampleInputFile">Add Photos</label>
-          <input type="file" name="photos" />
+          <input type="file" name="photos" multiple="multiple" />
           <p className="help-block">Upload Item Photos</p>
         </div>
         <button type="submit" class="btn btn-warning">Submit</button>
