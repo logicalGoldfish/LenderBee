@@ -3,6 +3,8 @@ var SearchBar = require('./searchBar.react.jsx');
 var Carousel = require('./carousel.react.jsx');
 var SearchResults = require('./searchResults.react.jsx');
 var PostPage = require('./postPage.react.jsx');
+var LentPage = require('./lentPage.react.jsx');
+var BorrowedPage = require('./borrowedPage.react.jsx');
 
 var React = require('react');
 
@@ -31,7 +33,6 @@ var HomePage = React.createClass({
         <SearchBar />
         <Carousel />
         <SearchResults />
-        <PostPage />
       </div>
     );
   },

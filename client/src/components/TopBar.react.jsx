@@ -8,6 +8,8 @@ var TopBar = React.createClass({
   
   handleHamburgerClick: function(evt) {
       actions.clickHamburger();
+      // actions.requestLentPage();
+      actions.requestBorrowedPage();
   },
 
   handleProfileClick: function(evt) {

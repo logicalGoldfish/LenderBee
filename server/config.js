@@ -14,7 +14,7 @@ module.exports = function(app, express){
 	//route for the homepage
 	app.get('/', function(req, res){
 		res.render('../client/index.html')
-	})
+	});
 
 	//API routes for users (can amend as we decide what we need)
 	app.post('/api/users/signup', users.create);
