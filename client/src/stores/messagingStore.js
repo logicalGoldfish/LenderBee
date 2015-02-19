@@ -3,9 +3,9 @@ var Reflux = require('reflux');
 var request = require('superagent');
 var actions = require('../actions/actions.js');
 
-var profileStore = Reflux.createStore({
+var messagingStore = Reflux.createStore({
 
-  data: {item: {userName: "Bob", userRating: 0, about: "I am the best"}},
+  data: {messages: [{person:"bob",message:"hi"},{person:"larry",message:"yo"},{person:"bob",message:"gimme everything"}]},
 
   //listens to actions
   listenables: [actions],
@@ -21,9 +21,9 @@ var profileStore = Reflux.createStore({
 
   //sets the state to the item data
   getInitialState: function(){
-    return this.data.item;
+    return this.data;
   }
 
 })
 
-module.exports = profileStore;
+module.exports = messagingStore;

@@ -3,9 +3,13 @@ var Reflux = require('reflux');
 var request = require('superagent');
 var actions = require('../actions/actions.js');
 
-var profileStore = Reflux.createStore({
+var messageStore = Reflux.createStore({
 
   data: {item: {userName: "Bob", userRating: 0, about: "I am the best"}},
+
+  propTypes: {
+    messageInfo: React.PropTypes.object
+  },
 
   //listens to actions
   listenables: [actions],
@@ -26,4 +30,4 @@ var profileStore = Reflux.createStore({
 
 })
 
-module.exports = profileStore;
+module.exports = messageStore;
