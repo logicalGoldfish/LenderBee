@@ -20,7 +20,6 @@ var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var notify = require('gulp-notify');
 var rename = require('gulp-rename');
-var karma = require('karma').server;
 var eventStream = require('event-stream');
 var order = require('gulp-order');
 var mui = './node_modules/material-ui/src';
@@ -124,33 +123,6 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('fail'));
 });
 
-// Jshint, concats, uglifies scripts into dist
-// gulp.task('scripts', function() {
-//   var appFiles = gulp.src(paths.src.main)
-//     .pipe(jshint())
-//     .pipe(jshint.reporter('default'))
-//     .on('error', handleError)
-//     .pipe(concat('app.temp.js'));
-
-//   var componentFiles = gulp.src(paths.src.components)
-//     .pipe(jshint())
-//     .pipe(jshint.reporter('default'))
-//     .on('error', handleError)
-//     .pipe(concat('components.temp.js'));
-
-//   return eventStream.concat(appFiles, componentFiles)
-//     .pipe(order([
-//       'app.temp.js',
-//       'components.temp.js'
-//     ]))
-//     .pipe(concat('main.js'))
-//     .pipe(gulp.dest('client/dist/assets/js'))
-//     .pipe(rename({suffix: '.min'}))
-//     .pipe(uglify())
-//     .pipe(gulp.dest('client/dist/assets/js'))
-//     .pipe(notify({message: 'Tests and scripts task complete'}));
-// });
-
 // Runs Karma tests & jsHint
 gulp.task('test', ['lint'], function(done) {
   karma.start({
@@ -166,9 +138,13 @@ gulp.task('clean', function(cb) {
   del(['dist/assets/js'], cb)
 });
 
-
 // Builds production files
 gulp.task('production', ['clean', 'replaceHTML', 'build']);
 
+// Makes sure nodemon is run after build
+gulp.task('server', ['test', 'watch'], function() {
+  gulp.start('nodemon');
+});
+
 // Default gulp task
-gulp.task('default', ['test', 'watch', 'nodemon']);
+gulp.task('default', ['server']);
