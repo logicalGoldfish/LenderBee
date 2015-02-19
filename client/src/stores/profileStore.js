@@ -5,11 +5,8 @@ var actions = require('../actions/actions.js');
 
 var profileStore = Reflux.createStore({
 
-  data: {item: {userName: "Bob", userRating: 0, about: "I am the best"}, reviews: [{userName: "Bob", userRating: 5, comments: "it's cool"},{userName: "Bill", userRating: 3, comments: "it's bad"}]},
+  data: {item: {userName: "Bob", userRating: 0, about: "I am the best"}},
 
-  //reviews: [{userName: "Bob", userRating: 5, comments: "The item was returned in good condition"}]
-
-  //data: {reviews: {userName: "Bob", userRating: 5, reviewType: {type: "borrower", item: "drill"}, comments: "The item was returned in good condition"}, {userName: "Al", userRating: 3, reviewType: {type: "borrower", item: "hammer"}, comments: "The item was returned in ok condition"}},
   //listens to actions
   listenables: [actions],
 
@@ -24,7 +21,7 @@ var profileStore = Reflux.createStore({
 
   //sets the state to the item data
   getInitialState: function(){
-    return this.data;
+    return this.data.item;
   }
 
 })
