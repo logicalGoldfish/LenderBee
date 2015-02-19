@@ -2,6 +2,7 @@ var TopBar = require('./topBar.react.jsx');
 var SearchBar = require('./searchBar.react.jsx');
 var Carousel = require('./carousel.react.jsx');
 var SearchResults = require('./searchResults.react.jsx');
+var Profile = require('./profile.react.jsx');
 var PostPage = require('./postPage.react.jsx');
 var LentPage = require('./lentPage.react.jsx');
 var BorrowedPage = require('./borrowedPage.react.jsx');
@@ -32,6 +33,7 @@ var HomePage = React.createClass({
         <TopBar name="User" />
         <SearchBar />
         <Carousel />
+        <Profile />
         <SearchResults />
       </div>
     );
