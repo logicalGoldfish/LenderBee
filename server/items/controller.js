@@ -46,7 +46,7 @@ controller.getOneUser = function(req, res, next){
 	//extract the user name
 	User.find({ //find the user id of the currently logged in user
 		where: {
-			user: req.params.user //extract the username from the url
+			username: req.params.user //extract the username from the url
 		}
 	})
 		.then(function(user){ //use the user's id to find associated items in the items table
