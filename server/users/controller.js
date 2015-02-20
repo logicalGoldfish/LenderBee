@@ -1,20 +1,29 @@
+var db = require('../db/db.js');
+var User = global.db.User;
+var Item = global.db.Item;
+var Message = global.db.Message;
+
 var controller = {};
 controller.create = function(req, res, next){
-	console.log(req.body);
+	//extract fb data to create users with
+	//reputation = 0, bee bucks = 10, city, state, country,
+	//fb name (first, last)
+	User.create(req.body)
+		.then(function(user){
+		console.log('user created here ', user)
+	})
 }
 
+
+
 controller.signin = function(req, res, next){
-	console.log('inside users controller sign in');
-	res.json({'hi':'hello'});
+	//sign in with fb
+	//check users table for match and do routing
 }
 
 controller.update = function(req, res, next){
-	console.log('inside users controller update');
-	res.json({'hi':'hello'});
 }
 
 controller.delete = function(req, res, next){
-	console.log('inside users controller delete');
-	res.json({'hi':'hello'});
 }
 module.exports = controller;
