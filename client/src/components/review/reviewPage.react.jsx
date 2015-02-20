@@ -1,17 +1,17 @@
 var React = require('react');
 var Reflux = require('reflux');
-var profileStore = require('../../stores/profileStore.js');
+var reviewPageStore = require('../../stores/reviewPageStore.js');
 var actions = require('../../actions/actions.js');
-var Review = require('../review/review.react.jsx');
+var Review = require('./review.react.jsx');
 
-var Profile = React.createClass({
+var ReviewPage = React.createClass({
 
   componentWillMount: function() {
-    alert('switching to profile view');
+    alert('switching to reviewPage view');
   },
 
-  //listens to profileStore
-  mixins: [Reflux.connect(profileStore)],
+  //listens to reviewPageStore
+  mixins: [Reflux.connect(reviewPageStore)],
 
   render: function(){
     console.log(this.state.reviews);
@@ -19,12 +19,9 @@ var Profile = React.createClass({
      var reviewGroup = this.state.reviews.map(function(singleReview) {
       return (<div><Review reviewInfo={singleReview} /></div>);
      });
+     console.log(reviewGroup);
     return (
       <div>
-        <img src="#" href="#" alt="user"/>
-        <p>{this.state.item.userName}</p>
-        <p>{this.state.item.userRating}</p>
-        <p>{this.state.item.about}</p>
         <p>Reviews</p>
         <div>{reviewGroup}</div>
       </div>
@@ -32,4 +29,4 @@ var Profile = React.createClass({
   }
 });
 
-module.exports = Profile;
+module.exports = ReviewPage;
