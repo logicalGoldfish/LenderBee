@@ -10,7 +10,8 @@ controller.create = function(req, res, next){
 	//fb name (first, last)
 	User.create(req.body)
 		.then(function(user){
-		console.log('user created here ', user)
+		console.log('user created here ', user);
+		res.send(user);
 	})
 }
 
