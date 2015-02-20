@@ -8,6 +8,7 @@ var SearchBar = require('./SearchBar.react.jsx');
 var Carousel = require('./Carousel.react.jsx');
 var SearchResults = require('./SearchResults.react.jsx');
 
+
 var Search = React.createClass({
 
   render: function() {
