@@ -138,6 +138,28 @@ else, just repeat again.
 
 Thanks for contributing!
 
+### Reviewing pull requests
+
+The pull request that you are reviewing should be tested out before merging.
+The branch can be fetched and reviewed on your local computer.
+```bash
+git remote add <person name> http://github.com/<person github>/LenderBee
+git fetch <person name> <person branch>:<new branch name>
+git checkout <new branch name>
+```
+
+If you can't checkout the new branch because of uncommitted changes in your 
+current branch, you can either commit those changes or stash them.
+```bash
+git stash
+```
+Don't forget to apply the stashed changes after switching back to the branch 
+you were working in.
+```bash
+# After switching back to your branch
+git stash apply
+```
+
 ### Guidelines
 
 1. Uphold the current code standard:
