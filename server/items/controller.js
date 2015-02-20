@@ -33,7 +33,13 @@ controller.create = function(req, res, next){
 }
 
 controller.getAll = function(req, res, next){
-	Item.findAll()
+	var query = req.params.title;
+	console.log('title from user search', req.param.title);
+	Item.findAll({
+		where: {
+			title: query
+		}
+	})
 		.then(function(items){
 			res.json(items);
 		})

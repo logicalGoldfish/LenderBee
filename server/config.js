@@ -25,7 +25,7 @@ module.exports = function(app, express){
 
 	//API routes for items (can amend as we decide what we need)
 	app.post('/api/items/:user', items.create);
-	app.get('/api/items', items.getAll);
+	app.get('/api/items/:title', items.getAll);
 	app.get('/api/items/:user', items.getOneUser);
 	// app.put('/api/items/:user/:item', items.update);
 	// app.delete('/api/items/:user/:item',items.delete);
