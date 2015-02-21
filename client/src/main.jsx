@@ -13,6 +13,10 @@ $(document).ready(function(){
 	var SideNavBar	 = require('./components/app/sideNavBar.react.jsx');
 	// var History      = require('./components/history/History.react.jsx');
 	var Notifications = require('./components/notifications/Notifications.react.jsx');
+	var ReviewPage = require('./components/review/reviewPage.react.jsx');
+	var Messaging = require('./components/messagingUsers.react.jsx');
+	var Message = require('./components/messaging.react.jsx');
+	var PostItem = require('./components/postPage.react.jsx');
 
 
 
@@ -57,6 +61,12 @@ $(document).ready(function(){
 	  	<DefaultRoute name="search" handler={Search}/> /* This is the active route at path "/" */
 	  	<Route name="profile" path="/profile" handler={Profile}/>
 	  	<Route name="notifications" path="/notifications" handler={Notifications}/>
+	  	<Route name="reviews" path="/reviews" handler={ReviewPage}/>
+	  	<Route name="messages" path="/messages" handler={Messaging}/>
+	  	<Route name="message" path="/messages/user" handler={Message}>
+	  		<Route name="messageUser" path="/messages/user/:userId" handler={Message}/>
+	  	</Route>
+	  	<Route name="postItem" path="/post" handler={PostItem}/>
 	  </Route>
 	);
 

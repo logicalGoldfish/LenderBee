@@ -40,10 +40,12 @@ var SideNavBar = React.createClass({
 			<div className="sideNavBar panel panel-default" onClick={this.handleClick}>
 				<ul className="nav nav-pills nav-stacked">
 					<SideNavBarElement text="SEARCH" to="search" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="MESSAGES" to="messages" toggleSideNavBar={this.props.toggleSideNavBar}/>
 					<SideNavBarElement text="PROFILE" to="profile" toggleSideNavBar={this.props.toggleSideNavBar}/>
 					{/*<SideNavBarElement text="ITEMS LENT" to="items_lent"/>*/}
 					{/*<SideNavBarElement text="ITEMS BORROWED" to="items_borrowed"/>*/}
 					<SideNavBarElement text="NOTIFICATIONS" to="notifications" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="POST AN ITEM" to="postItem" toggleSideNavBar={this.props.toggleSideNavBar}/>
 				</ul>
 			</div>
 		);

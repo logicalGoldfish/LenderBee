@@ -3,6 +3,8 @@ var Reflux = require('reflux');
 var profileStore = require('../../stores/profileStore.js');
 var actions = require('../../actions/actions.js');
 var Review = require('../review/review.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var Profile = React.createClass({
 
@@ -24,7 +26,7 @@ var Profile = React.createClass({
         <p>{this.state.item.userName}</p>
         <p>{this.state.item.userRating}</p>
         <p>{this.state.item.about}</p>
-        <p>Reviews</p>
+        <p><Link to="reviews">Reviews</Link></p>
         <div>{reviewGroup}</div>
       </div>
     )
