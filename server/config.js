@@ -25,8 +25,8 @@ module.exports = function(app, express){
 
 	//API routes for items (can amend as we decide what we need)
 	app.post('/api/items/:user', items.create); //WORKS
-	app.get('/api/items/:title', items.getAll); //WORKS
 	app.get('/api/items/:user', items.getOneByUser); //WORKS - let's talk more about this one. may not be the exact thing you need
+	app.get('/api/items/:title', items.getAll); //WORKS
 
 
 	//API routes for messages (can amend as we decide what we need)
@@ -36,6 +36,8 @@ module.exports = function(app, express){
 
 	//API routes for notifications (can amend as we decide what we need)
   //very serious mismatch between what i'm writing and what may be expected on front-end
-	app.post('/api/notifications/:item/:borrower', notifications.create); //WORKS - create notifications when borrower requests item
+	app.post('/api/notifications/:item/:borrower', notifications.create);
+	// app.get('/api/notifications/:user', notifications.getOneByUser);
+	 //WORKS - create notifications when borrower requests item
   // app.get('/api/notifications/:user/:item', notifications.getByUser);
 };

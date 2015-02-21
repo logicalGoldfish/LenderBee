@@ -4,6 +4,8 @@ var User = global.db.User;
 var Item = global.db.Item;
 var Message = global.db.Message;
 var controller = {};
+var Sequelize = require('sequelize');
+
 
 controller.create = function(req, res, next){
 	//extract the user name
@@ -53,21 +55,21 @@ controller.getOneByUser = function(req, res, next){
 			username: req.params.user //extract the username from the url
 		}
 	})
-		.then(function(user){ //use the user's id to find associated items in the items table
-			Item.findAll({
-				where: { //where the user id is associated with an items lender or borrower id
-						lender_id: user.id //this id call may not be allowed, will have to test
-						// borrower_id: user.id
-					}
-				})
-				.then(function(items){
-					res.json(items); //after we find the items, return them back to the client
-				})//the client can sort out based on lent or borrowed
+	.then(function(user){ //use the user's id to find associated items in the items table
+		Item.findAll({
+			where: Sequelize.or(
+				{lender_id: user.id}, //where the user id is associated with an items lender or borrower id
+				{borrower_id: user.id}
+				)
+			})
+			.then(function(items){
+				res.json(items); //after we find the items, return them back to the client
+			})//the client can sort out based on lent or borrowed
 		})
 		.catch(function(error){
 			console.log('items read error ', error);
 		})
-};
+	}
 
 // controller.update = function(req, res, next){
 // 	//Where we update the item to borrowed and assign it a borrower_id
