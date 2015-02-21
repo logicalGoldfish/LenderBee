@@ -9,7 +9,6 @@ var review = React.createClass({
   mixins: [Reflux.connect(reviewStore)],
 
   render: function(){
-    console.log('why');
     return (
       <div>
         <p>{this.props.reviewInfo.userName}</p>
