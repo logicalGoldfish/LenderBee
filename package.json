@@ -22,6 +22,7 @@
     "express": "^4.0.0",
     "express-partials": "^0.2.0",
     "express-static": "^1.0.3",
+    "faker": "^2.1.2",
     "gulp-clean": "^0.3.1",
     "json-serialize": "^1.1.2",
     "keymirror": "^0.1.1",

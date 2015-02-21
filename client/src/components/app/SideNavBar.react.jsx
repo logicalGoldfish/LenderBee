@@ -9,7 +9,9 @@ var Link 				= Router.Link;
 var SideNavBarElement = React.createClass({
 	render: function(){
 		return (
-				<li><Link to={this.props.to}>{this.props.text}</Link></li>
+				<li onClick={this.props.toggleSideNavBar}>
+					<Link to={this.props.to}>{this.props.text}</Link>
+				</li>
 			);
 	}
 });
@@ -37,12 +39,11 @@ var SideNavBar = React.createClass({
 		return (
 			<div className="sideNavBar panel panel-default" onClick={this.handleClick}>
 				<ul className="nav nav-pills nav-stacked">
-					<SideNavBarElement text="SEARCH" to="search"/>
-					<SideNavBarElement text="PROFILE" to="profile"/>
+					<SideNavBarElement text="SEARCH" to="search" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="PROFILE" to="profile" toggleSideNavBar={this.props.toggleSideNavBar}/>
 					{/*<SideNavBarElement text="ITEMS LENT" to="items_lent"/>*/}
 					{/*<SideNavBarElement text="ITEMS BORROWED" to="items_borrowed"/>*/}
-					{/*<SideNavBarElement text="HISTORY" to="history"/>*/}
-					<SideNavBarElement text="NOTIFICATIONS" to="notifications"/>
+					<SideNavBarElement text="NOTIFICATIONS" to="notifications" toggleSideNavBar={this.props.toggleSideNavBar}/>
 				</ul>
 			</div>
 		);

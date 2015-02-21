@@ -25,7 +25,7 @@ var TopBar = React.createClass({
     return (
         <div className="panel-body">
           {/*_sideNavBar*/}
-          <a href="#" className="glyphicon glyphicon-menu-hamburger" onClick={this.props.toggleSideNavBar}></a>
+          <div className="glyphicon glyphicon-menu-hamburger" onClick={this.props.toggleSideNavBar}></div>
           <span>Welcome, {this.props.name}
           <a href="#" ><img className="profilePicture" src="../css/images/profilePlaceholder.png" onClick={this.handleProfileClick} /></a>
           </span>
