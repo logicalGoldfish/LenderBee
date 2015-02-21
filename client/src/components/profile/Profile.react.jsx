@@ -14,7 +14,6 @@ var Profile = React.createClass({
   mixins: [Reflux.connect(profileStore)],
 
   render: function(){
-    console.log(this.state.reviews);
     //creates component for each review and loads them into the array reviewGroup
      var reviewGroup = this.state.reviews.map(function(singleReview) {
       return (<div><Review reviewInfo={singleReview} /></div>);
