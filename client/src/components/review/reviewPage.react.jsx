@@ -6,10 +6,6 @@ var Review = require('./review.react.jsx');
 
 var ReviewPage = React.createClass({
 
-  componentWillMount: function() {
-    alert('switching to reviewPage view');
-  },
-
   //listens to reviewPageStore
   mixins: [Reflux.connect(reviewPageStore)],
 

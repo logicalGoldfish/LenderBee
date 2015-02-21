@@ -1,10 +1,10 @@
 var React = require('react');
 var Reflux = require('reflux');
 var messagingStore = require('../stores/messagingStore.js');
-var message = require('./message.react.jsx');
+var Message = require('./message.react.jsx');
 var actions = require('../actions/actions.js');
 
-var messaging = React.createClass({
+var Messaging = React.createClass({
 
   //listens to messagingStore
   mixins: [Reflux.connect(messagingStore)],
@@ -12,7 +12,7 @@ var messaging = React.createClass({
   render: function(){
     //creates component for each message and loads them into the array messageGroup
     var messageGroup = this.state.messages.map(function(singleMessage) {
-      return (<div><message messageInfo={singleMessage} /></div>);
+      return (<div><Message messageInfo={singleMessage} /></div>);
     });
     return (
       <div>
@@ -31,4 +31,4 @@ var messaging = React.createClass({
   }
 });
 
-module.exports = messaging;
+module.exports = Messaging;

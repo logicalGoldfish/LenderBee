@@ -14,6 +14,8 @@ $(document).ready(function(){
 	// var History      = require('./components/history/History.react.jsx');
 	var Notifications = require('./components/notifications/Notifications.react.jsx');
 	var ReviewPage = require('./components/review/reviewPage.react.jsx');
+	var Messaging = require('./components/messagingUsers.react.jsx');
+	var Message = require('./components/messaging.react.jsx');
 
 
 
@@ -59,6 +61,8 @@ $(document).ready(function(){
 	  	<Route name="profile" path="/profile" handler={Profile}/>
 	  	<Route name="notifications" path="/notifications" handler={Notifications}/>
 	  	<Route name="reviews" path="/reviews" handler={ReviewPage}/>
+	  	<Route name="messaging" path="/messaging" handler={Messaging}/>
+	  	<Route name="message" path="/messaging/user" handler={Message}/>
 	  </Route>
 	);
 
