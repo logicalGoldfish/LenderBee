@@ -13,6 +13,7 @@ $(document).ready(function(){
 	var SideNavBar	 = require('./components/app/sideNavBar.react.jsx');
 	// var History      = require('./components/history/History.react.jsx');
 	var Notifications = require('./components/notifications/Notifications.react.jsx');
+	var ReviewPage = require('./components/review/reviewPage.react.jsx');
 
 
 
@@ -57,6 +58,7 @@ $(document).ready(function(){
 	  	<DefaultRoute name="search" handler={Search}/> /* This is the active route at path "/" */
 	  	<Route name="profile" path="/profile" handler={Profile}/>
 	  	<Route name="notifications" path="/notifications" handler={Notifications}/>
+	  	<Route name="reviews" path="/reviews" handler={ReviewPage}/>
 	  </Route>
 	);
 
