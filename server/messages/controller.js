@@ -3,6 +3,7 @@ var User = global.db.User;
 var Item = global.db.Item;
 var Messages = global.db.Message;
 var controller = {};
+var Sequelize = require('sequelize');
 
 controller.create = function(req, res, next){
 	//req.body will have the message
@@ -27,48 +28,49 @@ controller.create = function(req, res, next){
 		})
 }
 
-controller.getMessagesAsBorrower = function(req, res, next){
+controller.getMessages = function(req, res, next){
 	//Again, we have to query the borrower for its id because we only have its username
 	//the lender id is included with the item
-	var borrower = req.params.borrower;
+	var user = req.params.user;
 	User.find({
 		where: {
-			username: borrower
+			username: user
 		}
 	}).then(function(user){
+		console.log('this is the user.id        ***********', user.id);
 		Messages.findAll({
-			where:
-			{
-				borrower_id: user.id,
-				lender_id: req.params.lender
-			}
+			where: Sequelize.or(
+				{lender_id: user.id},
+				{borrower_id: user.id}
+			)
 		}).then(function(messages){
+			console.log(messages);
 			res.send(messages);
 		})
 	})
 }
 
-controller.getMessagesAsLender = function(req, res, next){
-	//We have to query the lender for its id because we only have its username
-	//the borrower_id is included with the item
-	var lender = req.params.lender;
-	User.find({
-		where: {
-			username: lender
-		}
-	}).then(function(user){
-		console.log('user returned after ', user);
-		Messages.findAll({
-			where:
-			{
-				borrower_id: req.params.borrower,
-				lender_id: user.id
-			}
-		}).then(function(messages){
-			res.send(messages);
-		})
-	})
-}
+// controller.getMessagesAsLender = function(req, res, next){
+// 	//We have to query the lender for its id because we only have its username
+// 	//the borrower_id is included with the item
+// 	var lender = req.params.lender;
+// 	User.find({
+// 		where: {
+// 			username: lender
+// 		}
+// 	}).then(function(user){
+// 		console.log('user returned after ', user);
+// 		Messages.findAll({
+// 			where:
+// 			{
+// 				borrower_id: req.params.borrower,
+// 				lender_id: user.id
+// 			}
+// 		}).then(function(messages){
+// 			res.send(messages);
+// 		})
+// 	})
+// }
 
 
 module.exports = controller;
