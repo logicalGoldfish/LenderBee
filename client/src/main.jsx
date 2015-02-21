@@ -16,6 +16,7 @@ $(document).ready(function(){
 	var ReviewPage = require('./components/review/reviewPage.react.jsx');
 	var Messaging = require('./components/messagingUsers.react.jsx');
 	var Message = require('./components/messaging.react.jsx');
+	var PostItem = require('./components/postPage.react.jsx');
 
 
 
@@ -61,8 +62,11 @@ $(document).ready(function(){
 	  	<Route name="profile" path="/profile" handler={Profile}/>
 	  	<Route name="notifications" path="/notifications" handler={Notifications}/>
 	  	<Route name="reviews" path="/reviews" handler={ReviewPage}/>
-	  	<Route name="messaging" path="/messaging" handler={Messaging}/>
-	  	<Route name="message" path="/messaging/user" handler={Message}/>
+	  	<Route name="messages" path="/messages" handler={Messaging}/>
+	  	<Route name="message" path="/messages/user" handler={Message}>
+	  		<Route name="messageUser" path="/messages/user/:userId" handler={Message}/>
+	  	</Route>
+	  	<Route name="postItem" path="/post" handler={PostItem}/>
 	  </Route>
 	);
 
