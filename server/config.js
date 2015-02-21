@@ -30,7 +30,8 @@ module.exports = function(app, express){
 
 	//API routes for messages (can amend as we decide what we need)
 	app.post('/api/messages/:borrower/:lender', messages.create); //WORKS
-	app.get('/api/messages/:borrower/:lender', messages.getMessages); //WORKS
+	app.get('/api/messages/:borrower/:lender', messages.getMessagesAsBorrower); //WORKS
+	app.get('/api/messages/:lender/:borrower', messages.getMessagesAsLender);
 
 
 	//API routes for notifications (can amend as we decide what we need)
