@@ -12,12 +12,6 @@ var Review = global.db.Review;
 
 console.log('USER:', User);
 
-// db();
-// User.findAll().then(function() {
-//   console.log('THIS WORKS YAYAYAYAYAYAYA');
-
-// });
-
 app.set('port', process.env.PORT || 3000);
 
 require('./config.js')(app, express);

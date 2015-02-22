@@ -28,8 +28,8 @@ if (!global.hasOwnProperty('db')) {
 
   User.hasMany(Item, {foreignKey: 'borrower_id'});
   User.hasMany(Item, {foreignKey: 'lender_id'});
-  User.hasMany(Message, {foreignKey: 'borrower_id'});
-  User.hasMany(Message, {foreignKey: 'lender_id'});
+  User.hasMany(Message, {foreignKey: 'to_id'});
+  User.hasMany(Message, {foreignKey: 'from_id'});
   User.belongsToMany(Item, {foreignKey: 'userreq_id', through: Notification});
   Item.belongsToMany(User, {foreignKey: 'itemreq_id', through: Notification});
   User.hasMany(Review, {foreignKey: 'reviewee_id'});
