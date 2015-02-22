@@ -38,6 +38,7 @@ module.exports = function(app, express){
 	//API routes for notifications (can amend as we decide what we need)
   //very serious mismatch between what i'm writing and what may be expected on front-end
 	app.post('/api/notifications/:item/:borrower', notifications.create);
+	app.get('/api/notifications/', notifications.create);
 	// app.get('/api/notifications/:user', notifications.getOneByUser);
 	 //WORKS - create notifications when borrower requests item
   // app.get('/api/notifications/:user/:item', notifications.getByUser);
