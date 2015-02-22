@@ -7,7 +7,10 @@ var actions = Reflux.createActions([
   "requestLentPage",
   "requestBorrowedPage",
   "toggleSideNav",
-  "searchSubmit"
+  "searchSubmit",
+  "loadMessages",
+  "loadItem",
+  "loadUser"
 ]);
 
 module.exports = actions;

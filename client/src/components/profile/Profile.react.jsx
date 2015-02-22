@@ -8,12 +8,13 @@ var Link = Router.Link;
 
 var Profile = React.createClass({
 
-  componentWillMount: function() {
-    alert('switching to profile view');
-  },
-
   //listens to profileStore
-  mixins: [Reflux.connect(profileStore)],
+  mixins: [Reflux.connect(profileStore), Router.State],
+  
+  componentWillMount: function() {
+    var info = this.getParams().userId;
+    actions.loadUser(info);
+  },
 
   render: function(){
     //creates component for each review and loads them into the array reviewGroup
