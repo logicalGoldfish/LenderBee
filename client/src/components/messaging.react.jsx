@@ -3,11 +3,17 @@ var Reflux = require('reflux');
 var messagingStore = require('../stores/messagingStore.js');
 var Message = require('./message.react.jsx');
 var actions = require('../actions/actions.js');
+var Router = require('react-router');
 
 var Messaging = React.createClass({
 
   //listens to messagingStore
-  mixins: [Reflux.connect(messagingStore)],
+  mixins: [Reflux.connect(messagingStore), Router.State],
+
+  componentWillMount: function() {
+    var info = this.getParams().userId;
+    actions.loadMessages(info);
+  },
 
   render: function(){
     //creates component for each message and loads them into the array messageGroup

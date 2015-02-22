@@ -1,12 +1,18 @@
 var React = require('react');
 var Reflux = require('reflux');
-var singleItemStore = require('../stores/singleItemStore.js');
-var actions = require('../actions/actions.js');
+var singleItemStore = require('../../stores/singleItemStore.js');
+var actions = require('../../actions/actions.js');
+var Router = require('react-router');
 
 var singleItem = React.createClass({
 
   //listens to singleItemStore
-  mixins: [Reflux.connect(singleItemStore)],
+  mixins: [Reflux.connect(singleItemStore), Router.State],
+
+  componentWillMount: function() {
+    var info = this.getParams().itemId;
+    actions.loadItem(info);
+  },
 
   render: function(){
     return (
@@ -16,7 +22,7 @@ var singleItem = React.createClass({
         <p>{this.state.itemDescription}</p>
         <button name="messageOwner">Message owner</button>
         <img src="#" href="#" alt="owner"/>
-        <p>{this.state.ownerName}</p>
+        <p><a href={"/#/profile/"+this.state.ownerName}>{this.state.ownerName}</a></p>
         <p>{this.state.ownerRating}</p>
       </div>
     )
