@@ -10,17 +10,17 @@ controller.create = function(req, res, next){
 	//req.params.user will be borrower_id
 	//We have to query the borrower for its id because we only have its username
 	//however, the lender_id is already associated with the item so we have that already.
-	var lender = parseInt(req.params.lender);
-	var borrower = req.params.borrower;
-	req.body.lender_id = lender;
-	console.log('lender and borrower ', lender, borrower);
+	var from = req.params.from;
+	var to = req.params.to;
+
 	User.find({
 		where: {
-			username: borrower
+			username: from
 		}
 	}).then(function(user){
-		console.log('user-id after querying for borrower ', user.id);
-		req.body.borrower_id = user.id;
+		// console.log('user-id after querying for borrower ', user.id);
+		req.body.from_id = user.id;
+		req.body.to_id = to;
 		Messages.create(req.body)
 			.then(function(message){
 				res.send(message);
