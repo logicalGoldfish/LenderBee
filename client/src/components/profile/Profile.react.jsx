@@ -9,7 +9,7 @@ var Link = Router.Link;
 var Profile = React.createClass({
 
   componentWillMount: function() {
-    alert('switching to profile view');
+    // alert('switching to profile view');
   },
 
   //listens to profileStore

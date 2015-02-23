@@ -7,6 +7,8 @@ var Notifications = React.createClass({
 	// this will cause setState({list:updatedlist}) whenever the store does trigger(updatedlist)
 	mixins: [Reflux.connect(notificationStore)],
 
+	// We need to be able to connect to the user store, the messages store, the notification store, the review store
+
 	render: function() {
 		var notifications = this.state.notifications.map(function(notification){
 			return <Notification src={notification.src} name={notification.name} item={notification.item}/>

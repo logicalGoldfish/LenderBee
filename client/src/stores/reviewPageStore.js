@@ -1,3 +1,4 @@
+/* [Deprecated] - this reviewPageStore is now stores/reviews.js*/
 var React = require('react');
 var Reflux = require('reflux');
 var request = require('superagent');
