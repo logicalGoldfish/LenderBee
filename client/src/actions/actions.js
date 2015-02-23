@@ -12,8 +12,16 @@ var actions = Reflux.createActions([
   "lenderMessaged",
   "borrowedItemReturned",
   "itemRequestSubmitted",
-  "messageFormSubmitted"
+  "messageFormSubmitted",
+
+  /* User Login/Bootstrap Functions */
+  /* [Question] Several stores will be listening to these events and will kick off some server requests (Is that an antipattern?) */ 
+  /* [Question] If several events are listening to initialize user, how do we ensure the order? (We need user store to load before items/messages/etc)*/
+  "initializeUser",
+  "authenticateUser",
+
+  /* Items API */
+  "fetchItems"
 ]);
 
 module.exports = actions;
-

@@ -1,13 +1,14 @@
 
 // var Item = require('./models.js');
-var db = require('../db/db.js');
-var User = global.db.User;
-var Item = global.db.Item;
-var Message = global.db.Message;
+var db 				 = require('../db/db.js');
+var Sequelize  = require('sequelize')
+var User 			 = global.db.User;
+var Item 			 = global.db.Item;
+var Message 	 = global.db.Message;
 var controller = {};
 
 controller.create = function(req, res, next){
-	console.log('IM INSIDE CREATE')
+	console.log('IM INSIDE CREATE');
   //extract the user name
   //query the user database to get id
   //set the lender_id of the item to the user id
@@ -49,26 +50,20 @@ controller.getAll = function(req, res, next){
 }
 
 controller.getOneByUser = function(req, res, next){
-  //extract the user name
-  User.find({ //find the user id of the currently logged in user
-    where: {
-      username: req.params.user //extract the username from the url
-    }
-  })
-    .then(function(user){ //use the user's id to find associated items in the items table
-      Item.findAll({
-        where: { //where the user id is associated with an items lender or borrower id
-            lender_id: user.id //this id call may not be allowed, will have to test
-            // borrower_id: user.id
-          }
-        })
-        .then(function(items){
-          res.json(items); //after we find the items, return them back to the client
-        })//the client can sort out based on lent or borrowed
-    })
-    .catch(function(error){
-      console.log('items read error ', error);
-    })
+	Item.findAll({
+		where: Sequelize.or(
+      { lender_id: req.params.user },
+      { borrower_id: req.params.user }
+    )
+	}).
+	then(function(items){
+		console.log('test test test', items);
+		res.json(items);
+	}).
+	catch(function(err){
+		console.log('error attempting to get items for a user', err);
+		res.status(500).end();
+	});
 };
 
 // controller.update = function(req, res, next){
