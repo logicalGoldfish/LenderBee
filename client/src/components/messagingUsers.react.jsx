@@ -11,7 +11,7 @@ var User = React.createClass({
   },
   render: function(){
     return (
-        <div><p><a href={"/#/profile/"+this.props.userInfo.person}>{this.props.userInfo.person}</a> <a href={"/#/messages/user/"+this.props.userInfo.person}>Message {this.props.userInfo.person}</a></p></div>
+        <div><p><a href={"/#/messages/user/"+this.props.userInfo.person}>{this.props.userInfo.person}</a></p></div>
       )
   }
 });

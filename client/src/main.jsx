@@ -16,8 +16,7 @@ $(document).ready(function(){
 	var ReviewPage = require('./components/review/reviewPage.react.jsx');
 	var Messaging = require('./components/messagingUsers.react.jsx');
 	var Message = require('./components/messaging.react.jsx');
-	var PostItem = require('./components/post/postPage.react.jsx');
-	var Item = require('./components/item/singleItem.react.jsx');
+	var PostItem = require('./components/postPage.react.jsx');
 
 
 
@@ -60,8 +59,7 @@ $(document).ready(function(){
 	var routes = (
 	  <Route name="app" path="/" handler={APP}>
 	  	<DefaultRoute name="search" handler={Search}/> /* This is the active route at path "/" */
-	  	<Route name="profile" path="/profile/user" handler={Profile}/>
-	  	<Route name="foreignProfile" path="/profile/:userId" handler={Profile}/>
+	  	<Route name="profile" path="/profile" handler={Profile}/>
 	  	<Route name="notifications" path="/notifications" handler={Notifications}/>
 	  	<Route name="reviews" path="/reviews" handler={ReviewPage}/>
 	  	<Route name="messages" path="/messages" handler={Messaging}/>
@@ -69,7 +67,6 @@ $(document).ready(function(){
 	  		<Route name="messageUser" path="/messages/user/:userId" handler={Message}/>
 	  	</Route>
 	  	<Route name="postItem" path="/post" handler={PostItem}/>
-	  	<Route name="item" path="/item/:itemId" handler={Item}/>
 	  </Route>
 	);
 

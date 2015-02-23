@@ -13,10 +13,6 @@ var profileStore = Reflux.createStore({
   //listens to actions
   listenables: [actions],
 
-  onLoadUser: function(info){
-    console.log("GOT THE USER ", info);
-  },
-
   //gets the item info from the database and sets the data to the item info
   init: function(){
    //  request.get("/api/items/:user", function(res){
