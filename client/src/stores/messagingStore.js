@@ -17,22 +17,22 @@ var messagingStore = Reflux.createStore({
     // });
     this.data.lender = lenderUsername;
     var that = this;
-    request("/api/messages/samin/", function(res) {
+    request("/api/messages/samin", function(res) {
       
-      that.data.messages = JSON.parse(res.text).filter(function(message) {
-        return message.lender_id === lenderId || message.borrower_id === lenderId;
-      });
-        for (var i = 0; i < that.data.messages; i++) {
-          var msg = that.data.messages[i];
-            if (msg.lender_id === lenderId) {
-              msg.from = lenderUsername;
-              console.log('ADDING FROM HERE')
-            } else {
-              msg.from = 'You';
-            }
-        }
+      that.data.messages = JSON.parse(res.text)
         console.log('DIS THE DATA', that.data);
         that.trigger(that.data);
+        // .filter(function(message) {
+        //         return message.to_id === lenderId || message.from_id === lenderId;
+        //       });
+        //         for (var i = 0; i < that.data.messages; i++) {
+        //           var msg = that.data.messages[i];
+        //             if (msg.lender_id === lenderId) {
+        //               msg.from = lenderUsername;
+        //               console.log('ADDING FROM HERE')
+        //             } else {
+        //               msg.from = 'You';
+        //             }
 
     });
   },

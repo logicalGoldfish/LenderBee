@@ -9,7 +9,7 @@ var singleItem = React.createClass({
   mixins: [Reflux.connect(singleItemStore)],
 
   handleItemRequest: function() {
-    actions.itemRequestSubmitted();
+    actions.itemRequestSubmitted(this.state.item.name, "samin");
   },
 
   handleMessageLender: function() {
@@ -18,7 +18,6 @@ var singleItem = React.createClass({
   },
 
   render: function(){
-     console.log('THIS IS STATE', this.state)
     return (
       <div>
         <img src="#" href="#" alt="item"/>

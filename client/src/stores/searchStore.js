@@ -12,6 +12,7 @@ var searchStore = Reflux.createStore({
         request("/api/items/" + "" + $('#searchBar').val() + "", function(res){
           // that.data.items = res;
           that.data.items = JSON.parse(res.text);
+          console.log('JSONN', that.data.items);
           that.trigger(that.data);
         })
       },

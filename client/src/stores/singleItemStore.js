@@ -3,6 +3,7 @@ var Reflux = require('reflux');
 var request = require('superagent');
 var actions = require('../actions/actions.js');
 
+
 var singleItemStore = Reflux.createStore({
 
   data: {item: {}, lender: {}},
@@ -23,7 +24,7 @@ var singleItemStore = Reflux.createStore({
     that.data.lender.reputation = lenderInfo.reputation;
     that.data.lender.city = lenderInfo.city;
     that.data.lender.state = lenderInfo.state;
-    that.trigger(this.data);
+    that.trigger(that.data);
    })
    
   }, 
@@ -33,9 +34,16 @@ var singleItemStore = Reflux.createStore({
   //  //component renders current item. 
   // },
 
-  onItemRequestSubmitted: function() {
+  onItemRequestSubmitted: function(itemName, borrower) {
     //request DB to notify other user;
     console.log('item requested');
+    request.post("/api/notifications/" + "" + itemName + "/" + borrower + "", function(res) {
+      if (res.ok) {
+        console.log('yay')
+      } else {
+        console.log('error!')
+      }
+    })
   },
 
 
