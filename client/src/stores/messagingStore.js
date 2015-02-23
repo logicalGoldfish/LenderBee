@@ -10,10 +10,6 @@ var messagingStore = Reflux.createStore({
   //listens to actions
   listenables: [actions],
 
-  onLoadMessages: function(info){
-    console.log("IN HERE ", info);
-  },
-
   //gets the item info from the database and sets the data to the item info
   init: function(){
    //  request.get("/api/items/:user", function(res){

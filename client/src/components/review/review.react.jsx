@@ -11,7 +11,7 @@ var review = React.createClass({
   render: function(){
     return (
       <div>
-        <p><a href={"/#/profile/"+this.props.reviewInfo.userName}>{this.props.reviewInfo.userName}</a></p>
+        <p>{this.props.reviewInfo.userName}</p>
         <div>{this.props.reviewInfo.comments}</div>
       </div>
     )
