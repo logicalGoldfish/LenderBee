@@ -7,6 +7,7 @@ var APP = React.createClass({
 	render: function(){
 		return (
 				<div>
+          <p>hello</p>
 					<Search/>
 				</div>
 			);

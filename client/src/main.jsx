@@ -1,12 +1,16 @@
 $(document).ready(function(){
 
 	var React 			 = require('react');
+	var Reflux       = require('reflux');
 	
 	/* Router Dependencies */
 	var Router 			 = require('react-router');
 	var Route  			 = Router.Route;
 	var RouteHandler = Router.RouteHandler;
 	var DefaultRoute = Router.DefaultRoute;
+
+	var mainStore = require('./stores/mainStore.js');
+	var actions = require('./actions/actions.js');
 	
 	/* Components */
 	var Search 			 				= require('./components/search/Search.react.jsx');
@@ -24,10 +28,11 @@ $(document).ready(function(){
 	var SearchResults 			= require('./components/search/searchResults.react.jsx');
 	var SingleItem 					= require('./components/search/singleItem.react.jsx');
 	var Reviews 						= require('./components/review/reviews.react.jsx');
-
+	var Login        			  = require('./components/login.react.jsx');
 
 	/* Defines Top Level App Component */
 	var APP = React.createClass({
+
 		// NavBar is initially hidden
 		getInitialState: function() {
 			return {
@@ -47,9 +52,16 @@ $(document).ready(function(){
 			return <SideNavBar showSideNavBar={this.state.showSideNavBar} toggleSideNavBar={this.toggleSideNavBar}/>; 
 		},
 
+		logOut: function(){
+			FB.logout(function(response) {
+			    // Person is now logged out
+			});
+		},
+
 		render: function(){
 			return (
 					<div>
+						<input type="button" onClick={this.logOut} value="Log out"/>
 						<TopBar toggleSideNavBar={this.toggleSideNavBar}/>
 						{this.state.showSideNavBar ? this.renderSideNavBar() : null}
 						<RouteHandler/>
@@ -58,12 +70,41 @@ $(document).ready(function(){
 		}
 	});
 
+	var Main = React.createClass({
+		mixins: [Reflux.connect(mainStore)],
+
+		componentWillMount: function(){
+
+		},
+		render: function(){
+			// var state = <Login />;
+			// FB.getLoginStatus(function(response) {
+			//   if (response.status === 'connected') {
+			//   	console.log("butt");
+			//     //var state = <APP />;
+			//   }
+			// });
+			if(!this.state.loggedIn){			
+				FB.getLoginStatus(function(response) {
+				  if (response.status === 'connected') {
+				  	console.log("mounted")
+				  	actions.loginToggle(true);
+				    //var state = <APP />;
+				  }
+				});
+			}
+			return (
+				<div>{this.state.loggedIn ? <APP /> : <Login />}</div>
+				)
+		}
+	});
+
 	/*<Route name="items-borrowed" path="user/user_id/items-borrowed" handler={Borrowed}/>*/
 	/*<Route name="items-lent" path="user/user_id/items-lent" handler={Lent}/>*/
 	/*<Route name="history" path="/history" handler={History}/>*/
 
 	var routes = (
-	  <Route name="app" path="/" handler={APP}>
+	  <Route name="app" path="/" handler={Main}>
 	  	<DefaultRoute name="search" handler={Search}/>
 	  	<Route name="profile" path="/profile" handler={Profile}/>
 	  	<Route name="items" path="/items" handler={Items}/>
