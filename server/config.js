@@ -20,7 +20,7 @@ module.exports = function(app, express){
 
 	//API routes for users (can amend as we decide what we need)
 	app.post('/api/users/signup', users.create); //WORKS
-	app.get('/api/users/:user', users.getOne); //WORKS - returns all info on a single user, regardless of borrower/lender
+	app.get('/api/users/:user', users.getOne); //WORKS - returns all info on a single user, regardless of borrower/lender. --takes in a user_id. not username
 
 
 	//API routes for items (can amend as we decide what we need)
@@ -34,13 +34,14 @@ module.exports = function(app, express){
 
 	//API routes for messages (can amend as we decide what we need)
 
-	app.post('/api/messages/:borrower/:lender', messages.create); //WORKS
+	app.post('/api/messages/:from/:to', messages.create); //WORKS
 	app.get('/api/messages/:user', messages.getMessages); //WORKS
 
 
 	//API routes for notifications (can amend as we decide what we need)
   //very serious mismatch between what i'm writing and what may be expected on front-end
 	app.post('/api/notifications/:item/:borrower', notifications.create);
+	app.get('/api/notifications/:user', notifications.getByUser);
 	// app.get('/api/notifications/:user', notifications.getOneByUser);
 	 //WORKS - create notifications when borrower requests item
   // app.get('/api/notifications/:user/:item', notifications.getByUser);

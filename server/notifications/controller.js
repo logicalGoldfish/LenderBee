@@ -5,11 +5,10 @@ var Message = global.db.Message;
 var Notification = global.db.Notification;
 var controller = {};
 
-
 controller.create = function(req, res, next){
 	//get the item title out and the borrower name
 	var item = req.params.item;
-	var borrower = req.params.user;
+	var borrower = req.params.borrower;
 	User.find({
 		where: {
 			username: borrower
@@ -32,7 +31,26 @@ controller.create = function(req, res, next){
 }
 
 controller.getByUser = function(req, res, next){
-	//
+	var user = req.params.user;
+	User.find({
+		where: {
+			username: user
+		}
+	}).then(function(user){
+		var userId = user.id;
+		Item.find({
+			where: {
+				lender_id: user.id
+			}
+		}).then(function(items){
+			console.log('items after a notifications search **********',items)
+			Notification.find({
+				itemreq_id: items.id
+			}).then(function(notifications){
+				res.json(notifications);
+			})
+		})
+	})
 }
 
 module.exports = controller;
