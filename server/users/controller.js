@@ -22,7 +22,6 @@ controller.getOne = function(req, res, next){
 			id: userId
 		}
 	}).then(function(user){
-		sample.information = user;
 		res.json(user);
 	}).catch(function(error){
 		console.log('error inside the user controller getOne function ', error);
