@@ -4,8 +4,13 @@ var actions = require('../../actions/actions');
 var searchStore = require('../../stores/searchStore');
 var SingleItem = require('./singleItem.react.jsx');
 var SearchBar = require('./SearchBar.react.jsx');
+var Map = require('../map/map.react.jsx');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var ResultDiv = React.createClass({
+
+  mixins: [Router.Navigation],
   proptypes: {
     itemName: React.PropTypes.string,
     itemPrice: React.PropTypes.number,
@@ -15,6 +20,7 @@ var ResultDiv = React.createClass({
 
   handleClick: function() {
    actions.selectItem(this.props.itemName, this.props.itemPrice, this.props.itemDescription, this.props.lenderId);
+   // this.transitionTo('SingleItem');
   },
   
   //onClick = change Route;
@@ -23,7 +29,7 @@ var ResultDiv = React.createClass({
   render: function() {
     return (
       <div className="searchresultDiv">
-      <a href="#" onClick={this.handleClick}>{this.props.itemName}</a>
+      <Link to="SingleItem" onClick={this.handleClick}>{this.props.itemName}</Link>
       </div>
       )
   }
@@ -52,7 +58,6 @@ var searchResults = React.createClass({
       <div>
       <h1>Results</h1>
       {matchedItems}
-      <SingleItem />
       </div>
     )
   }

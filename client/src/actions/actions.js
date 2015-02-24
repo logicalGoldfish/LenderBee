@@ -19,6 +19,7 @@ var actions = Reflux.createActions([
   /* [Question] If several events are listening to initialize user, how do we ensure the order? (We need user store to load before items/messages/etc)*/
   "initializeUser",
   "authenticateUser",
+  "conversationCalled",
 
   /* Items API */
   "fetchItems"

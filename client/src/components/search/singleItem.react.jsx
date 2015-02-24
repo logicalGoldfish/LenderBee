@@ -3,10 +3,11 @@ var Reflux = require('reflux');
 var singleItemStore = require('./../../stores/singleItemStore.js');
 var actions = require('./../../actions/actions.js');
 var Messaging = require('../message/messaging.react.jsx');
+var Router = require('react-router');
 
 var singleItem = React.createClass({
   //listens to singleItemStore
-  mixins: [Reflux.connect(singleItemStore)],
+  mixins: [Reflux.connect(singleItemStore), Router.Navigation],
 
   handleItemRequest: function() {
     actions.itemRequestSubmitted(this.state.item.name, "samin");
@@ -15,6 +16,7 @@ var singleItem = React.createClass({
   handleMessageLender: function() {
     console.log('sending to following lender', this.state.item.lender);
     actions.lenderMessaged(this.state.item.lender, this.state.lender.username);
+     this.transitionTo('Messaging')
   },
 
   render: function(){
@@ -31,7 +33,6 @@ var singleItem = React.createClass({
         <span>Lender Community: {this.state.lender.city+ " " + this.state.lender.state}</span>
         <button name="messageLender" onClick={this.handleMessageLender}>Message Lender</button>
         <button name="requestItem" onClick={this.handleItemRequest}>Request Item</button>
-        <Messaging />
       </div>
     )
   }

@@ -19,7 +19,10 @@ $(document).ready(function(){
 	var ReviewPage 		= require('./components/review/reviewPage.react.jsx');
 	var PostItem 			= require('./components/postPage.react.jsx');
 	var Items 				= require('./components/items/items.jsx');
-	var Map						= require('./components/map/map.jsx');
+	var Map						= require('./components/map/map.react.jsx');
+	var SingleConversation = require('./components/message/SingleConversation.react.jsx');
+	var SearchResults = require('./components/search/searchResults.react.jsx');
+	var SingleItem = require('./components/search/singleItem.react.jsx');
 
 
 	/* Defines Top Level App Component */
@@ -66,10 +69,11 @@ $(document).ready(function(){
 	  	<Route name="notifications" path="/notifications" handler={Notifications}/>
 	  	<Route name="reviews" path="/reviews" handler={ReviewPage}/>
 	  	<Route name="messages" path="/messages" handler={Messaging}/>
-	  	<Route name="message" path="/messages/user" handler={Message}>
-	  		<Route name="messageUser" path="/messages/user/:userId" handler={Message}/>
-	  	</Route>
+	  	<Route name="messageUser" path="/message" handler={SingleConversation}/>
 	  	<Route name="postItem" path="/post" handler={PostItem}/>
+	  	<Route name="SearchResults" path="/searchResults" handler={SearchResults}/>
+	  	<Route name="SingleItem" path="/singleItem" handler={SingleItem}/>
+	  	<Route name="Messaging" path="/messaging" handler={Message}/>
 	  </Route>
 	);
 

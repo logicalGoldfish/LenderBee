@@ -3,13 +3,15 @@ var Reflux = require('reflux');
 var actions = require('../../actions/actions');
 var searchStore = require('../../stores/searchStore');
 var SearchResults = require('./SearchResults.react.jsx');
+var Router = require("react-router");
 
 var searchBar = React.createClass({
  
- mixins: [Reflux.connect(searchStore)],
+ mixins: [Reflux.connect(searchStore), Router.Navigation],
  
  handleSubmit: function() {
-  actions.searchSubmit();
+  actions.searchSubmit($('#searchBar').val());
+  this.transitionTo('SearchResults')
   //TODO: Connect to DB and display items
  },
 

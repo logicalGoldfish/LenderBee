@@ -9,9 +9,17 @@ var User = React.createClass({
   propTypes: {
     userInfo: React.PropTypes.object
   },
+
+  handleClick: function() {
+    actions.conversationCalled(this.props.partner);
+  },
+  
   render: function(){
     return (
-        <div><p><a href={"/#/messages/user/"+this.props.userInfo.person}>{this.props.userInfo.person}</a></p></div>
+        <div><Link to="messageUser" partner={this.props.partner} onClick={this.handleClick}>{this.props.partner}</Link></div>
+        //onClick, call handler with this.props.partner
+        //on store, save state's current user as partner. 
+        //trigger current user.
       )
   }
 });
@@ -23,13 +31,15 @@ var MessagingUsers = React.createClass({
 
   render: function(){
     //creates component for each review and loads them into the array reviewGroup
-    var messagedUsers = this.state.reviews.map(function(singleUser) {
-     return (<div><User userInfo={singleUser} /></div>);
+    var messagedUsers = this.state.conversations.map(function(conversation) {
+     return (<User message={conversation.message} partner={conversation.to} />);
     });
     return (
       <div>
-        <p>currently messaging</p>
+        <p>Your Messages</p>
+        <ul>
         {messagedUsers}
+        </ul>
       </div>
     )
   }
