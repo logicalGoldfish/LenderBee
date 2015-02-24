@@ -6,6 +6,7 @@ var items = require('./items/controller.js');
 // var notifications = require('./notifications/controller.js');
 var messages = require('./messages/controller.js');
 var notifications= require('./notifications/controller.js');
+var reviews = require('./reviews/controller.js');
 
 module.exports = function(app, express){
 	app.use(bodyParser.urlencoded({extended:true}));
@@ -21,6 +22,10 @@ module.exports = function(app, express){
 	//API routes for users (can amend as we decide what we need)
 	app.post('/api/users/signup', users.create); //WORKS
 	app.get('/api/users/:user', users.getOne); //WORKS - returns all info on a single user, regardless of borrower/lender. --takes in a user_id. not username
+
+	//API routes for reviews
+	app.post('/api/reviews/:user', reviews.create);
+	app.get('/api/reviews/user/:user', reviews.getReviews);
 
 
 	//API routes for items (can amend as we decide what we need)
