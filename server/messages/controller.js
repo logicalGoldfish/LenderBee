@@ -12,44 +12,103 @@ controller.create = function(req, res, next){
 	//however, the lender_id is already associated with the item so we have that already.
 	var from = req.params.from;
 	var to = req.params.to;
-
-	User.find({
-		where: {
-			username: from
-		}
-	}).then(function(user){
-		// console.log('user-id after querying for borrower ', user.id);
-		req.body.from_id = user.id;
-		req.body.to_id = to;
-		Messages.create(req.body)
-			.then(function(message){
-				res.send(message);
-			})
-		})
+	req.body.from = from;
+	req.body.to = to;
+	console.log(req.body.message);
+	Messages.create(req.body).then(function(message){
+		res.send(message);
+	})
 }
 
-controller.getMessages = function(req, res, next){
-	//Again, we have to query the borrower for its id because we only have its username
-	//the lender id is included with the item
+// controller.getMessages = function(req, res, next){
+// 	//Again, we have to query the borrower for its id because we only have its username
+// 	//the lender id is included with the item
+// 	var response = {};
+// 	var user = req.params.user;
+// 	User.find({
+// 		where: {
+// 			username: user
+// 		}
+// 	}).then(function(user){
+// 		response.firstname = user.firstname;
+// 		response.lastname = user.lastname;
+// 		response.user_id = user.id;
+// 		console.log('this is the user.id        ***********', user.id);
+// 		Messages.findAll({
+// 			where: Sequelize.or(
+// 				{from_id: user.id},
+// 				{to_id: user.id}
+// 			)
+// 		}).then(function(messages){
+// 			response.messages = messages;
+// 			res.send(response);
+// 		})
+// 	})
+// }
 
-	var user = req.params.user;
-	User.find({
-		where: {
-			username: user
-		}
-	}).then(function(user){
-		console.log('this is the user.id        ***********', user.id);
+// controller.getMessages = function(req, res, next){
+// 	//Again, we have to query the borrower for its id because we only have its username
+// 	//the lender id is included with the item
+// 	var response = {};
+// 	var user = req.params.user;
+// 	User.find({
+// 		where: {
+// 			username: user
+// 		}
+// 	}).then(function(user){
+// 			Messages.findAll({
+// 				where: Sequelize.or(
+// 					{from_id: user.id},
+// 					{to_id: user.id}
+// 				)
+// 			}).then(function(messages){
+// 					console.log('response after getting messages!   ',messages);
+// 					response.messages = messages.dataValues;
+// 					response.users = {};
+// 			//loop through all of the messages in this object and do a find all
+// 				for(var i = 0; i < messages.length; i++){
+// 					User.find({
+// 						where: Sequelize.or(
+// 								{id: messages[i].dataValues.to_id},
+// 								{id: messages[i].dataValues.from_id}
+// 							)	
+// 						}).then(function(users){
+// 							//this should be an array of users!
+// 							console.log('users after querying from messages----------', users);
+// 							for(var i = 0; i < users.length; i++){
+// 								console.log('users[i].firstname', users[i].dataValues.firstname)
+// 								response.users[users[i][id]] = user.dataValues.username;
+// 							}
+// 					}).then(function(response){
+// 						res.send(response);
+// 					})
+// 					console.log('these are the usersssss result **********', response.users);
+// 				}
+// 			})
+// 		})
+// }
+
+controller.getMessages = function(req, res, next){
+	// console.log(req.params.user);
+	// var response = {};
+	// response.names = {};
+	// console.log()
+	// User.find({
+	// 	where: {
+	// 		username: req.params.user
+	// 	}
+	// }).then(function(user){
+	// 	//find all messages associated with a user
 		Messages.findAll({
 			where: Sequelize.or(
-				{lender_id: user.id},
-				{borrower_id: user.id}
+				{to: req.params.user},
+				{from: req.params.user}
 			)
 		}).then(function(messages){
 			console.log(messages);
 			res.send(messages);
 		})
-	})
-}
+	}
 
 // controller.getMessagesAsLender = function(req, res, next){
 // 	//We have to query the lender for its id because we only have its username
