@@ -5,7 +5,7 @@ var actions = require('../actions/actions.js');
 
 var messagingStore = Reflux.createStore({
 
-  data: {messages: []},
+  data: {messages: [], lender: null},
 
   //listens to actions
   listenables: [actions],
@@ -15,13 +15,24 @@ var messagingStore = Reflux.createStore({
     // request.post("/api/messages/samin" + "" + lenderId + "", function(res) {
     //   console.log('MESSAGES RECIEVED', res);
     // });
+    
     this.data.lender = lenderUsername;
+    this.trigger(this.data);
     var that = this;
     request("/api/messages/samin", function(res) {
-      
-      that.data.messages = JSON.parse(res.text)
-        console.log('DIS THE DATA', that.data);
+      that.data.messages = JSON.parse(res.text).filter(function(message) { 
+        return ((message.to === "samin" || message.from === "samin") && (message.from === lenderUsername || message.to === lenderUsername)) 
+        })
+        //   that.data.messages = that.data.messages.forEach(function(msg) {
+        //   if (msg.from_id === lenderId) {
+        //     msg.from = lenderUsername;
+        //   } else {
+        //     msg.from = "You";
+        //   }
+        // });
+      console.log('MESSAGES ON STATE', that.data.messages);
         that.trigger(that.data);
+
         // .filter(function(message) {
         //         return message.to_id === lenderId || message.from_id === lenderId;
         //       });

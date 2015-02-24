@@ -16,19 +16,18 @@ var Messaging = React.createClass({
   render: function(){
     //creates component for each message and loads them into the array messageGroup
     var that = this;
-    console.log('and hare are the messages', this.state);
     var messageGroup = this.state.messages.map(function(singleMessage) {
       return (<Message message={singleMessage.message} from={singleMessage.from} />);
     });
     return (
       <div>
-        <p>Messaging userName</p>
+        <p>Messaging: {this.state.lender}</p>
         <div className="messageWindow">
           <ul>
             {messageGroup}
           </ul>
         </div>
-        <MessageBox to={this.state.to} from={this.state.from} />
+        <MessageBox to={this.state.lender} from={this.state.from} />
       </div>
     )
   }

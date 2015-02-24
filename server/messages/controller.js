@@ -12,12 +12,14 @@ controller.create = function(req, res, next){
 	//however, the lender_id is already associated with the item so we have that already.
 	var from = req.params.from;
 	var to = req.params.to;
+
 	req.body.from = from;
 	req.body.to = to;
 	console.log(req.body.message);
 	Messages.create(req.body).then(function(message){
 		res.send(message);
 	})
+
 }
 
 // controller.getMessages = function(req, res, next){

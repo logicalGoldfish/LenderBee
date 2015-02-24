@@ -36,6 +36,7 @@ module.exports = function(app, express){
 
 	//API routes for messages (can amend as we decide what we need)
 
+
 	app.post('/api/messages/:from/:to', messages.create); //WORKS
 	app.get('/api/messages/:user', messages.getMessages); //WORKS
 

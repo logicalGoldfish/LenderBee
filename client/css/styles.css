@@ -95,3 +95,8 @@ span {
   width: 15px;
   height: 100px;
 }
+
+.map-container {
+  width: 500px;
+  height: 500px;
+}

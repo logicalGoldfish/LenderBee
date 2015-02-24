@@ -16,10 +16,9 @@ var carousel = React.createClass({
   },
 
   render: function() {
-    if (!this.state.items) {
-    
-    return (
-    <div className="carousel">
+      
+      return (
+      <div className="carousel">
       <p>{this.state}</p>
       <img src="#" href="#" alt="previous item set" className="inline arrow" onClick={this.handleLeftArrowClick}/>
       <ul className="inline">
@@ -30,9 +29,6 @@ var carousel = React.createClass({
       <img src="#" href="#" alt="next item set" className="inline arrow" onClick={this.handleRightArrowClick}/>
     </div>
     )
-  } else {
-    return (<div></div>)
-  }
   }
 })
 
