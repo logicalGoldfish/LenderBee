@@ -38,14 +38,17 @@ controller.getByUser = function(req, res, next){
 		}
 	}).then(function(user){
 		var userId = user.id;
-		Item.find({
+		Item.findAll({
 			where: {
 				lender_id: user.id
 			}
 		}).then(function(items){
-			console.log('items after a notifications search **********',items)
-			Notification.find({
-				itemreq_id: items.id
+			var itemsId = [];
+			for(var i = 0; i < items.length; i++){
+				itemsId.push(items[i].id);
+			}
+			Notification.findAll({
+				itemreq_id: itemsId
 			}).then(function(notifications){
 				res.json(notifications);
 			})
