@@ -4,6 +4,10 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     pollenprice: DataTypes.INTEGER,
-    borrowed: DataTypes.BOOLEAN
+    borrowed: DataTypes.BOOLEAN,
+    city: DataTypes.STRING,
+    street: DataTypes.STRING,
+    state: DataTypes.STRING,
+    country: DataTypes.STRING
   });
 }

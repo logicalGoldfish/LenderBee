@@ -25,8 +25,9 @@ module.exports = function(app, express){
 
 	//API routes for items (can amend as we decide what we need)
 	app.post('/api/items/:user', items.create); //WORKS
-	app.get('/api/items/user/:user', items.getOneByUser); //WORKS - let's talk more about this one. may not be the exact thing you need
-	app.get('/api/items/:title', items.getAll); //WORKS
+	// app.get('/api/items/user/:user', items.getOneByUser); //WORKS - let's talk more about this one. may not be the exact thing you need
+	// app.get('/api/items/:title', items.getAll); //WORKS
+	app.get('/api/items/city/:user/:title', items.searchItemByCity); 
 
 
 	//API routes for messages (can amend as we decide what we need)
