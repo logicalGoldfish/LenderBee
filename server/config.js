@@ -24,12 +24,11 @@ module.exports = function(app, express){
 
 
 	//API routes for items (can amend as we decide what we need)
-	app.post('/api/items/:user', items.create); //WORKS	
-	// [Devin]: I am not sure these endpoints can differential between each other?
-	// i.e. they are both the same endpoint, just with a different parameter on the end
-	app.get('/api/items/:title', items.getAll); //WORKS
-	// [Devin]: I changed this endpoint so that its different than the previous
-	app.get('/api/items/user/:user', items.getOneByUser); //WORKS - let's talk more about this one. may not be the exact thing you need
+
+	app.post('/api/items/:user', items.create); //WORKS
+	// app.get('/api/items/user/:user', items.getOneByUser); //WORKS - let's talk more about this one. may not be the exact thing you need
+	// app.get('/api/items/:title', items.getAll); //WORKS
+	app.get('/api/items/city/:user/:title', items.searchItemByCity); 
 
 
 	//API routes for messages (can amend as we decide what we need)

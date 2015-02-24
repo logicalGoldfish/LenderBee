@@ -14,7 +14,7 @@ var MessageBox = React.createClass({
   render: function(){
     //creates component for each message and loads them into the array messageGroup
     return (
-    <form className="messageBox" action="/api/items/" method="post">
+    <form className="messageBox" action="/api/messages/samin/2" method="post">
       <div className="form-group">
         <label for="itemName">Send a Message</label>
         <textarea className="form-control" rows="3" placeholder="Send a Message..." name="message"></textarea>

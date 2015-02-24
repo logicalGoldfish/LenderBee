@@ -8,6 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     beebucks: DataTypes.INTEGER,
     city: DataTypes.STRING,
     state: DataTypes.STRING,
+    street: DataTypes.STRING,
     country: DataTypes.STRING
   });
 }
