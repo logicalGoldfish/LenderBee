@@ -7,23 +7,10 @@ var controller = {};
 var Sequelize = require('sequelize');
 
 controller.create = function(req, res, next){
-  // view not built yet for posting. GITHUB ISSUE #111
-  // POSTING REVIEWS: request should have the following
-  // rating, review, reviewee_id, reviewer_id
-  console.log('reviews ctrl req.body:', req.body);
-  console.log('reviews ctrl req.params', req.params);
+  console.log('reviews ctrl create req.body:', req.body);
+  console.log('reviews ctrl create req.params', req.params);
   // assume reviewer_id are in req.params (url)
   // assume reviewee_id, rating and review are in req.body (form)
-  
-  // create that table row
-  // add rating to reputation
-  
-  // create new Review:
-    // rating, review, reviewee_id, reviewer_id
-  // save that new review
-  // look up user that is reviewee_id
-    // update their reputation by adding rating
-  // res.send(created review)
 
   var newReview = {
     rating: req.body.rating,
@@ -42,7 +29,6 @@ controller.create = function(req, res, next){
       User.find({ 
         where: {id: review.reviewee_id}
       }).then(function(user) {
-        console.log('\nTHIS IS USER:', user, '\n');
         user.update({
           reputation: user['reputation'] + parseInt(review.rating)
         });
@@ -57,32 +43,23 @@ controller.create = function(req, res, next){
 controller.getReviews = function(req, res, next){
   //Again, we have to query the borrower for its id because we only have its username
   //the lender id is included with the item
-
+  console.log('reviews ctrl getReviews req.params', req.params);
   // Current user's reviews
-  Review.findAll({
-    include: [ User ]
-  })
-  .then(function(reviews) {
-    console.log(JSON.stringify(reviews));
-  });
 
-  // var user = req.params.user;
-  // User.find({
-  //   where: {
-  //     username: user
-  //   }
-  // }).then(function(user){
-  //   console.log('this is the user.id        ***********', user.id);
-  //   Messages.findAll({
-  //     where: Sequelize.or(
-  //       {lender_id: user.id},
-  //       {borrower_id: user.id}
-  //     )
-  //   }).then(function(messages){
-  //     console.log(messages);
-  //     res.send(messages);
-  //   })
-  // })
+  Review.findAll({
+    // join with users, look for req.params.user which is a username
+    // return the usernames of reviewers too
+    where: {reviewee_id: req.params.user}
+    // include: [ {model: User, as: 'reviewer_id'} ]
+    // include: [User]
+  }).catch(function(err) {
+    console.log('\ngetReviews error:', err, '\n');
+  }).then(function(reviews) {
+    for (var i = 0; i<reviews.length; i++) {
+      console.log('\nRESULT', i, ':\n', JSON.stringify(reviews[i]));
+    }
+    res.send(reviews);
+  });
 }
 
 module.exports = controller;
