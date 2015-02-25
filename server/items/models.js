@@ -4,7 +4,7 @@ module.exports = function(sequelize, DataTypes) {
     title: DataTypes.STRING,
     description: DataTypes.STRING,
     pollenprice: DataTypes.INTEGER,
-    borrowed: DataTypes.BOOLEAN,
+    borrowed: {type: DataTypes.BOOLEAN, defaultValue: false},
     city: DataTypes.STRING,
     street: DataTypes.STRING,
     state: DataTypes.STRING,

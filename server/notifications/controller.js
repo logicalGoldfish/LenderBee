@@ -6,9 +6,8 @@ var Notification = global.db.Notification;
 var controller = {};
 
 controller.create = function(req, res, next){
-	//get the item title out and the borrower name from path
-	var item = req.params.item;
-	// title of item
+	//get the item title out and the borrower name
+	var item = req.params.item; //should be item id
 	var borrower = req.params.borrower;
 	// username of item
 	User.find({
@@ -16,86 +15,160 @@ controller.create = function(req, res, next){
 			username: borrower
 		}
 	}).then(function(user){
-		var userId = user.id;
-		Item.find({
-			where: {
-				title: item
-			}
-		}).then(function(item){
-			req.body.itemreq_id = item.id;
+			req.body.itemreq_id = item;
 			req.body.userreq_id = user.id;
 			Notification.create(req.body)
 				.then(function(notification){
 					res.send(notification);
-				})
-		}).catch(function(err) {
-			console.log('\nERROR WRITING NOTIFICATION:\n', err);
+				}).catch(function(error){
+					console.log('error inside of notifications create ', error);
+			})
 		})
-	})
-}
+	}
 
 controller.getByUser = function(req, res, next){
 	var user = req.params.user;
 	var results = [];
 	User.find({
-		where: {
-			username: user
-		}
+	    where: {
+	        username: user
+	    }
 	}).then(function(user){
-		var userId = user.id;
-		Item.findAll({
+	    var userId = user.id;
+	    Item.findAll({
+	        where: {
+	            lender_id: user.id
+	        }
+	    }).catch(function(err) {
+	        console.log('\nItem findAll err:\n', err);
+	    }).then(function(items){
+	        var itemsId = [];
+	        for (var i = 0; i < items.length; i++) {
+	            itemsId.push(items[i].id);
+	        }
+	        Notification.findAll({
+	            itemreq_id: itemsId
+	            // attributes: ['itemreq_id'],
+	            // joinTableAttributes: ['itemreq_id']
+	            // include: [{ model: Item, foreignKey: 'itemreq_id'}]
+	        }).catch(function(err) {
+	            console.log('\nNotifications findAll err:\n', err);
+	        }).then(function(notifications){
+	            // change this so that response has username info and item info
+	            // borrower's username, requested item's title
+	            var thisMustCompleteBeforeResponse = function() {
+	                for (var i = 0; i<notifications.length; i++) {
+	                    (function(i) {
+	                        var notification = notifications[i];
+	                        User.find({ 
+	                            where: {id: notification.userreq_id} 
+	                        }).then(function(borrower) {
+	                          notification.dataValues['userreq_username'] = borrower.username;
+	                      }).then(function() {
+	                            Item.find({ 
+	                                where: {id: notification.itemreq_id} 
+	                            }).then(function(item) {
+	                              notification.dataValues['itemreq_title'] = item.title;
+	                              results.push(notification.dataValues);
+	                          }).catch(function(err) {
+	                              console.log('\nnotifications getByUser error:', err);
+	                          })
+	                          .then(function() {
+	                              if (notifications.length === results.length) {
+	                                  console.log('\n\nSENDING RESPONSE!\n\n')
+	                                  res.json(results);
+	                              }
+	                          })
+	                      })
+	                    })(i);    
+	                }
+	            }
+
+	            thisMustCompleteBeforeResponse();
+
+	        })
+	    })
+	})
+}
+
+	// <<<<<<< HEAD
+	// 		}).catch(function(err) {
+	// 			console.log('\nItem findAll err:\n', err);
+	// 		}).then(function(items){
+	// 			var itemsId = [];
+	// 			for (var i = 0; i < items.length; i++) {
+	// 				itemsId.push(items[i].id);
+	// 			}
+	// 			Notification.findAll({
+	// 				itemreq_id: itemsId
+	// 				// attributes: ['itemreq_id'],
+	// 				// joinTableAttributes: ['itemreq_id']
+	// 				// include: [{ model: Item, foreignKey: 'itemreq_id'}]
+	// 			}).catch(function(err) {
+	// 				console.log('\nNotifications findAll err:\n', err);
+	// 			}).then(function(notifications){
+	// 				// change this so that response has username info and item info
+	// 				// borrower's username, requested item's title
+	// 				var thisMustCompleteBeforeResponse = function() {
+	// 					for (var i = 0; i<notifications.length; i++) {
+	// 						(function(i) {
+	// 							var notification = notifications[i];
+	// 							User.find({ 
+	// 								where: {id: notification.userreq_id} 
+	// 							}).then(function(borrower) {
+	// 						  	notification.dataValues['userreq_username'] = borrower.username;
+	// 						  }).then(function() {
+	// 								Item.find({ 
+	// 									where: {id: notification.itemreq_id} 
+	// 								}).then(function(item) {
+	// 							  	notification.dataValues['itemreq_title'] = item.title;
+	// 							  	results.push(notification.dataValues);
+	// 							  }).catch(function(err) {
+	// 							  	console.log('\nnotifications getByUser error:', err);
+	// 							  })
+	// 							  .then(function() {
+	// 							  	if (notifications.length === results.length) {
+	// 							  		console.log('\n\nSENDING RESPONSE!\n\n')
+	// 							  		res.json(results);
+	// 							  	}
+	// 							  })
+	// 						  })
+	// 						})(i);	
+	// 					}
+	// 				}
+
+	// 				thisMustCompleteBeforeResponse();
+
+	// 			})
+	// =======
+
+controller.acceptRequest = function(req, res, next){//This should delete all notifications related to the item
+	//Would this have the id of the item? I think so.
+	var borrowerId = req.params.borrower;
+	Notification.destroy({
 			where: {
-				lender_id: user.id
+				itemreq_id: req.params.item
 			}
-		}).catch(function(err) {
-			console.log('\nItem findAll err:\n', err);
-		}).then(function(items){
-			var itemsId = [];
-			for (var i = 0; i < items.length; i++) {
-				itemsId.push(items[i].id);
-			}
-			Notification.findAll({
-				itemreq_id: itemsId
-				// attributes: ['itemreq_id'],
-				// joinTableAttributes: ['itemreq_id']
-				// include: [{ model: Item, foreignKey: 'itemreq_id'}]
-			}).catch(function(err) {
-				console.log('\nNotifications findAll err:\n', err);
-			}).then(function(notifications){
-				// change this so that response has username info and item info
-				// borrower's username, requested item's title
-				var thisMustCompleteBeforeResponse = function() {
-					for (var i = 0; i<notifications.length; i++) {
-						(function(i) {
-							var notification = notifications[i];
-							User.find({ 
-								where: {id: notification.userreq_id} 
-							}).then(function(borrower) {
-						  	notification.dataValues['userreq_username'] = borrower.username;
-						  }).then(function() {
-								Item.find({ 
-									where: {id: notification.itemreq_id} 
-								}).then(function(item) {
-							  	notification.dataValues['itemreq_title'] = item.title;
-							  	results.push(notification.dataValues);
-							  }).catch(function(err) {
-							  	console.log('\nnotifications getByUser error:', err);
-							  })
-							  .then(function() {
-							  	if (notifications.length === results.length) {
-							  		console.log('\n\nSENDING RESPONSE!\n\n')
-							  		res.json(results);
-							  	}
-							  })
-						  })
-						})(i);	
-					}
-				}
 
-				thisMustCompleteBeforeResponse();
-
-			})
+		}).then(function(){
+			Item.update(
+				{borrowed: true, borrower_id: req.params.borrower},
+				{where: {id: req.params.item}}
+			)
+		}).then(function(){
+				res.send('item updated and is now borrowed         *********');
 		})
+}
+
+controller.rejectRequest = function(req, res, next){
+	//reject the request from a single user
+	Notification.destroy({
+		where: {
+			itemreq_id: req.params.item,
+			userreq_id: req.params.borrower
+		}
+	}).then(function(){
+		res.send('a particular users request for an item has been removed from the notificiations')
 	})
 }
  
