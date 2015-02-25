@@ -90,13 +90,15 @@ module.exports = function(app, express){
 	// });
 
 	app.get('/login', function(req, res) {
-	    res.sendFile('../client/login.html');
+		console.log("LOGIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIN")
+	  res.sendFile(path.join(__dirname, '../client/login.html'));
 	});
 
 	app.post('/auth/facebook', function(req, res){
 		console.log("INSIDE THE THINGY HOORAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY");
-		console.log("response: ", req.status);
-		if(req.status==='connected'){
+		console.log("response: ", req.body);
+		console.log("other rseldlponse: ", res.status);
+		if(req.body.status==='connected'){
 			//see if in database
 				//if not push info to database
 			//retrieve info from database
@@ -104,7 +106,7 @@ module.exports = function(app, express){
 			//res.render('..client/index.html');
 		}else{
 			console.log('no bueno');
-			res.sendFile('../client/login.html');
+			res.send({redirect: '/login'});
 		}
 	});
 

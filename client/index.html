@@ -30,6 +30,9 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      FB.api('/me', function(response) {
+          console.log(JSON.stringify(response));
+      });
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -77,10 +80,21 @@
   FB.getLoginStatus(function(response) {
     console.log('CHECKING LOGIN STATUS GUYS');
     console.log(response);
+    // if (response.status !== "connected"){
+    //   $.ajax({
+    //     type: "get",
+    //     url: "/login"
+    //   });
+    // }
     $.ajax({
       type: "POST",
       url: "/auth/facebook",
       data: response,
+      success: function(res){
+        if (res.redirect) {
+            document.location.href = res.redirect;
+        }
+      },
       dataType: 'json'
     });
     statusChangeCallback(response);
