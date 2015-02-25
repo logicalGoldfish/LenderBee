@@ -25,7 +25,20 @@ var actions = Reflux.createActions([
   "getNotifications",
   "postFormSubmitted",
   /* Items API */
-  "fetchItems"
+  "fetchItems",
+  "returnItem",
+
+  /* Notifications API */
+  "acceptRequestToBorrow",
+  "declineRequestToBorrow",
+  "fetchNotifications",
+
+  /* Reviews API */
+  "fetchPendingReviews"
+  
+  
+
+
 ]);
 
 module.exports = actions;

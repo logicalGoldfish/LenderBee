@@ -5,6 +5,7 @@ var Message = global.db.Message;
 var Review = global.db.Review;
 var controller = {};
 var Sequelize = require('sequelize');
+var ReviewInstance = require('../utils/reviewConstructor.js');
 
 controller.create = function(req, res, next){
   console.log('reviews ctrl create req.body:', req.body);
@@ -38,7 +39,25 @@ controller.create = function(req, res, next){
         res.send(review);
       })
     });
-}
+};
+
+controller.createPending = function(req, res, next){
+  var lender_id   = req.params.lender_id;
+  var borrower_id = req.params.borrower_id;
+  var item_id     = req.body.item_id;
+  var lenderReview = new ReviewInstance(null, null, borrower_id, lender_id, item_id);
+  var borrowerReview = new ReviewInstance(null, null, lender_id, borrower_id, item_id);
+
+  var records = [lenderReview, borrowerReview];
+  Review.bulkCreate(records)
+    .catch(function(err){
+      console.log('error creating pending reviews', err);
+      res.status(500);
+    })
+    .then(function(reviews){
+      res.send(reviews);
+    });
+};
 
 controller.getReviews = function(req, res, next){
   //Again, we have to query the borrower for its id because we only have its username

@@ -1,10 +1,10 @@
-var React = require('react');
-var Reflux = require('reflux');
-var profileStore = require('../../stores/profileStore.js');
-var actions = require('../../actions/actions.js');
-var Review = require('../review/review.react.jsx');
-var Router = require('react-router');
-var Link = Router.Link;
+var React         = require('react');
+var Reflux        = require('reflux');
+var profileStore  = require('../../stores/profileStore.js');
+var actions       = require('../../actions/actions.js');
+var Review        = require('../review/singleReview.react.jsx');
+var Router        = require('react-router');
+var Link          = Router.Link;
 
 var Profile = React.createClass({
 

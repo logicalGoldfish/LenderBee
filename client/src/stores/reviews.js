@@ -1,16 +1,20 @@
-var React = require('react');
-var Reflux = require('reflux');
-var request = require('superagent');
-var actions = require('../actions/actions.js');
+var React 			= require('react');
+var Reflux 			= require('reflux');
+var request 		= require('superagent');
+var actions 		= require('../actions/actions.js');
+var userStore		= require('./user.js');
+var makeUrl			= require('make-url');
+var api					= require('../utils/url-paths.js');
 
 var reviewStore = Reflux.createStore({
 
 	reviews: null,
 
 	init: function(){
-		this.listenTo(actions.initializeUser, this.getReviews);
+		// this.listenTo(actions.initializeUser, this.getReviews);
+		this.listenTo(actions.fetchPendingReviews, this.onFetchPendingReviews);
 		// This shouldn't go here, we need to call getReviews after user is authenticated
-		this.getReviews();
+		// this.getReviews();
 	},
 
 	_fake_getReviews: function(next){
@@ -25,8 +29,29 @@ var reviewStore = Reflux.createStore({
 				created_at: new Date()
 			};
 
-			next(reviews);
+			next([reviews]);
 		}, 100);
+	},
+
+	onFetchPendingReviews: function(){
+		console.log('reviews store calls onFetchPendingReviews');
+		// [Note] fetches the current user's Id which is store in the userStore after authentication (current hard-coded in userStore)
+		
+		this._fake_getReviews(function(reviews){
+			this.trigger(reviews);
+		}.bind(this));
+
+		// [Note] Uncomment this when controller is done
+		// var userId = userStore.getProp('user_id');
+		// request.get(makeUrl(api.fetchOutstandingReviews, {user: userId}), function(err, reviews){
+		// 	if (err) {
+		// 		console.error('error: fetching pending reviews for user', err);
+		// 	}
+		// 	else {
+		// 		console.log('reviews-pending: ', reviews);
+		// 		this.trigger(reviews);
+		// 	}
+		// }.bind(this));
 	},
 
 	getReviews: function(){

@@ -2,7 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var reviewPageStore = require('../../stores/reviewPageStore.js');
 var actions = require('../../actions/actions.js');
-var Review = require('./review.react.jsx');
+var Review = require('./singleReview.react.jsx');
 
 var ReviewPage = React.createClass({
 
