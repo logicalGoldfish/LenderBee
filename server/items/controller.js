@@ -8,7 +8,6 @@ var Message 	 = global.db.Message;
 var controller = {};
 
 controller.create = function(req, res, next){
-	console.log('IM INSIDE CREATE');
   //extract the user name
   //query the user database to get id
   //set the lender_id of the item to the user id

@@ -13,12 +13,6 @@ var SingleConversation = React.createClass({
     actions.messageFormSubmitted();
   },
 
-  getDefaultProps: function() {
-    return {
-      to: window.location.href.split("/")[window.location.href.split("/").length -1]
-    }
-  },
-
   render: function(){
     //creates component for each message and loads them into the array messageGroup
     var that = this;
@@ -38,7 +32,7 @@ var SingleConversation = React.createClass({
             {messages}
           </ul>
         </div>
-        <MessageBox to={this.props.to} from="samin" />
+        <MessageBox to={this.state.partner} from="samin" />
       </div>
     )
   }

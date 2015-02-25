@@ -40,17 +40,12 @@ var searchResults = React.createClass({
  
  mixins: [Reflux.connect(searchStore)],
 
- searchInput: function() {
-  console.log($('#searchBar').val());
- },
-
   handleSearch: function() {
     actions.searchSubmit();
   //TODO: Connect to DB and display items
  },
 
   render: function() {
-    console.log('ITEMS FROM COMPONENT', this.state.items);
     var matchedItems = this.state.items.map(function(item) 
       {return <ResultDiv itemName={item.title} itemId={item.id} itemPrice={item.pollenprice} itemDescription={item.description}
       lenderId={item.lender_id} itemId={item.id} onClick={ResultDiv.handleClick} />});

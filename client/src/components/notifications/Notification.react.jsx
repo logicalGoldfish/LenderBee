@@ -12,17 +12,17 @@ var Notification = React.createClass({
 	mixins: [Reflux.connect(notificationStore)],
 
 	handleAccept: function() {
-		actions.itemRequestAccepted(this.props.name, this.props.itemId);
+		actions.itemRequestAccepted(this.props.borrowerId, this.props.itemId);
 	}, 
 
 	handleDecline: function() {
-		actions.itemRequestDeclined(this.props.name, this.props.itemId);
+		actions.itemRequestDeclined(this.props.borrowerId, this.props.itemId);
 	},
 
 	render: function() {
 		return (
 			<div>
-				<p>{this.props.name} wants to borrow your {this.props.item}</p>
+				<p>{this.props.borrowerName} wants to borrow your {this.props.itemName}</p>
 				<button itemId={this.props.itemId} name={this.props.name} onClick={this.handleAccept}>Accept</button>
 				<button itemId={this.props.itemId} name={this.props.name} onClick={this.handleDecline}>Decline</button>
 			</div>

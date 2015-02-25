@@ -20,23 +20,13 @@ var messagingUsersStore = Reflux.createStore({
     var that = this;
     request("/api/messages/samin", function(res) {
       that.data.conversations = JSON.parse(res.text);
-      console.log('coversations', that.data.conversations);
-
       that.data.conversations.forEach(function(conversation) { 
         if (that.data.partners.indexOf(conversation.to) === -1 && conversation.to !== "null") {
           that.data.partners.push(conversation.to);
         }
       })
-      console.log('LE CONVOS', that.data);
       that.trigger(that.data);
     })
-
-
-   //  request.get("/api/items/:user", function(res){
-   //    console.log(res.body);
-   //    this.data.item = res.body;
-   //    this.trigger(this.data);
-   // })
   },
 
   //sets the state to the item data
