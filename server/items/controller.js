@@ -25,13 +25,23 @@ controller.create = function(req, res, next){
     req.body.city = user.city;
     Item.create(req.body)
       .then(function(item){
-        res.json(item);
+        res.end(); //edited to just end.
       })
       .catch(function(error){
         ('inside error of items create controller ', error);
       })
   }).catch(function(error){
     ('inside error of items create controller ', error);
+  })
+}
+
+controller.returnItem = function(req, res, next){
+  var itemId = req.params.itemsId;
+  Item.update(
+    {borrowed: false, borrower_id: null},
+    {where: {id: itemId}}
+  ).then(function(){
+    res.send('Item has been returned!');
   })
 }
 
