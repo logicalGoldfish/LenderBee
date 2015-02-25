@@ -84,14 +84,10 @@ $(document).ready(function(){
 			//     //var state = <APP />;
 			//   }
 			// });
-			if(!this.state.loggedIn){			
-				FB.getLoginStatus(function(response) {
-				  if (response.status === 'connected') {
-				  	console.log("mounted")
-				  	actions.loginToggle(true);
-				    //var state = <APP />;
-				  }
-				});
+			if(!this.state.loggedIn){		
+				if(true){ //if user is logged in	
+			  	actions.loginToggle(true);
+				} 
 			}
 			return (
 				<div>{this.state.loggedIn ? <APP /> : <Login />}</div>

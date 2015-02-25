@@ -79,9 +79,33 @@ module.exports = function(app, express){
 	==============================*/
 		
 	/* Static Routes */
-	app.get('/', function(req, res){
-		res.render('../client/index.html');
 		// res.sendFile(path.join(__dirname, '../client/index.html'));
+	//route for the homepage
+	// app.get('/', function(req, res){
+	// 	res.render('../client/index.html')
+	// });
+
+	// app.get('/login', function(req, res){
+	// 	res.send('../client/login.html')
+	// });
+
+	app.get('/login', function(req, res) {
+	    res.sendFile('../client/login.html');
+	});
+
+	app.post('/auth/facebook', function(req, res){
+		console.log("INSIDE THE THINGY HOORAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY");
+		console.log("response: ", req.status);
+		if(req.status==='connected'){
+			//see if in database
+				//if not push info to database
+			//retrieve info from database
+			//redirect to index
+			//res.render('..client/index.html');
+		}else{
+			console.log('no bueno');
+			res.sendFile('../client/login.html');
+		}
 	});
 
 	// app.get('/', ensureAuthenticated, function(req, res){

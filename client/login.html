@@ -48,6 +48,12 @@
   // code below.
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
+      $.ajax({
+        type: "POST",
+        url: "/auth/facebook",
+        data: response,
+        dataType: json
+      });
       statusChangeCallback(response);
     });
   }
@@ -60,7 +66,6 @@
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.1' // use version 2.1
   });
-
 
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
@@ -75,14 +80,6 @@
   // These three cases are handled in the callback function.
 
   FB.getLoginStatus(function(response) {
-    console.log('CHECKING LOGIN STATUS GUYS');
-    console.log(response);
-    $.ajax({
-      type: "POST",
-      url: "/auth/facebook",
-      data: response,
-      dataType: 'json'
-    });
     statusChangeCallback(response);
   });
 
@@ -108,7 +105,7 @@
     });
   }
       </script>
-  <div id='main'></div>
-  <script type="text/javascript" src="/dist/src/LenderBee.js"></script>
+      <p>at login area</p>
+      <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
 </body>
 </html>
