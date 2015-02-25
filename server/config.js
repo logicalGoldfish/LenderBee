@@ -45,7 +45,7 @@ module.exports = function(app, express){
 	//API routes for notifications (can amend as we decide what we need)
   //very serious mismatch between what i'm writing and what may be expected on front-end
 	app.post('/api/notifications/:item/:borrower', notifications.create);
-	// app.get('/api/notifications/:user', notifications.getByUser);
+	app.get('/api/notifications/:user', notifications.getByUser);
 	app.delete('/api/notifications/accept/:item/:borrower', notifications.acceptRequest); //--> delete all notifications for an item
 	app.delete('/api/notifications/reject/:borrower/:item', notifications.rejectRequest);		 //-->delete a notification for an item for a specific borrower
 
