@@ -11,6 +11,7 @@ var singleItem = React.createClass({
 
   handleItemRequest: function() {
     console.log('ID SHOULD BE THIS', this.state.item.id)
+    // TODO: Make this not hard-coded
     actions.itemRequestSubmitted(this.state.item.id, "samin");
   },
 

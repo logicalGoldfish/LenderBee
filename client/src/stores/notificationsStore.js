@@ -35,7 +35,7 @@ var notificationStore = Reflux.createStore({
 	// this will be asynchronous, how do we handle this?
 	onGetNotifications: function(){
 		var that = this;
-		request("/api/notifications/matt", function(res) {
+		request("/api/notifications/devin", function(res) {
 			console.log('HERE ARE THE NOTIFICATIONS', JSON.parse(res.text));
 			that.data.notifications = JSON.parse(res.text);
 			that.trigger(that.data);

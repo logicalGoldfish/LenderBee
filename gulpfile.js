@@ -34,6 +34,14 @@ var path = {
   ENTRY_POINT: './client/src/main.jsx',
 };
 
+// [Note] Login Paths for Gulp Tasks
+path.login = {
+  HTML: 'client/login/index.html',
+  OUT: 'login.js',
+  DEST: 'client/login/dist',
+  ENTRY_POINT: '.client/login/main.jsx'
+};
+
 var paths = {
   src: {
     main: 'client/src/*.js',
@@ -47,10 +55,10 @@ var handleError = function(err) {
   this.emit('end');
 };
 
-// Copies html page for production
+// [Note] Copies index.html files for dist
 gulp.task('copy', function(){
-  gulp.src(path.HTML)
-    .pipe(gulp.dest(path.DEST));
+  gulp.src(path.HTML).pipe(gulp.dest(path.DEST)); // copies main index.html
+  gulp.src(path.login.html).pipe(gulp.dest(path.login.DEST)); // copies login's index.html
 });
 
 // Removes node_modules for maintenance
@@ -60,9 +68,10 @@ gulp.task('clean-npm', function(){
 });
 
 // Watches for changes and rebuilds production files
+// [Warning] We need to figure out how to do this for our login's index.html
 gulp.task('watch', function() {
   gulp.watch(path.HTML, ['copy']);
-  gulp.watch(path.LESS_WATCH, ['less']);
+  gulp.watch(path.LESS_WATCH, ['less']); // [Refactor] I think we can get rid of this task
 
   var watcher  = watchify(browserify({
     entries: [path.ENTRY_POINT],

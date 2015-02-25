@@ -49,7 +49,7 @@ var Items = React.createClass({
 			// console.log('items rendered with', this.state.items);
 			/* BUG: This is incorrect, I need to use map and I need to map over an object not an array */
 			items = _.map(this.state.items, function(item, key) {
-				// console.log('map', item);
+				// console.log('map', key);
 				var ItemCategory;
 
 				if (key === 'borrowed') {

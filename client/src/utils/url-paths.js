@@ -14,7 +14,9 @@ api.user = {
 api.items = {
 	create: '/api/items/:user',
 	search: '/api/items/:title',
-	fetch: '/api/items/user/:user'
+	fetch: '/api/items/user/:user',
+	update: '/api/items/return/:itemsId'
+	// 'return': '/api/items'
 };
 
 api.messages = {
@@ -23,7 +25,8 @@ api.messages = {
 };
 
 api.reviews = {
-
+	fetchOutstandingReviews: '/api/reviews/user/:user',
+	createPending: '/api/reviews/users/:lender_id/:borrower_id'
 };
 
 api.notifications = {
