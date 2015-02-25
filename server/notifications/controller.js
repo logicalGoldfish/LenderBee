@@ -32,6 +32,7 @@ controller.create = function(req, res, next){
 		})
 	}
 
+
 controller.getByUser = function(req, res, next){
   var user = req.params.user;
   var results = [];
@@ -117,18 +118,20 @@ controller.acceptRequest = function(req, res, next){//This should delete all not
 		}).then(function(){
 				res.send('item updated and is now borrowed         *********');
 		})
+
 }
 
 controller.rejectRequest = function(req, res, next){
-	//reject the request from a single user
-	Notification.destroy({
-		where: {
-			itemreq_id: req.params.item,
-			userreq_id: req.params.borrower
-		}
-	}).then(function(){
-		res.send('a particular users request for an item has been removed from the notificiations')
-	})
+  //reject the request from a single user
+  Notification.destroy({
+    where: {
+      itemreq_id: req.params.item,
+      userreq_id: req.params.borrower
+    }
+  }).then(function(){
+    res.send('a particular users request for an item has been removed from the notificiations')
+  })
+  
 }
  
 

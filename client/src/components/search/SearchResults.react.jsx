@@ -13,13 +13,14 @@ var ResultDiv = React.createClass({
   mixins: [Router.Navigation],
   proptypes: {
     itemName: React.PropTypes.string,
+    itemId: React.PropTypes.number,
     itemPrice: React.PropTypes.number,
     itemDescription: React.PropTypes.string,
-    lenderId: React.PropTypes.number
+    lenderId: React.PropTypes.number,
   },
 
   handleClick: function() {
-   actions.selectItem(this.props.itemName, this.props.itemPrice, this.props.itemDescription, this.props.lenderId);
+   actions.selectItem(this.props.itemName, this.props.itemId, this.props.itemPrice, this.props.itemDescription, this.props.lenderId);
    // this.transitionTo('SingleItem');
   },
   
@@ -52,8 +53,7 @@ var searchResults = React.createClass({
     console.log('ITEMS FROM COMPONENT', this.state.items);
     var matchedItems = this.state.items.map(function(item) 
       {return <ResultDiv itemName={item.title} itemId={item.id} itemPrice={item.pollenprice} itemDescription={item.description}
-      lenderId={item.lender_id}
-      onClick={ResultDiv.handleClick} />});
+      lenderId={item.lender_id} itemId={item.id} onClick={ResultDiv.handleClick} />});
     return (
       <div>
       <h1>Results</h1>

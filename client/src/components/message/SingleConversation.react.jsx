@@ -28,7 +28,7 @@ var SingleConversation = React.createClass({
     var messages = this.state.conversations.filter(function(singleMessage) {
       return (singleMessage.to === that.state.partner || singleMessage.from === that.state.partner);
     }).map(function(singleMessage) {
-      return singleMessage.message
+    return <div>{singleMessage.from + ":"}{" " +singleMessage.message}</div>
     })
     return (
       <div>

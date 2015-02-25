@@ -15,13 +15,26 @@ var PostPage = React.createClass({
     // TodoStore.removeChangeListener(this._onChange);
   },
 
+  handlePostSubmit: function(e) {
+    // e.preventDefault();
+    // $this = $('.postForm');
+    // $.ajax({
+    //    type: "POST",
+    //    url: "/api/items/christine",
+    //    data: new FormData($this),
+    //    success : function(){
+    //       alert('Done');
+    //    }
+    // });
+  },
+
   /**
    * @return {object}
    */
   render: function() {
     return (
       //later: plug in " + session.username + "
-      <form className="postForm" action="/api/items/christine" method="post">
+      <form className="postForm" action="/api/items/christine" method="POST">
         <div className="form-group">
           <label for="itemName">Enter Item</label>
           <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter Item Name (ie 'Hammer')" name="title" />
@@ -39,7 +52,7 @@ var PostPage = React.createClass({
           <input type="file" name="photos" multiple="multiple" />
           <p className="help-block">Upload Item Photos</p>
         </div>
-        <button type="submit" class="btn btn-warning">Submit</button>
+        <button type="submit" class="btn btn-warning" >Submit</button>
         </form>
     );
   },

@@ -20,7 +20,10 @@ var actions = Reflux.createActions([
   "initializeUser",
   "authenticateUser",
   "conversationCalled",
-
+  "itemRequestAccepted",
+  "itemRequestDeclined",
+  "getNotifications",
+  "postFormSubmitted",
   /* Items API */
   "fetchItems"
 ]);

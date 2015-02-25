@@ -13,7 +13,7 @@
 // 		var mapCenter;
 // 		var mapOptions = {center: null, zoom: 13};
 
-// 		geocoder.geocode({ 'address': address}, function(results, status) {
+// 		geocoder.geocode({'address': address}, function(results, status) {
 // 		    if (status == google.maps.GeocoderStatus.OK) {
 // 		    	mapCenter = results[0].geometry.location;
 // 		      // map.setCenter(results[0].geometry.location);

@@ -6,6 +6,7 @@ var Router			= require('react-router');
 var Link 				= Router.Link;
 
 var SideNavBarElement = React.createClass({
+
 	render: function(){
 		return (
 				<li onClick={this.props.toggleSideNavBar}>
@@ -17,6 +18,11 @@ var SideNavBarElement = React.createClass({
 
 var SideNavBar = React.createClass({
 	mixins: [Reflux.connect(navStore)],
+
+	handleNotifications: function() {
+		console.log('handling notification')
+		actions.getNotifications();
+	}, 
 
 	handleClick: function(e) {
 		// if the click occured outside the SideNavBar
@@ -43,7 +49,7 @@ var SideNavBar = React.createClass({
 					<SideNavBarElement text="PROFILE" to="profile" toggleSideNavBar={this.props.toggleSideNavBar}/>
 					<SideNavBarElement text="ITEMS" to="items" toggleSideNavBar={this.props.toggleSideNavBar}/>
 					{/*<SideNavBarElement text="ITEMS BORROWED" to="items_borrowed"/>*/}
-					<SideNavBarElement text="NOTIFICATIONS" to="notifications" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="NOTIFICATIONS" to="notifications" toggleSideNavBar={this.props.toggleSideNavBar} />
 					<SideNavBarElement text="POST AN ITEM" to="postItem" toggleSideNavBar={this.props.toggleSideNavBar}/>
 				</ul>
 			</div>
