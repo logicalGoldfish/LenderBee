@@ -11,9 +11,9 @@ var singleItemStore = Reflux.createStore({
   //listens to actions
   listenables: [actions],
 
-  onSelectItem: function(itemName, itemPrice, itemDescription, lenderId) {
+  onSelectItem: function(itemName, itemId, itemPrice, itemDescription, lenderId) {
    var that = this;
-   this.data.item = {name: itemName, description:itemDescription, price: itemPrice, lender: lenderId};
+   this.data.item = {name: itemName, id: itemId, description:itemDescription, price: itemPrice, lender: lenderId};
    request("/api/users/" + "" + this.data.item.lender + "", function(res) {
     var lenderInfo = JSON.parse(res.text);
     that.data.lender.username = lenderInfo.username;
@@ -32,10 +32,10 @@ var singleItemStore = Reflux.createStore({
   //  //component renders current item. 
   // },
 
-  onItemRequestSubmitted: function(itemName, borrower) {
+  onItemRequestSubmitted: function(itemId, borrower) {
     //request DB to notify other user;
-    console.log('item requested', "/api/notifications/" + "" + itemName + "/" + borrower + "");
-    request.post("/api/notifications/" + "" + itemName + "/" + borrower + "", function(res) {
+    // console.log('item requested', "/api/notifications/" + "" + itemName + "/" + borrower + "");
+    request.post("/api/notifications/" + "" + itemId + "/" + borrower + "", function(res) {
       if (res.ok) {
         console.log('yay')
       } else {

@@ -34,11 +34,16 @@ var MessagingUsers = React.createClass({
     var messagedUsers = this.state.conversations.map(function(conversation) {
      return (<User message={conversation.message} partner={conversation.to} />);
     });
+
+    var partners = this.state.partners.map(function(partner) {
+      return (<User partner={partner} />);
+    });
+
     return (
       <div>
         <p>Your Messages</p>
         <ul>
-        {messagedUsers}
+        {partners}
         </ul>
       </div>
     )
