@@ -36,7 +36,6 @@ var notificationStore = Reflux.createStore({
 	onGetNotifications: function(){
 		var that = this;
 		request("/api/notifications/christine", function(res) {
-			console.log('HERE ARE THE NOTIFICATIONS', JSON.parse(res.text));
 			that.data.notifications = JSON.parse(res.text);
 			that.trigger(that.data);
 		})

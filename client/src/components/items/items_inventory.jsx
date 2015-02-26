@@ -7,9 +7,10 @@ var InventoryItem = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<p>{this.props.item.title}</p>
-				<p>{this.props.item.description}</p>
-				<p>{this.props.item.pollenprice}</p>
+				<p>Item: {this.props.item.title}</p>
+				<p>Description: {this.props.item.description}</p>
+				<p>Pollen Price: {this.props.item.pollenprice}</p>
+				<hr></hr>
 			</div>
 		);
 	}
@@ -24,6 +25,7 @@ var Items_inventory = React.createClass({
 
 		return (
 			<div>
+			<h5>Your Inventory</h5>
 				{InventoryItems}
 			</div>
 		);
