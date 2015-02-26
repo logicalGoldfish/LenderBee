@@ -36,11 +36,13 @@
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
+      document.location.href = "/login";
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
+      document.location.href = "/login";
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
     }
@@ -78,25 +80,12 @@
   // These three cases are handled in the callback function.
 
   FB.getLoginStatus(function(response) {
-    console.log('CHECKING LOGIN STATUS GUYS');
-    console.log(response);
-    // if (response.status !== "connected"){
-    //   $.ajax({
-    //     type: "get",
-    //     url: "/login"
-    //   });
-    // }
-    $.ajax({
-      type: "POST",
-      url: "/auth/facebook",
-      data: response,
-      success: function(res){
-        if (res.redirect) {
-            document.location.href = res.redirect;
-        }
-      },
-      dataType: 'json'
-    });
+    // $.ajax({
+    //   type: "POST",
+    //   url: "/auth/facebook",
+    //   data: response,
+    //   dataType: 'json'
+    // });
     statusChangeCallback(response);
   });
 

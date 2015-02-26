@@ -30,6 +30,7 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      document.location.href = "/";
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -48,12 +49,6 @@
   // code below.
   function checkLoginState() {
     FB.getLoginStatus(function(response) {
-      $.ajax({
-        type: "POST",
-        url: "/auth/facebook",
-        data: response,
-        dataType: json
-      });
       statusChangeCallback(response);
     });
   }
@@ -65,6 +60,10 @@
                         // the session
     xfbml      : true,  // parse social plugins on this page
     version    : 'v2.1' // use version 2.1
+  });
+
+  FB.Event.subscribe('auth.login', function(resp) {
+    window.location = '/';
   });
 
   // Now that we've initialized the JavaScript SDK, we call 

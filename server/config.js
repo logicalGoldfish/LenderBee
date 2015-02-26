@@ -90,25 +90,23 @@ module.exports = function(app, express){
 	// });
 
 	app.get('/login', function(req, res) {
-		console.log("LOGIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIN")
 	  res.sendFile(path.join(__dirname, '../client/login.html'));
 	});
 
-	app.post('/auth/facebook', function(req, res){
-		console.log("INSIDE THE THINGY HOORAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAY");
-		console.log("response: ", req.body);
-		console.log("other rseldlponse: ", res.status);
-		if(req.body.status==='connected'){
-			//see if in database
-				//if not push info to database
-			//retrieve info from database
-			//redirect to index
-			//res.render('..client/index.html');
-		}else{
-			console.log('no bueno');
-			res.send({redirect: '/login'});
-		}
-	});
+	// app.post('/auth/facebook', function(req, res){
+	// 	console.log("response: ", req.body);
+	// 	console.log("other rseldlponse: ", res.status);
+	// 	if(req.body.status==='connected'){
+	// 		//see if in database
+	// 			//if not push info to database
+	// 		//retrieve info from database
+	// 		//redirect to index
+	// 		//res.render('..client/index.html');
+	// 	}else{
+	// 		console.log('no bueno');
+	// 		res.send({redirect: '/login'});
+	// 	}
+	// });
 
 	// app.get('/', ensureAuthenticated, function(req, res){
 	// 	// [Warning] Don't we want this to point to the dist folder? (for deployment)
@@ -118,12 +116,12 @@ module.exports = function(app, express){
 	// 	res.sendFile(path.join(__dirname, '../client/dist/index.html'));
 	// });
 
-	app.get('/login', function(req, res){
-		console.log('attempts to render login page---------------');
-		// TODO: we want this to render an html with react components for logging in
-		// res.render('../client/login/index.html');
-		res.sendFile(path.join(__dirname, '../client/login/index.html'));
-	});
+	// app.get('/login', function(req, res){
+	// 	console.log('attempts to render login page---------------');
+	// 	// TODO: we want this to render an html with react components for logging in
+	// 	// res.render('../client/login/index.html');
+	// 	res.sendFile(path.join(__dirname, '../client/login/index.html'));
+	// });
 
 	app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
 		function(req, res){
