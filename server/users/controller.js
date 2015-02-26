@@ -49,6 +49,10 @@ controller.create = function(req, res, next){
 			})
 		}
 	})
+// 	User.create(req.body)
+// 		.then(function(user){
+// 		res.send(user);
+// 	})
 }
 
 controller.getOne = function(req, res, next){
@@ -63,6 +67,13 @@ controller.getOne = function(req, res, next){
 	})
 }
 
+controller.testUser = function(req, res, next){
+	console.log("IT'S A TEST ", req.query.authResponse.userID);
+	res.json(req.query.authResponse.userID);
+	// User.find({
+
+	// })
+}
 
 // controller.signin = function(req, res, next){
 // 	//sign in with fb
