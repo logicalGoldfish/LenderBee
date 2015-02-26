@@ -35,6 +35,7 @@ var notificationStore = Reflux.createStore({
 	// this will be asynchronous, how do we handle this?
 	onGetNotifications: function(){
 		var that = this;
+		console.log('gettingNotifs')
 		request("/api/notifications/christine", function(res) {
 			that.data.notifications = JSON.parse(res.text);
 			that.trigger(that.data);
@@ -44,9 +45,12 @@ var notificationStore = Reflux.createStore({
 	onItemRequestAccepted: function(borrower, item) {
 		var that = this;
 		request.del("/api/notifications/accept/" + "" + item + "/" + borrower + "", function(res) {
-			console.log('item is now borrowed');
-			actions.getNotifications();
-			that.trigger(that.data);
+			if (res.error) {
+				console.log('error occurred: ', error)
+			} else {
+				console.log('item is now borrowed');
+				actions.getNotifications();
+			}
 		});
 		// request("/")
 	},
@@ -54,9 +58,12 @@ var notificationStore = Reflux.createStore({
 	onItemRequestDeclined: function(borrower, item) {
 		var that = this;
 		request.del("/api/notifications/accept/" + "" + borrower + "/" + item + "", function(res) {
-			console.log('item not borrowerd');
-			actions.getNotifications();
-			that.trigger(that.data);
+			if (res.error) {
+				console.log('error occurred: ', error)
+			} else {
+				console.log('item is now borrowed');
+				actions.getNotifications();
+			}
 		});
 	},
 

@@ -13,15 +13,17 @@ var Notification = React.createClass({
 
 	handleAccept: function() {
 		actions.itemRequestAccepted(this.props.borrowerId, this.props.itemId);
+		this.refs.notif.getDOMNode().remove();
 	}, 
 
 	handleDecline: function() {
 		actions.itemRequestDeclined(this.props.borrowerId, this.props.itemId);
+		this.refs.notif.getDOMNode().remove();
 	},
 
 	render: function() {
 		return (
-			<div>
+			<div ref="notif">
 				<p>{this.props.borrowerName} wants to borrow your {this.props.itemName}</p>
 				<button itemId={this.props.itemId} name={this.props.name} onClick={this.handleAccept}>Accept</button>
 				<button itemId={this.props.itemId} name={this.props.name} onClick={this.handleDecline}>Decline</button>

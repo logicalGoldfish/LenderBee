@@ -11,7 +11,6 @@ var messagingStore = Reflux.createStore({
   listenables: [actions],
 
   onLenderMessaged: function(lenderId, lenderUsername) {
-    
     this.data.lender = lenderUsername;
     this.trigger(this.data);
     var that = this;
@@ -19,7 +18,6 @@ var messagingStore = Reflux.createStore({
       that.data.messages = JSON.parse(res.text).filter(function(message) { 
         return ((message.to === "samin" || message.from === "samin") && (message.from === lenderUsername || message.to === lenderUsername)) 
         })
-
         that.trigger(that.data);
     });
   },
@@ -36,7 +34,7 @@ var messagingStore = Reflux.createStore({
               else {
                 $('#messageBoxText').val("");
                 console.log('Your message was sent!');
-                
+                actions.lenderMessaged(null, recipient);
               }
 
             });

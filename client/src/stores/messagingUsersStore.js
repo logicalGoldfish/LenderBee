@@ -15,6 +15,10 @@ var messagingUsersStore = Reflux.createStore({
     this.trigger(this.data);
   },
 
+  onMessageFormSubmitted: function() {
+    this.init();
+  },
+
   //gets the item info from the database and sets the data to the item info
   init: function(){
     var that = this;
