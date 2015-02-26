@@ -12,14 +12,6 @@ var searchStore = Reflux.createStore({
         request("/api/items/city/samin/" + "" + this.data.searched + "", function(res){
           // that.data.items = res;
           that.data.items = JSON.parse(res.text);
-          
-          // for (var i = 0; i < that.data.items.length; i++) {
-          //   console.log('LENDER ID', that.data.items[i].lender_id)
-          //   request("/api/users/" + "" + that.data.items[i].lender_id + "", function(resp) {
-          //     that.data.items[i].city = JSON.parse(resp.text).city;
-          //   });
-          // }
-          // console.log('CITIES IN HERE', that.data.items)
           that.trigger(that.data);
           });
       },
