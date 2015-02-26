@@ -3,6 +3,8 @@ var Reflux = require('reflux');
 var actions = require('../actions/actions.js');
 
 var userStore = Reflux.createStore({
+	listenables: [actions],
+
 	init: function(){
 
 	},

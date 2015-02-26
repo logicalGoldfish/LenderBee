@@ -30,19 +30,15 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      FB.api('/me', function(response) {
-          console.log(JSON.stringify(response));
-      });
+      document.location.href = "/";
       testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
-      document.location.href = "/login";
       document.getElementById('status').innerHTML = 'Please log ' +
         'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
-      document.location.href = "/login";
       document.getElementById('status').innerHTML = 'Please log ' +
         'into Facebook.';
     }
@@ -66,6 +62,9 @@
     version    : 'v2.1' // use version 2.1
   });
 
+  FB.Event.subscribe('auth.login', function(resp) {
+    window.location = '/';
+  });
 
   // Now that we've initialized the JavaScript SDK, we call 
   // FB.getLoginStatus().  This function gets the state of the
@@ -80,12 +79,6 @@
   // These three cases are handled in the callback function.
 
   FB.getLoginStatus(function(response) {
-    // $.ajax({
-    //   type: "POST",
-    //   url: "/auth/facebook",
-    //   data: response,
-    //   dataType: 'json'
-    // });
     statusChangeCallback(response);
   });
 
@@ -111,7 +104,7 @@
     });
   }
       </script>
-  <div id='main'></div>
-  <script type="text/javascript" src="/dist/src/LenderBee.js"></script>
+      <p>at login area</p>
+      <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
 </body>
 </html>
