@@ -11,7 +11,6 @@ var searchStore = Reflux.createStore({
       var that = this;
         request("/api/items/city/samin/" + "" + this.data.searched + "", function(res){
           // that.data.items = res;
-          console.log('DATA RETURNED FROM SEARCH', JSON.parse(res.text));
           that.data.items = JSON.parse(res.text);
           
           // for (var i = 0; i < that.data.items.length; i++) {

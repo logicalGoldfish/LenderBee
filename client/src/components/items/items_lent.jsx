@@ -24,13 +24,13 @@ var LentItem = React.createClass({
 
 		return (
 			<div>
-				<h5>Lent Item</h5>
-				<p>{this.props.item.title}</p>
-				<p>{this.props.item.description}</p>
-				<p>{this.props.item.pollenprice}</p>
-				<p>{this.props.item.borrower_id}</p>
+				<p>Item: {this.props.item.title}</p>
+				<p>Description: {this.props.item.description}</p>
+				<p>Pollen Price: {this.props.item.pollenprice}</p>
+				<p>Borrower: {this.props.item.borrower_id}</p>
 				{/* [Warning] somehow we need to pass props to this.returnItem using bind, not sure how to handle with jsx*/}
 				<button onClick={this.returnItem.bind(lender_id, borrower_id, item_id)}>Item Was Returned</button>
+				<hr></hr>
 			</div>
 		);
 	}
@@ -45,6 +45,7 @@ var Items_lent = React.createClass({
 
 		return (
 			<div>
+			<h5>Lent Items</h5>
 				{LentItems}
 			</div>
 		);

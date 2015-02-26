@@ -11,10 +11,6 @@ var messagingStore = Reflux.createStore({
   listenables: [actions],
 
   onLenderMessaged: function(lenderId, lenderUsername) {
-//TODO: CREATE FIRST MESSAGE HERE, GRAB FORM. NAME FORM FIELD = MESSAGE;
-    // request.post("/api/messages/samin" + "" + lenderId + "", function(res) {
-    //   console.log('MESSAGES RECIEVED', res);
-    // });
     
     this.data.lender = lenderUsername;
     this.trigger(this.data);
@@ -23,30 +19,29 @@ var messagingStore = Reflux.createStore({
       that.data.messages = JSON.parse(res.text).filter(function(message) { 
         return ((message.to === "samin" || message.from === "samin") && (message.from === lenderUsername || message.to === lenderUsername)) 
         })
-        //   that.data.messages = that.data.messages.forEach(function(msg) {
-        //   if (msg.from_id === lenderId) {
-        //     msg.from = lenderUsername;
-        //   } else {
-        //     msg.from = "You";
-        //   }
-        // });
-      console.log('MESSAGES ON STATE', that.data.messages);
+
         that.trigger(that.data);
-
-        // .filter(function(message) {
-        //         return message.to_id === lenderId || message.from_id === lenderId;
-        //       });
-        //         for (var i = 0; i < that.data.messages; i++) {
-        //           var msg = that.data.messages[i];
-        //             if (msg.lender_id === lenderId) {
-        //               msg.from = lenderUsername;
-        //               console.log('ADDING FROM HERE')
-        //             } else {
-        //               msg.from = 'You';
-        //             }
-
     });
   },
+
+  onMessageFormSubmitted: function(message, recipient) {
+    var that = this;
+      request
+            .post("/api/messages/samin"+ "/" + recipient + "")
+            .send({'message': message})
+            .end(function(err, res) {
+              if (err) {
+                console.log("send message error", err);
+              }
+              else {
+                $('#messageBoxText').val("");
+                console.log('Your message was sent!');
+                
+              }
+
+            });
+  },
+  
 
   //gets the item info from the database and sets the data to the item info
   init: function(){

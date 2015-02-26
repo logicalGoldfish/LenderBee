@@ -1,4 +1,7 @@
 var React = require('react');
+var Reflux = require('reflux');
+var postItemStore = require('../stores/postItemStore');
+var actions = require('../actions/actions');
 
 var PostPage = React.createClass({
 
@@ -6,6 +9,8 @@ var PostPage = React.createClass({
   //   return null;
   //   // return getTodoState();
   // },
+
+  mixins: [Reflux.connect(postItemStore)],
 
   componentDidMount: function() {
     // HomePageStore.addChangeListener(this._onChange);
@@ -16,16 +21,19 @@ var PostPage = React.createClass({
   },
 
   handlePostSubmit: function(e) {
-    // e.preventDefault();
-    // $this = $('.postForm');
-    // $.ajax({
-    //    type: "POST",
-    //    url: "/api/items/christine",
-    //    data: new FormData($this),
-    //    success : function(){
-    //       alert('Done');
-    //    }
-    // });
+   e.preventDefault();
+   actions.postFormSubmitted($('#itemPostTitle').val(), $('#itemPostDescription').val(), 
+    $('#itemPostPollenPrice').val(), $('#itemPostPhotos').val());
+
+   // request
+   //    .post('/api/items/christine')
+   //    .field('title', $('#itemPostTitle').val())
+   //    .field('description', $('#itemPostDescription').val())
+   //    .field('pollenprice', $('#itemPostPollenPrice').val())
+   //    .attach('photos', $('#itemPostPhotos').val())
+   //    .end(function() {
+   //      console.log('your item was successfully posted');
+   //    });
   },
 
   /**
@@ -34,25 +42,25 @@ var PostPage = React.createClass({
   render: function() {
     return (
       //later: plug in " + session.username + "
-      <form className="postForm" action="/api/items/christine" method="POST">
+      <form className="postForm" onSubmit={this.handlePostSubmit}>
         <div className="form-group">
           <label for="itemName">Enter Item</label>
-          <input type="text" className="form-control" id="exampleInputEmail1" placeholder="Enter Item Name (ie 'Hammer')" name="title" />
+          <input type="text" className="form-control" id="itemPostTitle" placeholder="Enter Item Name (ie 'Hammer')" name="title" />
         </div>
         <div className="form-group">
         <label for="itemName">Enter Description</label>
-        <textarea className="form-control" rows="3" placeholder="Describe Your Item" name="description"></textarea>
+        <textarea className="form-control" id="itemPostDescription" rows="3" placeholder="Describe Your Item" name="description"></textarea>
         </div>
         <div className="form-group">
           <label for="exampleInputEmail1">Enter Pollen Price</label>
-          <input type="number" className="form-control" placeholder="$$$" name="pollenprice" />
+          <input type="number" min="1" step="1" className="form-control" id="itemPostPollenPrice" placeholder="$$$" name="pollenprice" />
         </div>
         <div className="form-group">
           <label for="exampleInputFile">Add Photos</label>
-          <input type="file" name="photos" multiple="multiple" />
+          <input type="file" id="itemPostPhotos" name="photos" multiple="multiple" />
           <p className="help-block">Upload Item Photos</p>
         </div>
-        <button type="submit" class="btn btn-warning" >Submit</button>
+        <button type="submit" class="btn btn-warning" onClick={this.handlePostSubmit}>Submit</button>
         </form>
     );
   },

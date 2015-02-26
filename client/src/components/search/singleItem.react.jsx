@@ -10,13 +10,10 @@ var singleItem = React.createClass({
   mixins: [Reflux.connect(singleItemStore), Router.Navigation],
 
   handleItemRequest: function() {
-    console.log('ID SHOULD BE THIS', this.state.item.id)
-    // TODO: Make this not hard-coded
     actions.itemRequestSubmitted(this.state.item.id, "samin");
   },
 
   handleMessageLender: function() {
-    console.log('sending to following lender', this.state.item.lender);
     actions.lenderMessaged(this.state.item.lender, this.state.lender.username);
      this.transitionTo('Messaging')
   },

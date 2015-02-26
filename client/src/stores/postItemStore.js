@@ -1,4 +1,4 @@
-var actions = require('../actions/actions');
+var actions = require('../actions/actions.js');
 var request = require('superagent');
 var Reflux = require('reflux');
 
@@ -6,20 +6,22 @@ var postItemStore = Reflux.createStore({
     listenables: [actions],
     data: {items: []},
     
-    onPostFormSubmitted: function() {
-      
-    },
+    onPostFormSubmitted: function(title, description, price, photos) {
+      request
+         .post('/api/items/christine')
+         .send({'title': title, 'description': description, 'pollenprice': price, 'photos': photos})
+         .end(function(err, res) {
+            if(err) {
+                console.log("error on post: ", err)
+            }
+            $('#itemPostTitle').val("")
+            $('#itemPostDescription').val("")
+            $('#itemPostPollenPrice').val("")
+            $('#itemPostPhotos').val("")
 
-    // onSearchSubmit: function() {
-    //     // this.searchInput = $('#searchBar').val();
-    //     // console.log('SEARCHINP', this.searchInput);
-    //     // $('#searchBar').val('');
-    //     this.init();
-    // },
-
-    getInitialState: function() {
-        return this.data;
+           alert('Your item is now posted!');
+         });
     }
 });
 
-module.exports = borrowedStore;
+module.exports = postItemStore;
