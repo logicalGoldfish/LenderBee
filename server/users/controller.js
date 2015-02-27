@@ -12,10 +12,12 @@ controller.create = function(req, res, next){
 	newUser.firstname = req.body.first_name;
 	newUser.lastname = req.body.last_name;
 	newUser.fbprofile = req.body.link;
-	newUser.city = req.body.city;
-	newUser.state = req.body.state;
-	newUser.street = req.body.street;
-	newUser.country = req.body.country;
+	if (req.body.loc!==undefined){
+		newUser.city = req.body.loc.city;
+		newUser.state = req.body.loc.state;
+		newUser.street = req.body.loc.address;
+		newUser.country = req.body.loc.country;
+	}
 	newUser.fbpicture = req.body.picinfo;
 	// fbid: DataTypes.STRING,
 	// username: DataTypes.STRING,
@@ -78,11 +80,12 @@ controller.testUser = function(req, res, next){
 			fbid: req.query.authResponse.userID
 		}
 	}).then(function(user){
-		if(true){
+		if(user.city){
 			res.json("inside");
 		}
+		res.json("outside");
 	})
-	res.json("outside");
+	//res.json("outside");
 }
 
 // controller.signin = function(req, res, next){
