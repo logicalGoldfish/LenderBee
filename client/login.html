@@ -31,19 +31,22 @@
       // for FB.getLoginStatus().
       if (response.status === 'connected') {
         // Logged into your app and Facebook.
+        console.log("BLARG: ", response);
         $.ajax({
           type: "get",
-          url: "/api/users/signup",
+          url: "/api/users/test",
           data: response,
           dataType: 'json',
           success: function(response){
-            if(true){
-
+            if(false){
+              console.log("LOLJK", response);
+              $(".loginButton").hide();
+              $(".signup").show();
+            }else{
+              document.location.href = "/";
             }
           }
         });
-        alert("yo");
-        document.location.href = "/";
         testAPI();
       } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
@@ -70,12 +73,28 @@
     FB.init({
       appId      : 1568513570056402,
       cookie     : true,  // enable cookies to allow the server to access 
-                          // the session
+      session    :true,                // the session
       xfbml      : true,  // parse social plugins on this page
       version    : 'v2.1' // use version 2.1
     });
     FB.Event.subscribe('auth.login', function(resp) {
-      window.location = '/';
+      //window.location = '/';
+      console.log("BLARG: ", resp);
+      $.ajax({
+        type: "get",
+        url: "/api/users/test",
+        data: resp,
+        dataType: 'json',
+        success: function(resp){
+          if(true){
+            console.log("LOLJK", resp);
+            $(".loginButton").hide();
+            $(".signup").show();
+          }else{
+            document.location.href = "/";
+          }
+        }
+      });
     });
 
     // Now that we've initialized the JavaScript SDK, we call 
@@ -124,12 +143,26 @@
       locInfo.country = $("#country").val();
       locInfo.zip = $("#zip").val();
       console.log("info: ",locInfo);
+      $.ajax({
+        type: "POST",
+        url: "/api/users/loc",
+        data: locInfo,
+        dataType: 'json',
+        success: function(){
+          window.location = '/';
+        }
+      });
+      //window.location = '/';
     });
+
+    $(".signup").hide();
   });
   </script>
-  <p>at login area</p>
-  <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
-  <div>
+  <div class="loginButton">
+    <p>at login area</p>
+    <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
+  </div>
+  <div class="signup">
     <h3>Sign up!</h3>
     <p>Address: <input type="text" id="address"></p>
     <p>City: <input type="text" id="city"></p>

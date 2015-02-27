@@ -151,8 +151,19 @@ module.exports = function(app, express){
 
 
 	//API routes for users (can amend as we decide what we need)
-	app.post('/api/users/signup', users.create); //
-	app.get('/api/users/:userId', users.getOne); //WORKS - returns all info on a single user, regardless of borrower/lender. --takes in a user_id. not username
+	app.post('/api/users/signup', function(req, res){
+		console.log("lksadflkasdjf;lkasdjf;lasdkjFART",req.session.loc);
+		req.body.loc = req.session.loc;
+		users.create(req, res);
+	}); //
+	app.get('/api/users/test', users.testUser);
+	app.get('/api/users/:userID', users.getOne); //WORKS - returns all info on a single user, regardless of borrower/lender. --takes in a user_id. not username
+	app.post('/api/users/loc', function(req, res){
+		console.log("THA REQUEST: ", req.body);
+		req.session.loc = req.body;
+		console.log("THA SESSION: ",req.session.loc);
+		res.json("win");
+	});
 
 	//API routes for reviews
 	app.post('/api/reviews/:user', reviews.create);

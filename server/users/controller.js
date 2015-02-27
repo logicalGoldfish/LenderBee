@@ -53,6 +53,10 @@ controller.create = function(req, res, next){
 // 		.then(function(user){
 // 		res.send(user);
 // 	})
+// // 	User.create(req.body)
+// // 		.then(function(user){
+// // 		res.send(user);
+// // 	})
 }
 
 controller.getOne = function(req, res, next){
