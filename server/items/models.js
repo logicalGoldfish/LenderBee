@@ -3,7 +3,7 @@ module.exports = function(sequelize, DataTypes) {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: DataTypes.STRING,
     description: DataTypes.STRING,
-    pollenprice: DataTypes.INTEGER,
+    beebucks: DataTypes.INTEGER,
     borrowed: {type: DataTypes.BOOLEAN, defaultValue: false},
     city: DataTypes.STRING,
     street: DataTypes.STRING,

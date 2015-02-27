@@ -152,7 +152,7 @@ module.exports = function(app, express){
 
 	//API routes for users (can amend as we decide what we need)
 	app.post('/api/users/signup', users.create); //
-	app.get('/api/users/:user', users.getOne); //WORKS - returns all info on a single user, regardless of borrower/lender. --takes in a user_id. not username
+	app.get('/api/users/:userId', users.getOne); //WORKS - returns all info on a single user, regardless of borrower/lender. --takes in a user_id. not username
 
 	//API routes for reviews
 	app.post('/api/reviews/:user', reviews.create);
@@ -161,14 +161,14 @@ module.exports = function(app, express){
 	app.get('/api/reviews/:user', reviews.getPendingReviews);
 
 	//API routes for items (can amend as we decide what we need)
-	app.post('/api/items/:user', items.create); //WORKS
-	app.get('/api/items/city/:user/:title', items.searchItemByCity); //WORKS
+	app.post('/api/items/:userId', items.create); //WORKS
+	app.get('/api/items/city/:userId/:title', items.searchItemByCity); //WORKS
 	app.put('/api/items/return/:itemsId', items.returnItem); //WORKS --itemsId is the id of the item being returned
-	app.get('/api/items/user/:user', items.getOneByUser); 
-
+	app.get('/api/items/user/:userId', items.getOneByUser); 
+		
 	//API routes for messages (can amend as we decide what we need)
-	app.post('/api/messages/:from/:to', messages.create); //WORKS
-	app.get('/api/messages/:user', messages.getMessages); //WORKS
+	app.post('/api/messages/:fromId/:toId', messages.create); //WORKS
+	app.get('/api/messages/:userId', messages.getMessages); //WORKS
 
 	//API routes for notifications (can amend as we decide what we need)
   //very serious mismatch between what i'm writing and what may be expected on front-end

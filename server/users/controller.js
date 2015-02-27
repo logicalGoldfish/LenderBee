@@ -5,26 +5,61 @@ var Message = global.db.Message;
 
 var controller = {};
 controller.create = function(req, res, next){
+	console.log(req.body);
+	var newUser = {};
+	newUser.fbid = req.body.id;
+	newUser.username = req.body.name;
+	newUser.firstname = req.body.first_name;
+	newUser.lastname = req.body.last_name;
+	newUser.fbprofile = req.body.link;
+	newUser.city = req.body.city;
+	newUser.state = req.body.state;
+	newUser.street = req.body.street;
+	newUser.country = req.body.country;
+	newUser.fbpicture = req.body.picinfo;
+	// fbid: DataTypes.STRING,
+	// username: DataTypes.STRING,
+	// firstname: DataTypes.STRING,
+	// lastname: DataTypes.STRING,
+	// fbprofile: DataTypes.STRING,
+	// reputation: {type: DataTypes.INTEGER, defaultValue: 0},
+	// reviews: {type: DataTypes.INTEGER, defaultValue: 0},
+	// beebucks: {type: DataTypes.INTEGER, defaultValue: 20},
+	// city: DataTypes.STRING,
+	// state: DataTypes.STRING,
+	// street: DataTypes.STRING,
+	// country: DataTypes.STRING,
+	// fbpicture: DataTypes.STRING
 	//extract fb data to create users with
-	//reputation = 0, bee bucks = 10, city, state, country,
 	//fb name (first, last)
-	User.create(req.body)
-		.then(function(user){
-		res.send(user);
+	User.find({
+		where: {
+			fbid: newUser.fbid
+		}
+	}).then(function(user){
+		console.log(user);
+		if(!user){
+			User.create(newUser).then(function(user){
+				res.send(user);
+			})
+		}
+		else{
+			User.update(newUser).then(function(user){
+				res.send(user);
+			})
+		}
 	})
 }
 
 controller.getOne = function(req, res, next){
 	var userId = req.params.user;
-	console.log('userId  ', userId);
 	User.find({
 		where: {
 			id: userId
 		}
 	}).then(function(user){
-		res.json(user);
-	}).catch(function(error){
-		console.log('error inside the user controller getOne function ', error);
+			res.json(user);
+		}).catch(function(error){
 	})
 }
 
