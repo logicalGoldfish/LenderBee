@@ -8,15 +8,17 @@ var Message 	 = global.db.Message;
 var controller = {};
 
 controller.create = function(req, res, next){
+  console.log(req.params.userId, 'this is the userId after trying to create an item');
   //extract the user name
   //query the user database to get id
   //set the lender_id of the item to the user id
   // console.log(req.params); //extract the username from the url
   User.find({ //find the user id of the currently logged in user
     where: {
-      username: req.params.user
+      id: req.params.userId
     }
   }).then(function(user){
+    console.log('user.id', user);
     req.body.lender_id = user.id;
     req.body.country = user.country;
     req.body.state = user.state;
@@ -24,7 +26,7 @@ controller.create = function(req, res, next){
     req.body.city = user.city;
     Item.create(req.body)
       .then(function(item){
-        res.end(); //edited to just end.
+        res.send(item); //edited to just end.
       })
       .catch(function(error){
         ('inside error of items create controller ', error);
@@ -37,7 +39,7 @@ controller.create = function(req, res, next){
 controller.searchItemByCity = function(req, res, next){
   User.find({
     where: {
-      username: req.params.user
+      id: req.params.userId
     }
   }).then(function(user){
     Item.findAll({
@@ -56,8 +58,8 @@ controller.getOneByUser = function(req, res, next){
   console.log('fetching items for user --------', req.params.user);
   Item.findAll({
     where: Sequelize.or(
-      { lender_id: req.params.user },
-      { borrower_id: req.params.user }
+      { lender_id: req.params.userId },
+      { borrower_id: req.params.userId}
     )
   }).
   then(function(items){

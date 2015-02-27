@@ -40,72 +40,72 @@ User.sync().then(function() {
 
 // Create tables and test data. Uncomment for test data
 
-var newUser1 = User.build({
-  username: 'bubblebee',
-  firstname: 'Brixton',
-  lastname: 'Humperdink',
-  reputation: 100,
-  beebucks: 300,
-  city: 'Honey Pot',
-  state: 'California',
-  country: 'USA'
-});
-var newUser2 = User.build({
-  username: 'criminycricket',
-  firstname: 'Creighton',
-  lastname: 'Crambleberry',
-  reputation: 500,
-  beebucks: 5000,
-  city: 'Shrubbery',
-  state: 'California',
-  country: 'USA'
-});
-var newUser3 = User.build({
-  username: 'dandelion',
-  firstname: 'Dreamwave',
-  lastname: 'Dystopia',
-  reputation: 50,
-  beebucks: 10,
-  city: 'Flower Fields',
-  state: 'California',
-  country: 'USA'
-});
-var newMsg = Message.build({
-  message: 'hello world',
-  to_id: 1,
-  from_id: 2
-});
-var newItem1 = Item.build({
-  title: 'Stinger',
-  description: 'For when your stinger falls off defending the hive',
-  pollenprice: 400,
-  borrowed: false,
-  lender_id: 2
-});
-var newItem2 = Item.build({
-  title: 'Horse Head',
-  description: 'Use this to leave an impactful message, preferably in bed',
-  pollenprice: 800,
-  borrowed: false,
-  lender_id: 3
-});
-var newItem3 = Item.build({
-  title: 'Shoe',
-  description: 'It\'s used and stinky but warm',
-  pollenprice: 20,
-  borrowed: false,
-  lender_id: 1
-})
-var newNotification = Notification.build({
-  userreq_id: 1,
-  itemreq_id: 1
-});
-var newReview = Review.build({
-  rating: 3,
-  review: 'whatever this sucks',
-  reviewee_id: 1,
-  reviewer_id: 2
-});
+// var newUser1 = User.build({
+//   username: 'bubblebee',
+//   firstname: 'Brixton',
+//   lastname: 'Humperdink',
+//   reputation: 100,
+//   beebucks: 300,
+//   city: 'Honey Pot',
+//   state: 'California',
+//   country: 'USA'
+// });
+// var newUser2 = User.build({
+//   username: 'criminycricket',
+//   firstname: 'Creighton',
+//   lastname: 'Crambleberry',
+//   reputation: 500,
+//   beebucks: 5000,
+//   city: 'Shrubbery',
+//   state: 'California',
+//   country: 'USA'
+// });
+// var newUser3 = User.build({
+//   username: 'dandelion',
+//   firstname: 'Dreamwave',
+//   lastname: 'Dystopia',
+//   reputation: 50,
+//   beebucks: 10,
+//   city: 'Flower Fields',
+//   state: 'California',
+//   country: 'USA'
+// });
+// var newMsg = Message.build({
+//   message: 'hello world',
+//   to_id: 1,
+//   from_id: 2
+// });
+// var newItem1 = Item.build({
+//   title: 'Stinger',
+//   description: 'For when your stinger falls off defending the hive',
+//   pollenprice: 400,
+//   borrowed: false,
+//   lender_id: 2
+// });
+// var newItem2 = Item.build({
+//   title: 'Horse Head',
+//   description: 'Use this to leave an impactful message, preferably in bed',
+//   pollenprice: 800,
+//   borrowed: false,
+//   lender_id: 3
+// });
+// var newItem3 = Item.build({
+//   title: 'Shoe',
+//   description: 'It\'s used and stinky but warm',
+//   pollenprice: 20,
+//   borrowed: false,
+//   lender_id: 1
+// })
+// var newNotification = Notification.build({
+//   userreq_id: 1,
+//   itemreq_id: 1
+// });
+// var newReview = Review.build({
+//   rating: 3,
+//   review: 'whatever this sucks',
+//   reviewee_id: 1,
+//   reviewer_id: 2
+// });
 
 // User.sync({force: true}).then(function() {
 //   newUser1.save();

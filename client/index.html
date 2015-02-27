@@ -30,8 +30,27 @@
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      //get picinfo
+      var picinfo = "";
+      FB.api(
+          "/me/picture?type=large",
+          function (response) {
+            if (response && !response.error) {
+              picinfo = response.data.url;
+              console.log('picinfo: ', picinfo);
+              console.log(response.data.url);
+            }
+          }
+      );
       FB.api('/me', function(response) {
+        response.picinfo = picinfo;
           console.log(JSON.stringify(response));
+          $.ajax({
+            type: "POST",
+            url: "/api/users/signup",
+            data: response,
+            dataType: 'json'
+          });
       });
       testAPI();
     } else if (response.status === 'not_authorized') {

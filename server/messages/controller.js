@@ -10,11 +10,11 @@ controller.create = function(req, res, next){
 	//req.params.user will be borrower_id
 	//We have to query the borrower for its id because we only have its username
 	//however, the lender_id is already associated with the item so we have that already.
-	var from = req.params.from;
-	var to = req.params.to;
+	var from = req.params.fromId;
+	var to = req.params.toId;
 
-	req.body.from = from;
-	req.body.to = to;
+	req.body.from_id = from;
+	req.body.to_id = to;
 	console.log(req.body.message);
 	Messages.create(req.body).then(function(message){
 		res.send(message);
@@ -103,8 +103,8 @@ controller.getMessages = function(req, res, next){
 	// 	//find all messages associated with a user
 		Messages.findAll({
 			where: Sequelize.or(
-				{to: req.params.user},
-				{from: req.params.user}
+				{to_id: req.params.userId},
+				{from_id: req.params.userId}
 			)
 		}).then(function(messages){
 			console.log(messages);
