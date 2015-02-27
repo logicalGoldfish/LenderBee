@@ -38,7 +38,8 @@
           data: response,
           dataType: 'json',
           success: function(response){
-            if(false){
+            console.log("response is: ", response);
+            if(response==="outside"){
               console.log("LOLJK", response);
               $(".loginButton").hide();
               $(".signup").show();
@@ -86,7 +87,8 @@
         data: resp,
         dataType: 'json',
         success: function(resp){
-          if(true){
+          console.log("response is: ", resp);
+          if(resp==="outside"){
             console.log("LOLJK", resp);
             $(".loginButton").hide();
             $(".signup").show();

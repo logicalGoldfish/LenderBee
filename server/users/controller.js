@@ -73,10 +73,16 @@ controller.getOne = function(req, res, next){
 
 controller.testUser = function(req, res, next){
 	console.log("IT'S A TEST ", req.query.authResponse.userID);
-	res.json(req.query.authResponse.userID);
-	// User.find({
-
-	// })
+	User.find({
+		where: {
+			fbid: req.query.authResponse.userID
+		}
+	}).then(function(user){
+		if(true){
+			res.json("inside");
+		}
+	})
+	res.json("outside");
 }
 
 // controller.signin = function(req, res, next){
