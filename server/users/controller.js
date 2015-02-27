@@ -34,6 +34,7 @@ controller.create = function(req, res, next){
 	// fbpicture: DataTypes.STRING
 	//extract fb data to create users with
 	//fb name (first, last)
+	console.log(newUser);
 	User.find({
 		where: {
 			fbid: newUser.fbid
@@ -80,8 +81,10 @@ controller.testUser = function(req, res, next){
 			fbid: req.query.authResponse.userID
 		}
 	}).then(function(user){
-		if(user.city){
-			res.json("inside");
+		if(user){		
+			if(user.city){
+				res.json("inside");
+			}
 		}
 		res.json("outside");
 	})
