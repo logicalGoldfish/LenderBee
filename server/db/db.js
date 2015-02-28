@@ -39,8 +39,10 @@ if (!global.hasOwnProperty('db')) {
   //    });
   //  };
 
-  User.hasMany(Item, {foreignKey: 'borrower_id'});
-  User.hasMany(Item, {foreignKey: 'lender_id'});
+  // User.hasMany(Item, {foreignKey: 'borrower_id'});
+  Item.belongsTo(User, {as: 'borrower', foreignKey: 'borrower_id'});
+  // User.hasMany(Item, {foreignKey: 'lender_id'});
+  Item.belongsTo(User, {as: 'lender', foreignKey: 'lender_id'});
   User.hasMany(Message, {foreignKey: 'to_id'});
   User.hasMany(Message, {foreignKey: 'from_id'});
   

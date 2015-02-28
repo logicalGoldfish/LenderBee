@@ -37,20 +37,38 @@ controller.create = function(req, res, next){
 };
 
 controller.searchItemByCity = function(req, res, next){
+  var city = '';
   User.find({
-    where: {
-      id: req.params.userId
-    }
-  }).then(function(user){
+    where: { id: req.params.userId },
+    attributes: ['city']
+  }).then(function(user) {
+    city = user.dataValues.city;
+    // console.log('\nUSER FOUND:', user.dataValues);
     Item.findAll({
-      where: {
-        city: user.city,
-        title: req.params.title
-      }
-    }).then(function(items){
+      where: { city: city, title: req.params.title },
+      include: [{ model: User, as: 'lender' }]
+    }).then(function(items) {
       res.json(items);
+    }).catch(function(err) {
+      console.error('\nsearchItemByCity error:', err);
     })
+    
   })
+
+  // User.find({
+  //   where: {
+  //     id: req.params.userId
+  //   }
+  // }).then(function(user){
+  //   Item.findAll({
+  //     where: {
+  //       city: user.city,
+  //       title: req.params.title
+  //     }
+  //   }).then(function(items){
+  //     res.json(items);
+  //   })
+  // })
 };
 
 
