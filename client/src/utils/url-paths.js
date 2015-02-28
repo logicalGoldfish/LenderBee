@@ -6,14 +6,16 @@ var api = {};
 
 api.user = {
 	signup: '/api/users/signup',
-	signin: '/api/users/signin',
-	update: '/api/users/:username',
-	delete: '/api/users/:username'
+	signin: '/api/users/signin', /* Is this what is going to fetch all the user data on app load */
+	// update: '/api/users/:username',
+	// delete: '/api/users/:username',
+	fetchUserData: '/api/users/:user'
 };
 
 api.items = {
 	create: '/api/items/:user',
 	search: '/api/items/:title',
+	searchByCity: '/api/items/city/:city/:title',
 	fetch: '/api/items/user/:user',
 	update: '/api/items/return/:itemsId'
 	// 'return': '/api/items'
@@ -25,7 +27,8 @@ api.messages = {
 };
 
 api.reviews = {
-	fetchOutstandingReviews: '/api/reviews/user/:user',
+	getReviews: '/api/reviews/user/:user',
+	fetchOutstandingReviews: '/api/reviews/:user',
 	createPending: '/api/reviews/users/:lender_id/:borrower_id'
 };
 

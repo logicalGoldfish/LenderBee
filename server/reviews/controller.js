@@ -59,41 +59,30 @@ controller.createPending = function(req, res, next){
     });
 };
 
+
 controller.getReviews = function(req, res, next){
-  //Again, we have to query the borrower for its id because we only have its username
-  //the lender id is included with the item
-  console.log('reviews ctrl getReviews req.params', req.params);
-  // Current user's reviews
-
+  console.log('fetching reviews for user ', req.params.user);
+  // console.log('user', req.params.user);
+  var userId = req.params.user;
   Review.findAll({
-    // join with users, look for req.params.user which is a username
-    // return the usernames of reviewers too
-    where: {reviewee_id: req.params.user}
-    // include: [ {model: User, as: 'reviewer_id'} ]
-    // include: [User]
-  }).catch(function(err) {
-    console.log('\ngetReviews error:', err, '\n');
-  }).then(function(reviews) {
-    for (var i = 0; i<reviews.length; i++) {
-      console.log('\nRESULT', i, ':\n', JSON.stringify(reviews[i]));
-    }
-    res.send(reviews);
+    where: {reviewer_id: userId},
+    include: [{model: User, as: 'reviewee'}, {model: Item, as: 'item'}],
+  })
+  .catch(function(error){
+    console.log('error getting reviews for user: ' + userId, error);
+  })
+  .then(function(reviews){
+    console.log('REVIEWS', reviews);
+    res.json(reviews);
   });
-}
+};
 
+// [Note] Fetches all reviews that a user has to complete, these reviews will be visible in the reviews tab
+// [Note] Working!
 controller.getPendingReviews = function(req, res, next) {
-  /*
-  req.params = {
-    user: 1 (userID in user table)
-  }
-  */
-  // find reviews where reviewer is user and rating/review is null
+  console.log('fetching pending reviews');
   Review.findAll({
-    where: {
-      reviewer_id: req.params.user,
-      rating: null,
-      review: null
-    },
+    where: Sequelize.and({reviewer_id: req.params.user},{rating: null},{review: null}),
     include: [
       { model: User, as: 'reviewee' },
       { model: Item, as: 'item' }
@@ -104,6 +93,6 @@ controller.getPendingReviews = function(req, res, next) {
     console.log('\nREVIEWS:', reviews);
     res.send(reviews);
   })
-}
+};
 
 module.exports = controller;

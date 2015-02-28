@@ -9,11 +9,11 @@ var userStore = Reflux.createStore({
 
   onLoginToggle: function(status){
     if(status===true){
-      console.log("IN THE SYSTEM");
+      // console.log("IN THE SYSTEM");
       this.data.loggedIn = true;
       this.trigger(this.data)
     }else{
-      console.log("OUT OF IT");
+      // console.log("OUT OF IT");
       this.data.loggedIn = false;
       this.trigger(this.data)
     }

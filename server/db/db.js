@@ -56,6 +56,7 @@ if (!global.hasOwnProperty('db')) {
   Review.belongsTo(Item, {as: 'item', foreignKey: 'item_id'});
 
   // Item.hasMany(Review, {foreignKey: 'item_id'});
+
   
   // add foreign key for user -> review (rater)
   // add foreign key for user -> review (ratee)

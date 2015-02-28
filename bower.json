@@ -1,0 +1,9 @@
+{
+  "name": "LenderBee",
+  "version": "0.0.0",
+  "homepage": "https://github.com/logicalGoldfish/LenderBee",
+  "authors": [
+    "Devin Otway <devin.otway@gmail.com>"
+  ],
+  "license": "MIT"
+}

@@ -9,12 +9,14 @@ var review = React.createClass({
   mixins: [Reflux.connect(reviewStore)],
 
   render: function(){
+    // console.log('review from within single review', this.props.review);
     return (
       <div>
-        <p>{this.props.reviewInfo.userName}</p>
-        <div>{this.props.reviewInfo.comments}</div>
+        <p><b>{this.props.review.reviewee.username}</b></p>
+        <p>{this.props.review.review}</p>
+        {/* insert rating component here with stars */}
       </div>
-    )
+    );
   }
 });
 

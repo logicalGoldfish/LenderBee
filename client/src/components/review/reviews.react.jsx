@@ -4,24 +4,13 @@ var actions 			= require('../../actions/actions.js');
 var reviewsStore 	= require('../../stores/reviews.js');
 var Review 				= require('./review.react.jsx');
 
-var Reviews = React.createClass({
-	// TODO: We need to listen to the review store and anytime it is triggered we need to call update which sets the state
-	// [Warning] Currently we can only have one callback registered to triggered events from the reviewsStore, need other listening pattern for different callbacks
-	mixins: [Reflux.listenTo(reviewsStore, "onFetchReviews")],
-	/**
-	 * [onFetchReviews description]
-	 * @param  {[Array]} reviews [Pending Reviews for User to Complete]
-	 */
-	onFetchReviews: function(reviews){
-		console.log('reviews component attempts to set state with: ', reviews);
-		this.setState({
-			reviews: reviews
-		});
-	},
+var Reviews = React.createClass({	
+	// [Tip] This mixin will automatically listen for triggers form the reviewStore
+	// and will set the components state to this.state.reviews with the data from the store's trigger 
+	mixins: [Reflux.connect(reviewsStore)],
 
-	// [Tip] Called once before render
 	componentWillMount: function() {
-		console.log('store should fetch pending reviews');
+		console.log('review componts calls fetchPendingReviews before mount');
 		actions.fetchPendingReviews();		
 	},
 
@@ -29,10 +18,14 @@ var Reviews = React.createClass({
 		return {};
 	},
 
+	// [Note] We need to be rendering the pendingReviews, not the reviews for the current user
 	render: function() {
-		var reviews;
-		if (this.state.reviews) {
-			reviews = this.state.reviews.map(function(review, index){
+		var pendingReviews;
+		console.log('review components state', this.state);
+		if (this.state.pendingReviews) {
+			// [Bug] currently reviews is referencing the whole response instead of the body of the response
+			// [Warning] I think this needs to be this.state.reviews.pendingReviews
+			pendingReviews = this.state.pendingReviews.map(function(review, index){
 				return <Review review={review} />
 			});
 		}
@@ -40,7 +33,7 @@ var Reviews = React.createClass({
 		return (
 			<div>
 				<h1>MY PENDING REVIEWS</h1>
-				{reviews}
+				{pendingReviews}
 			</div>
 		);
 	}
