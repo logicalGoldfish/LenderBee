@@ -48,8 +48,6 @@ $(document).ready(function(){
 			var socket = io.connect();
 			console.log("SOCKET: ", socket);
 			socket.on("userLoad", function(data){
-				console.log("ALMIGHTY DATA: ");
-				console.log(data);
 				actions.mountUser(data);
 			});
 

@@ -8,20 +8,20 @@ var userStore = Reflux.createStore({
 
   data: {},
 
-  onMountUser: function(data){
-    var url = "/api/users/init/"+data.id;
-    request.get(url, function(err, res){
-      if ( err ) {
-        console.err('error trying to get item information for user', err);
-      }
-      else {
-        console.log('USERINFO RECIEVED: ', res.body);
-        this.data = res.body;
-        trigger(this.data);
-      }
-    }.bind(this));  
+  // onMountUser: function(data){
+  //   var url = "/api/users/init/"+data.id;
+  //   request.get(url, function(err, res){
+  //     if ( err ) {
+  //       console.err('error trying to get item information for user', err);
+  //     }
+  //     else {
+  //       console.log('USERINFO RECIEVED: ', res.body);
+  //       this.data = res.body;
+  //       trigger(this.data);
+  //     }
+  //   }.bind(this));  
 
-  }
+  // }
 
   // onLoginToggle: function(status){
   //   if(status===true){
