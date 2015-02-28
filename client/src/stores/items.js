@@ -20,10 +20,11 @@ var itemStore = Reflux.createStore({
 
 	/* Fetches Items from api endpoint */
 	fetchItems: function(){
+		var userId = userStore.getProp('id');
 		
-		request.get(makeUrl(api.items.fetch, {user: 1}), function(err, res){
+		request.get(makeUrl(api.items.fetch, {user: userId}), function(err, res){
 			if ( err ) {
-				console.err('Error trying to get item information for user', err);
+				console.err('error trying to get item information for user', err);
 			}
 			else {
 				console.log('items', res.body);
@@ -34,8 +35,8 @@ var itemStore = Reflux.createStore({
 
 	// [How] Do we pass in the itemsId?
 	// [Refactor] Could use promises to make this more modular or use next pattern
-	returnItem: function(itemsId, lender_id, borrower_id){
-		console.log('attempts to return item');
+	returnItem: function(lender_id, borrower_id, itemsId){
+		console.log('attempts to return item for itemsId:', itemsId);
 		console.log(itemsId, lender_id, borrower_id);
 		console.log(makeUrl(api.items.update, {itemsId: itemsId}));
 		request.put(makeUrl(api.items.update, {itemsId: itemsId}), function(err, res){
@@ -76,8 +77,8 @@ var itemStore = Reflux.createStore({
 		/* Items is an array of item objects */
 		// console.log(items);
 		var filteredItems = {};
-		var userId = userStore.getProp('user_id');
-		console.log('userId', userStore.getProp('user_id'));
+		var userId = userStore.getProp('id');
+		// console.log('userId', userStore.getProp('userId'));
 		items.forEach(function(item){
 			/* if the item's lender_id is the same as the current user */
 			if (userId === item.lender_id) {

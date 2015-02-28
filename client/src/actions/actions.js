@@ -37,11 +37,8 @@ var actions = Reflux.createActions([
   "fetchNotifications",
 
   /* Reviews API */
-  "fetchPendingReviews"
-  
-  
-
-
+  "fetchPendingReviews",
+  "fetchReviews"
 ]);
 
 module.exports = actions;

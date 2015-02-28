@@ -41,34 +41,39 @@ controller.searchItemByCity = function(req, res, next){
   User.find({
     where: { id: req.params.userId },
     attributes: ['city']
-  }).then(function(user) {
+  })
+  .then(function(user) {
     city = user.dataValues.city;
     // console.log('\nUSER FOUND:', user.dataValues);
     Item.findAll({
       where: { city: city, title: req.params.title },
       include: [{ model: User, as: 'lender' }]
-    }).then(function(items) {
-      res.json(items);
-    }).catch(function(err) {
-      console.error('\nsearchItemByCity error:', err);
     })
-    
+    .then(function(items) {
+      res.json(items);
+    })
+    .catch(function(err) {
+      console.error('\nsearchItemByCity error:', err);
+    })    
   })
-
-  // User.find({
+  // Item.findAll({
   //   where: {
   //     id: req.params.userId
   //   }
-  // }).then(function(user){
+  // })
+  // .then(function(user){
   //   Item.findAll({
   //     where: {
   //       city: user.city,
   //       title: req.params.title
   //     }
-  //   }).then(function(items){
-  //     res.json(items);
   //   })
+  // .catch(function(error){
+  //   console.log('error searching for items by city', error);
   // })
+  // .then(function(items){
+  //     res.json(items);
+  // });
 };
 
 
