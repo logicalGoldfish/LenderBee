@@ -79,6 +79,19 @@ controller.getOne = function(req, res, next){
 	})
 }
 
+controller.init = function(req, res, next){
+	var userId = req.params.userID;
+	User.find({
+		where: {
+			fbid: userId
+		}
+	}).then(function(user){
+			res.json(user);
+		}).catch(function(error){
+			console.log('error', error);
+	})
+}
+
 controller.testUser = function(req, res, next){
 	console.log("IT'S A TEST ", req.query.authResponse.userID);
 	User.find({

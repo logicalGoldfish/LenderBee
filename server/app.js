@@ -28,11 +28,8 @@ http.listen(3000, function(){
 
 io.on('connection', function(socket){
   socket.on('userInfo', function(msg){
-     console.log('meSSSSSSSSSSage: ' + msg);
      io.emit("userLoad", msg);
    });
-  console.log('a user connected');
-  io.emit("userLoad","lol");
 });
 
 // Creates tables if they don't exist
