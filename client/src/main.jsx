@@ -10,6 +10,7 @@ $(document).ready(function(){
 	var DefaultRoute = Router.DefaultRoute;
 
 	var mainStore = require('./stores/mainStore.js');
+	var user = require('./stores/user.js');
 	var actions = require('./actions/actions.js');
 	
 	/* Components */
@@ -34,7 +35,7 @@ $(document).ready(function(){
 	/* Defines Top Level App Component */
 	var APP = React.createClass({
 
-		mixins: [Reflux.connect(mainStore)],
+		mixins: [Reflux.connect(user)],
 
 		// NavBar is initially hidden
 		getInitialState: function() {
