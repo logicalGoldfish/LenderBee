@@ -27,6 +27,7 @@ var ResultDiv = React.createClass({
       //trigger action that takes current item, createsActiveItem in store, 
       //singleItem listening to store, 
   render: function() {
+    // console.log('ZE PROPS', this.props.item, this.props.lender, this.props.itemName);
     return (
       <div className="searchresultDiv">
       <Link to="SingleItem" onClick={this.handleClick}>{this.props.itemName}</Link>
@@ -47,8 +48,7 @@ var searchResults = React.createClass({
   render: function() {
     
     var matchedItems = this.state.items.map(function(item) {
-      console.log('THE ITEM FROM THE SEARCHRES', item);
-      return <ResultDiv item={item} lender={item.lender} onClick={ResultDiv.handleClick} />
+      return (<ResultDiv item={item} itemName={item.title} lender={item.lender} />)
     });
 
     return (

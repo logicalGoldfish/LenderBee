@@ -9,6 +9,9 @@ var singleItem = React.createClass({
   //listens to singleItemStore
   mixins: [Reflux.connect(singleItemStore), Router.Navigation],
 
+  componentDidMount: function() {
+  },
+
   handleItemRequest: function() {
     //hard-coded borrower ID
     actions.itemRequestSubmitted(this.state.item.id, 1);

@@ -3,8 +3,9 @@ var Reflux 	= require('reflux');
 var actions = require('../actions/actions');
 var request = require('superagent');
 var Router = require('react-router')
-var ResultsMap = require('../components/search/SingleItem.react.jsx');
+var ResultsMap = require('../components/map/resultsMap.react.jsx');
 var Link = Router.Link;
+
 
 // var InfoContent = require('../components/map/infoContent.react.jsx');
 
@@ -63,48 +64,50 @@ var mapStore = Reflux.createStore({
 		// onMapMounted: function(domMap) {
 			this.data.items.forEach(function(item) {
 
-				var address = ""+ item.street + "" + ", " + item.city + ", " + item.state + ", " + item.country
-					geocoder.geocode({'address': address}, function(results, status) {
-				    if (status == google.maps.GeocoderStatus.OK) {
-				      var marker = new google.maps.Marker({
-				          map: that.data.map,
-				          position: results[0].geometry.location
-				      });
+			var address = ""+ item.street + "" + ", " + item.city + ", " + item.state + ", " + item.country
+				geocoder.geocode({'address': address}, function(results, status) {
+			    if (status == google.maps.GeocoderStatus.OK) {
+			      var marker = new google.maps.Marker({
+			          map: that.data.map,
+			          position: results[0].geometry.location
+			      });
+			     
+			      var link = '<a href="#/singleItem" id="infoClick">'+item.title+'</a>'
+			      // var contentString = "" + link + ": " + item.description + " Price: " + item.beebucks + "" + "Lender: " + item.lender.username + "Lender Rating: " + item.lender.rating + ""
+			      var contentString = '<div>'+'<div>'+ link +'</div>'+'<div>'+item.description+" Price: "+item.beebucks+'</div>'+'<div>'+"Lender: " +item.lender.username + '</div>'+'<div>'+ item.lender.rating + '</div>' + '</div>'
+			 
+			      var infowindow = new google.maps.InfoWindow({
+	            content: contentString,
+	            maxWidth: 200
+			      });
 
-				      var selectItem = function() {
-				      	actions.selecItem(item.name, item.id, item.beebucks, item.description, item.lender);
-				      }
-				     
-				      var link = '<a href="#/singleItem">'+item.title+'</a>'
-				      // var contentString = "" + link + ": " + item.description + " Price: " + item.beebucks + "" + "Lender: " + item.lender.username + "Lender Rating: " + item.lender.rating + ""
-				      var contentString = '<div>'+ link +'</div>'+'<div>'+item.description+" Price: "+item.beebucks+'</div>'+'<div>'+"Lender: " +item.lender.username + '</div>'+'<div>'+ item.lender.rating + '</div>'
-				      
-				      var infowindow = new google.maps.InfoWindow({
-		            content: contentString,
-		            maxWidth: 200
-				      });
+			      google.maps.event.addListener(marker, 'mouseover', function() {
+			         infowindow.open(that.data.map,marker);
+			       });
 
-				      google.maps.event.addListener(marker, 'mouseover', function() {
-				         infowindow.open(that.data.map,marker);
-				       });
+			      google.maps.event.addListener(that.data.map, 'mousemove', function() {
+			         infowindow.close();
+			       });
 
-				      google.maps.event.addListener(that.data.map, 'mousemove', function() {
-				         infowindow.close();
-				       });
+			      google.maps.event.addDomListener(infowindow, 'domready', function() {
+			          $('#infoClick').click(function() {
+			              actions.selectItem(item, item.lender);
+			          });
+			      });
 
-				      // google.maps.event.addListener(infowindow, 'click', function() {
-				      // 		console.log('INFO WINDOW CLICKED')
-				      //    // actions.selectItem(item.name, item.id, item.pollenprice, item.description);
-				      //    // ResultsMap.transitionTo('SingleItem');
-				      //  });
+			      // google.maps.event.addListener(infowindow, 'click', function() {
+			      // 		console.log('INFO WINDOW CLICKED')
+			      //    // actions.selectItem(item.name, item.id, item.pollenprice, item.description);
+			      //    // ResultsMap.transitionTo('SingleItem');
+			      //  });
 
-				      that.data.markers.push(marker);
-				      that.trigger(that.data);
-				      // this.setState({map:map});
-				    } else {
-				      console.log('Geocode was not successful for the following reason: ' + status);
-				    }
-					});
+			      that.data.markers.push(marker);
+			      that.trigger(that.data);
+			      // this.setState({map:map});
+			    } else {
+			      console.log('Geocode was not successful for the following reason: ' + status);
+			    }
+				});
 
 			setAllMap(that.data.map);
 			});
