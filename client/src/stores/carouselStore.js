@@ -37,11 +37,12 @@ var carouselStore = Reflux.createStore({
   },
 
   init: function(){
-   //  request.get("/api/items/:user", function(res){
-   //    console.log(res.body);
-   //    this.data.items[0] = res.body.hi;
-   //    this.trigger(this.data);
-   // })
+    request.get("/api/currentuser", function(res){
+      console.log("plz.");
+      console.log(res.body);
+      // this.data.items[0] = res.body.hi;
+      // this.trigger(this.data);
+   })
   },
 
   getInitialState: function() {

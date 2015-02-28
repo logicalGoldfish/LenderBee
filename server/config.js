@@ -16,6 +16,10 @@ var cookieParser		 = require('cookie-parser');
 var methodOverride 	 = require('method-override');
 var fb 							 = require('./.ApiKeysFB.js');
 
+// var app = require('express')();
+// var http = require('http').Server(app);
+// var io = require('socket.io').listen(http);
+
 
 module.exports = function(app, express){
 

@@ -78,7 +78,32 @@ $(document).ready(function(){
 		componentWillMount: function(){
 
 		},
+
+		componentDidMount: function(){
+			var socket = io.connect();
+			console.log("SOCKET: ", socket);
+			socket.on("userLoad", function(data){
+				console.log("ALMIGHTY DATA: ");
+				console.log(data);
+			});
+
+		},
+
 		render: function(){
+			var socket = io.connect();
+			console.log("SOCKET: ", socket);
+			socket.on("userLoad", function(data){
+				console.log("ALMIGHTY DATA: ");
+				console.log(data);
+			});
+
+			// $.ajax({
+			//   type: "GET",
+			//   url: "/api/currentuser",
+			//   data: response,
+			//   dataType: 'json'
+			// });
+
 			// var state = <Login />;
 			// FB.getLoginStatus(function(response) {
 			//   if (response.status === 'connected') {

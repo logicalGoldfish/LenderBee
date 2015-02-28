@@ -34,7 +34,11 @@ controller.create = function(req, res, next){
 	// fbpicture: DataTypes.STRING
 	//extract fb data to create users with
 	//fb name (first, last)
-	console.log(newUser);
+	// console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+	// io.on('connection', function(socket){
+	//   console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA user connected');
+	//   io.emit("userLoad","newUser");
+	// });
 	User.find({
 		where: {
 			fbid: newUser.fbid
