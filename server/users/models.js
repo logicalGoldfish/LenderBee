@@ -14,5 +14,14 @@ module.exports = function(sequelize, DataTypes) {
     country: DataTypes.STRING,
     zipcode: DataTypes.INTEGER,
     fbpicture: DataTypes.STRING
+  }, {
+    classMethods: {
+      associate: function(models) {
+        models.User.belongsToMany(models.Item, {
+          through: models.Notification,
+          foreignKey: 'userreq_id'
+        });
+      }
+    }
   });
 };

@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
     classMethods: {
       associate: function(models) {
         models.Item.belongsToMany(models.User, {
-          through: models.Notification
+          through: models.Notification,
+          foreignKey: 'itemreq_id'
         });
       }
     }
