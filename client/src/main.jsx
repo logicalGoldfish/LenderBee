@@ -31,6 +31,7 @@ $(document).ready(function(){
 	var Reviews 						= require('./components/review/reviews.react.jsx');
 	var Login        			  = require('./components/login.react.jsx');
 	var ResultsMap = require('./components/map/resultsMap.react.jsx');
+	var SingleReview = require('./components/review/singleReview.react.jsx');
 
 	/* Defines Top Level App Component */
 	var APP = React.createClass({
@@ -154,6 +155,8 @@ $(document).ready(function(){
 	  	<Route name="postItem" path="/post" handler={PostItem}/>
 	  	<Route name="SingleItem" path="/singleItem" handler={SingleItem}/>
 	  	<Route name="Messaging" path="/messaging" handler={Message}/>
+	  	<Route name="SingleReview" path="/singleReview" handler={SingleReview}/>
+
 	  </Route>
 	);
 
