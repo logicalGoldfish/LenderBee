@@ -15,10 +15,9 @@ api.user = {
 api.items = {
 	create: '/api/items/:userId',
 	search: '/api/items/:title',
-	searchByCity: '/api/items/city/:city/:title',
+	searchByCity: '/api/items/city/:userId/:title',
 	fetch: '/api/items/user/:user',
 	update: '/api/items/return/:itemsId'
-	// 'return': '/api/items'
 };
 
 api.messages = {
