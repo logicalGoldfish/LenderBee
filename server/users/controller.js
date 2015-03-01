@@ -12,33 +12,15 @@ controller.create = function(req, res, next){
 	newUser.firstname = req.body.first_name;
 	newUser.lastname = req.body.last_name;
 	newUser.fbprofile = req.body.link;
+	newUser.fbpicture = req.body.picinfo;
 	if (req.body.loc!==undefined) {
 		newUser.city = req.body.loc.city;
 		newUser.state = req.body.loc.state;
+		newUser.zipcode = req.body.loc.zip;
 		newUser.street = req.body.loc.address;
 		newUser.country = req.body.loc.country;
 	}
-	newUser.fbpicture = req.body.picinfo;
-	// fbid: DataTypes.STRING,
-	// username: DataTypes.STRING,
-	// firstname: DataTypes.STRING,
-	// lastname: DataTypes.STRING,
-	// fbprofile: DataTypes.STRING,
-	// reputation: {type: DataTypes.INTEGER, defaultValue: 0},
-	// reviews: {type: DataTypes.INTEGER, defaultValue: 0},
-	// beebucks: {type: DataTypes.INTEGER, defaultValue: 20},
-	// city: DataTypes.STRING,
-	// state: DataTypes.STRING,
-	// street: DataTypes.STRING,
-	// country: DataTypes.STRING,
-	// fbpicture: DataTypes.STRING
-	//extract fb data to create users with
-	//fb name (first, last)
-	// console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
-	// io.on('connection', function(socket){
-	//   console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA user connected');
-	//   io.emit("userLoad","newUser");
-	// });
+
 	User.find({
 		where: {
 			fbid: newUser.fbid
@@ -56,14 +38,6 @@ controller.create = function(req, res, next){
 			})
 		}
 	})
-// 	User.create(req.body)
-// 		.then(function(user){
-// 		res.send(user);
-// 	})
-// // 	User.create(req.body)
-// // 		.then(function(user){
-// // 		res.send(user);
-// // 	})
 }
 
 controller.getOne = function(req, res, next){

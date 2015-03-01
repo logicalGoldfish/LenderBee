@@ -65,8 +65,8 @@ controller.getReviews = function(req, res, next){
   // console.log('user', req.params.user);
   var userId = req.params.user;
   Review.findAll({
-    where: {reviewer_id: userId},
-    include: [{model: User, as: 'reviewee'}, {model: Item, as: 'item'}],
+    where: {reviewee_id: userId},
+    include: [{model: User, as: 'reviewer'}, {model: Item, as: 'item'}],
   })
   .catch(function(error){
     console.log('error getting reviews for user: ' + userId, error);

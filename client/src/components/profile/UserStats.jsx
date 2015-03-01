@@ -7,13 +7,14 @@ var UserStats = React.createClass({
 	// this.props.data
 	render: function() {
 		var user = this.props.data.user;
+		console.log('userStats for profile', user);
 		var reviews = this.props.data.reviews;
 		return (
 			<div className="userStats">
 				<img src={user.fbpicture}></img>
-				<p>{user.userName}</p>
-				<p>{user.city}</p>
-				<p>{user.state}</p>
+				<p>{user.username}</p>
+				<p>{user.city}{", "}{user.state}</p>
+				{/*<p>{user.state}</p>*/}
 				<p>BeeBucks: {user.beebucks}</p>
 			</div>
 		);
