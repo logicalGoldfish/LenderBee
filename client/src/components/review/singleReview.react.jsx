@@ -1,15 +1,15 @@
-var React = require('react');
-var Reflux = require('reflux');
+var React       = require('react');
+var Reflux      = require('reflux');
 var reviewStore = require('../../stores/reviewStore.js');
-var actions = require('../../actions/actions.js');
+var actions     = require('../../actions/actions.js');
+var Rating      = require('./rating.react.jsx');
 
 var review = React.createClass({
 
-  //listens to reviewStore
   mixins: [Reflux.connect(reviewStore)],
 
   render: function(){
-    // console.log('review from within single review', this.props.review);
+    console.log('review from within single review', this.props.review);
     var user = this.props.review.reviewer;
     return (
       <div>

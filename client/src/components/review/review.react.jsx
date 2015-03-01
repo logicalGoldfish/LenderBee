@@ -3,7 +3,8 @@ var Reflux      = require('reflux');
 var reviewStore = require('../../stores/reviewStore.js');
 var actions     = require('../../actions/actions.js');
 var Router      = require('react-router');
-var ReviewBox = require('./reviewBox.react.jsx');
+var ReviewBox   = require('./reviewBox.react.jsx');
+var Rating      = require('./rating.react.jsx');
 
 // TODO: On the controller for fetching pending reviews, we need to look-up the reviewee-id and append all the users data (name, avatar etc.)
 // TODO: Should render:
@@ -19,7 +20,9 @@ var review = React.createClass({
   //   actions.reviewSubmit(rating, review);
   // },
 
+  // [Note] We pass the review as this.props.data to the Rating component
   render: function() {
+    console.log('single review props', this.props);
     // TODO: Add stars above ReviewBox to record user's rating.
     var firstName = this.props.review.reviewee.firstname;
     var lastName  = this.props.review.reviewee.lastname;
@@ -27,6 +30,7 @@ var review = React.createClass({
     lastName[0]   = lastName[0].toUpperCase();
     return (
       <div className="pendingReviewDiv">
+        <Rating data={this.props.review}/>
         {/* <img href={this.props.review.reviewee.imgurl}> */}
         <p>{firstName + " " + lastName}</p>
         <img src={this.props.review.reviewee.fbpicture} />
