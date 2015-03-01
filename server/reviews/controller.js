@@ -59,6 +59,32 @@ controller.createPending = function(req, res, next){
     });
 };
 
+controller.updateOne = function(req, res, next) {
+  var rating = req.body.rating;
+  var review = req.body.review;
+  var id = req.params.reviewId;
+  console.log(rating, review, id);
+  Review.update(
+  {
+    rating: rating,
+    review: review  
+  }, 
+  {
+    where: {
+      id: id   
+    }
+  })
+  .catch(function(err){
+    console.log('[error] [review controller] updating review');
+    res.status(500);
+  })
+  .then(function(review){
+    console.log(review);
+    res.json(review);
+  })
+},
+
+
 
 controller.getReviews = function(req, res, next){
   console.log('fetching reviews for user ', req.params.user);
