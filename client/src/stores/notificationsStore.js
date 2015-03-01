@@ -18,14 +18,14 @@ var notificationStore = Reflux.createStore({
 	onGetNotifications: function(){
 		var userId = userStore.getProp('id');
 		request(makeUrl(api.notifications.getNotifications, {user: userId}), function(res) {
-			console.log(res.body);
+			console.log('these are the notifications', res.body);
 			this.data.notifications = res.body
 			this.trigger(this.data);
 		}.bind(this));
 	},
 
-	onItemRequestAccepted: function(borrower, item) {
-		request.del("/api/notifications/accept/" + "" + item + "/" + borrower + "", function(res) {
+	onItemRequestAccepted: function(borrowerId, itemId) {
+		request.del("/api/notifications/accept/" + "" + itemId + "/" + borrowerId + "", function(res) {
 			if (res.error) {
 				console.log('[error] [notifications] error accepting notification: ', error)
 			} else {
@@ -35,13 +35,13 @@ var notificationStore = Reflux.createStore({
 		}.bind(this));
 	},
 
-	onItemRequestDeclined: function(borrower, item) {
+	onItemRequestDeclined: function(borrowerId, itemId) {
 		var that = this;
-		request.del("/api/notifications/accept/" + "" + borrower + "/" + item + "", function(res) {
+		request.del("/api/notifications/reject/" + "" + borrowerId + "/" + itemId + "", function(res) {
 			if (res.error) {
 				console.log('error occurred: ', error)
 			} else {
-				console.log('item is now borrowed');
+				console.log('item borrow declined');
 				actions.getNotifications();
 			}
 		});

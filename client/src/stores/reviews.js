@@ -48,7 +48,7 @@ var reviewStore = Reflux.createStore({
 	      this.trigger(this.data.reviews);
 	    }
 	  }.bind(this));
-	},
+  },
 
 	onReviewFormSubmitted: function(reviewId, review, rating) {
 		request.put("/api/reviews/"+ reviewId + "/update")

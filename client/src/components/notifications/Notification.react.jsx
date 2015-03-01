@@ -13,12 +13,12 @@ var Notification = React.createClass({
 
 	handleAccept: function() {
 		actions.itemRequestAccepted(this.props.borrowerId, this.props.itemId);
-		this.refs.notif.getDOMNode().remove();
+		// this.refs.notif.getDOMNode().remove();
 	}, 
 
 	handleDecline: function() {
 		actions.itemRequestDeclined(this.props.borrowerId, this.props.itemId);
-		this.refs.notif.getDOMNode().remove();
+		// this.refs.notif.getDOMNode().remove();
 	},
 
 	render: function() {
