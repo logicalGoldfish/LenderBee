@@ -2,6 +2,7 @@ var React = require('react');
 var Reflux = require('reflux');
 var request = require('superagent');
 var actions = require('../actions/actions.js');
+// var userStore = require
 
 var messagingStore = Reflux.createStore({
 
@@ -19,6 +20,7 @@ var messagingStore = Reflux.createStore({
     // request.post("/api/messages/samin" + "" + lenderId + "", function(res) {
     //   console.log('MESSAGES RECIEVED', res);
     // });
+    var userId = userStore.getProp('id');
     this.data.lender = lenderUsername;
     var that = this;
     request("/api/messages/samin", function(res) {

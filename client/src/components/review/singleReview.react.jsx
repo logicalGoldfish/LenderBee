@@ -10,9 +10,11 @@ var review = React.createClass({
 
   render: function(){
     // console.log('review from within single review', this.props.review);
+    var user = this.props.review.reviewer;
     return (
       <div>
-        <p><b>{this.props.review.reviewee.username}</b></p>
+        <img src={user.fbpicture}></img>
+        <p><b>{user.username}</b></p>
         <p>{this.props.review.review}</p>
         {/* insert rating component here with stars */}
       </div>

@@ -13,7 +13,7 @@ api.user = {
 };
 
 api.items = {
-	create: '/api/items/:user',
+	create: '/api/items/:userId',
 	search: '/api/items/:title',
 	searchByCity: '/api/items/city/:city/:title',
 	fetch: '/api/items/user/:user',
@@ -33,7 +33,7 @@ api.reviews = {
 };
 
 api.notifications = {
-
+	getNotifications: '/api/notifications/:user'
 };
 
 module.exports = api;

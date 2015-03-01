@@ -21,44 +21,27 @@ if (!global.hasOwnProperty('db')) {
     Review: sequelize.import(path.join(__dirname, '../reviews/models.js'))
   };
 
-  var User = global.db.User;
-  var Item = global.db.Item;
-  var Message = global.db.Message;
-  var Notification = global.db.Notification;
-  var Review = global.db.Review;
+  var User          = global.db.User;
+  var Item          = global.db.Item;
+  var Message       = global.db.Message;
+  var Notification  = global.db.Notification;
+  var Review        = global.db.Review;
 
-  // User.instanceMethods.associates = function() {
-  //    User.hasMany(Review, {
-
-  //    });
-  //  };
-
-  //  Review.instanceMethods.associates = function() {
-  //    Review.belongsTo(User, {
-  //        foreignKey: userId
-  //    });
-  //  };
-
-  // User.hasMany(Item, {foreignKey: 'borrower_id'});
+  /*===========================================
+  =     Define Associations/Relationships     =
+  ===========================================*/
   Item.belongsTo(User, {as: 'borrower', foreignKey: 'borrower_id'});
-  // User.hasMany(Item, {foreignKey: 'lender_id'});
   Item.belongsTo(User, {as: 'lender', foreignKey: 'lender_id'});
+  
   User.hasMany(Message, {foreignKey: 'to_id'});
   User.hasMany(Message, {foreignKey: 'from_id'});
   
-  // User.belongsToMany(Item, {foreignKey: 'userreq_id', through: Notification});
-  // Item.belongsToMany(User, {foreignKey: 'itemreq_id', through: Notification});
-  // Item.hasMany(User, {through: Notification, as: 'itemreq_id'})
-  // User.hasMany(Item, {through: Notification, as: 'userreq_id'})
-
-
-  // User.hasMany(Review, {foreignKey: 'reviewee_id'});
   Review.belongsTo(User, {as: 'reviewee', foreignKey: 'reviewee_id'});
-  // User.hasMany(Review, {foreignKey: 'reviewer_id'});
   Review.belongsTo(User, {as: 'reviewer', foreignKey: 'reviewer_id'});
   Review.belongsTo(Item, {as: 'item', foreignKey: 'item_id'});
 
-  // Item.hasMany(Review, {foreignKey: 'item_id'});
+  // Notification.belongsTo(User, {as: 'user'});
+
 
   
   // add foreign key for user -> review (rater)
