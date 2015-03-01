@@ -16,8 +16,7 @@ var Notifications = React.createClass({
 	render: function() {
 		var notifications = this.state.notifications.map(function(notification) {
 			// TODO: Check to see if these properties are correct (userReq/username)
-			return <Notification borrowerName={notification.userreq_username} borrowerId={notification.userreq_id} itemName={notification.itemreq_title} itemId={notification.itemreq_id} 
-			itemId={notification.itemreq_id}/>
+			return <Notification borrowerName={notification.Users[0].username} borrowerId={notification.Users[0].id} itemName={notification.title} itemId={notification.id} />
 		});
 		return (
 			<div>

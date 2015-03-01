@@ -3,6 +3,7 @@ var Reflux = require('reflux');
 var singleItemStore = require('./../../stores/singleItemStore.js');
 var actions = require('./../../actions/actions.js');
 var Messaging = require('../message/messaging.react.jsx');
+var userStore   = require('./../../stores/user.js');
 var Router = require('react-router');
 
 var singleItem = React.createClass({
@@ -14,7 +15,8 @@ var singleItem = React.createClass({
 
   handleItemRequest: function() {
     //hard-coded borrower ID ******************
-    actions.itemRequestSubmitted(this.state.item.id, 2);
+    var userId = userStore.getProp('id');
+    actions.itemRequestSubmitted(this.state.item.id, userId);
   },
 
   handleMessageLender: function() {

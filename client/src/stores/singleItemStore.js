@@ -2,6 +2,8 @@ var React = require('react');
 var Reflux = require('reflux');
 var request = require('superagent');
 var actions = require('../actions/actions.js');
+var userStore   = require('./user.js');
+
 
 
 var singleItemStore = Reflux.createStore({
@@ -12,8 +14,6 @@ var singleItemStore = Reflux.createStore({
   listenables: [actions],
 
   onSelectItem: function(item, lender) {
-    console.log('ITEMZ SELECTED YO', item);
-    console.log('ENDER SELECTED', lender);
    this.data.item = item;
    this.data.lender= lender;
     // that.data.lender.firstname = lenderInfo.firstname;
@@ -30,12 +30,12 @@ var singleItemStore = Reflux.createStore({
   //  //component renders current item. 
   // },
 
-  onItemRequestSubmitted: function(itemId, borrower) {
+  onItemRequestSubmitted: function(itemId, userId) {
     //request DB to notify other user;
     // console.log('item requested', "/api/notifications/" + "" + itemName + "/" + borrower + "");
-    request.post("/api/notifications/" + "" + itemId + "/" + borrower + "", function(res) {
+    request.post("/api/notifications/" + "" + itemId + "/" + userId + "", function(res) {
       if (res.ok) {
-        console.log('yay')
+        console.log('Request sent for item')
       } else {
         console.log('error!')
       }
