@@ -32,7 +32,7 @@ var MessagingUsers = React.createClass({
   render: function(){
     //creates component for each review and loads them into the array reviewGroup
     var messagedUsers = this.state.conversations.map(function(conversation) {
-     return (<User message={conversation.message} partner={conversation.to} />);
+     return (<User message={conversation.message} partner={conversation.to_id} />);
     });
 
     var partners = this.state.partners.map(function(partner) {

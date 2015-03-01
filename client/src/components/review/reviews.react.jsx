@@ -29,7 +29,6 @@ var Reviews = React.createClass({
 				return <Review review={review} />
 			});
 		}
-
 		return (
 			<div>
 				<h1>MY PENDING REVIEWS</h1>

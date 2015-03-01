@@ -150,6 +150,10 @@ div .map-container {
     display: none;
 }
 
+.pendingReviewDiv {
+  border: 1px solid black;
+}
+
 /* positioning of infowindow */
 /*.gm-style-iw
 {

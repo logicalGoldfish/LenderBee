@@ -60,6 +60,7 @@ controller.createPending = function(req, res, next){
 };
 
 controller.updateOne = function(req, res, next) {
+  console.log('THE REQ IS AS SUCH', req.body);
   var rating = req.body.rating;
   var review = req.body.review;
   var id = req.params.reviewId;

@@ -7,7 +7,6 @@ var api       = require('../utils/url-paths');
 var userStore = require('./user.js');
 var reviewStore = require('./reviews.js');
 
-
 var profileStore = Reflux.createStore({
 
   data: {
@@ -47,6 +46,7 @@ var profileStore = Reflux.createStore({
       if(err) {console.error('error fetching reivew information', err);}
       else {
         this.data.reviews = res.body;
+        console.log('REVIEWS FROM ZEEE PROFILE', res.body);
         this.trigger(this.data);
       }
     }.bind(this));

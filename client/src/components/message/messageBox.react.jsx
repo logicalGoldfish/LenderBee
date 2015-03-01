@@ -14,7 +14,7 @@ var MessageBox = React.createClass({
 
   render: function(){
     //creates component for each message and loads them into the array messageGroup
-    var url = "/api/messages/samin"+ "/" + this.props.to + ""
+    // var url = "/api/messages/samin"+ "/" + this.props.to + ""
     return (
     <form className="messageBox" onSubmit={this.handleSubmit}>
       <div className="form-group">

@@ -13,12 +13,12 @@ var singleItem = React.createClass({
   },
 
   handleItemRequest: function() {
-    //hard-coded borrower ID
-    actions.itemRequestSubmitted(this.state.item.id, 1);
+    //hard-coded borrower ID ******************
+    actions.itemRequestSubmitted(this.state.item.id, 2);
   },
 
   handleMessageLender: function() {
-    actions.lenderMessaged(this.state.lender, this.state.lender.id);
+    actions.lenderMessaged(this.state.lender.id);
      this.transitionTo('Messaging')
   },
 

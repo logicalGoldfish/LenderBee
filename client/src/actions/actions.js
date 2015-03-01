@@ -39,7 +39,8 @@ var actions = Reflux.createActions([
 
   /* Reviews API */
   "fetchPendingReviews",
-  "fetchReviews"
+  "fetchReviews",
+  "reviewFormSubmitted"
 ]);
 
 module.exports = actions;

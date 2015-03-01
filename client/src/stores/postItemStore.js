@@ -6,6 +6,7 @@ var api     = require('../utils/url-paths');
 var userStore = require('./user.js');
 
 var postItemStore = Reflux.createStore({
+
   listenables: [actions],
   data: {items: []},
 
@@ -16,13 +17,15 @@ var postItemStore = Reflux.createStore({
      .end(function(err, res) {
         if(err) {
             console.log("error on post: ", err)
-        }
+        } else {
+            
         $('#itemPostTitle').val("")
         $('#itemPostDescription').val("")
         $('#itemPostPollenPrice').val("")
         $('#itemPostPhotos').val("")
 
        alert('Your item is now posted!');
+        }
      });
     }
 });
