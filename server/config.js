@@ -169,6 +169,7 @@ module.exports = function(app, express){
   //API routes for reviews
   app.post('/api/reviews/:user', reviews.create);
   app.get('/api/reviews/user/:user', reviews.getReviews);
+  app.put('/api/reviews/:reviewId/update', reviews.updateOne);
   app.post('/api/reviews/users/:lender_id/:borrower_id', reviews.createPending); // [Note] Creates two reviews without rating/content for lender/borrower
   app.get('/api/reviews/:user', reviews.getPendingReviews);
 
