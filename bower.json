@@ -1,9 +1,20 @@
 {
   "name": "LenderBee",
   "version": "0.0.0",
-  "homepage": "https://github.com/logicalGoldfish/LenderBee",
+  "homepage": "https://github.com/TroutZen/LenderBee",
   "authors": [
     "Devin Otway <devin.otway@gmail.com>"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "~5.5.1",
+    "font-awesome": "~4.3.0"
+  }
 }
