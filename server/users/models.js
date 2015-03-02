@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     fbprofile: DataTypes.STRING,
-    rating: {type: DataTypes.INTEGER, defaultValue: 0},
+    rating: {type: DataTypes.DECIMAL(3, 1), defaultValue: 0},
     beebucks: {type: DataTypes.INTEGER, defaultValue: 20},
     city: DataTypes.STRING,
     state: DataTypes.STRING,
