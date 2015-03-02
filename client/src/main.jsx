@@ -48,7 +48,6 @@ $(document).ready(function(){
 
 		componentDidMount: function(){
 			var socket = io.connect();
-			console.log("SOCKET: ", socket);
 			socket.on("userLoad", function(data){
 				actions.mountUser(data);
 				socket.disconnect(); 
