@@ -169,17 +169,18 @@ module.exports = function(app, express){
   });
 
   //API routes for reviews
-  app.post('/api/reviews/:user', reviews.create);
-  app.get('/api/reviews/user/:user', reviews.getReviews);
+  // Not sure if reviews.create is being used.
+  // app.post('/api/reviews/:userId', reviews.create);
+  app.get('/api/reviews/user/:userId', reviews.getReviews);
   app.put('/api/reviews/:reviewId/update', reviews.updateOne);
-  app.post('/api/reviews/users/:lender_id/:borrower_id', reviews.createPending); // [Note] Creates two reviews without rating/content for lender/borrower
-  app.get('/api/reviews/:user', reviews.getPendingReviews);
+  app.post('/api/reviews/users/:lender_id/:borrower_id/:item_id', reviews.createPending); // [Note] Creates two reviews without rating/content for lender/borrower
+  app.get('/api/reviews/:userId', reviews.getPendingReviews);
 
   //API routes for items (can amend as we decide what we need)
   app.post('/api/items/:userId', items.create); //WORKS
   app.get('/api/items/city/:userId/:title', items.searchItemByCity); //WORKS
   app.put('/api/items/return/:itemsId', items.returnItem); //WORKS --itemsId is the id of the item being returned
-  app.get('/api/items/user/:userId', items.getOneByUser); 
+  app.get('/api/items/user/:userId', items.getOneByUser);
     
   //API routes for messages (can amend as we decide what we need)
   app.post('/api/messages/:fromId/:toId', messages.create); //WORKS
@@ -191,7 +192,7 @@ module.exports = function(app, express){
   app.post('/api/notifications/:itemId/:borrowerId', notifications.create);
   app.get('/api/notifications/:userId', notifications.getByUser);
   app.delete('/api/notifications/accept/:item/:borrower', notifications.acceptRequest); //--> delete all notifications for an item
-  app.delete('/api/notifications/reject/:borrower/:item', notifications.rejectRequest);    //-->delete a notification for an item for a specific borrower
+  app.delete('/api/notifications/reject/:item/:borrower', notifications.rejectRequest);    //-->delete a notification for an item for a specific borrower
 
   // app.get('/api/notifications/:user', notifications.getOneByUser);
    //WORKS - create notifications when borrower requests item
