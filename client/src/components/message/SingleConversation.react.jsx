@@ -4,6 +4,7 @@ var messagingUsersStore = require('./../../stores/messagingUsersStore.js');
 var Message = require('./message.react.jsx');
 var MessageBox = require('./messageBox.react.jsx');
 var actions = require('./../../actions/actions.js');
+var userStore = require('./../../stores/user.js');
 
 var SingleConversation = React.createClass({
   //listens to messagingStore
@@ -16,23 +17,24 @@ var SingleConversation = React.createClass({
   render: function(){
     //creates component for each message and loads them into the array messageGroup
     var that = this;
-    // console.log('THIS IS PARTNER', this.props.partner)
     // console.log('CONVOS FROM COMPONENT', this.state.conversations)
+    var userId = userStore.getProp("id");
+    // console.log('USERNAME FROM THE SINGLE CONVO', userName);
 
     var messages = this.state.conversations.filter(function(singleMessage) {
-      return (singleMessage.to === that.state.partner || singleMessage.from === that.state.partner);
+      return (singleMessage.to.username === that.state.partnerName || singleMessage.from.username === that.state.partnerName);
     }).map(function(singleMessage) {
-    return <div>{singleMessage.from + ":"}{" " +singleMessage.message}</div>
+    return <div>{singleMessage.from.username + ":"}{" " +singleMessage.message}</div>
     })
     return (
       <div>
-        <p>Chatting: {this.state.partner} </p>
+        <p>Chatting: {this.state.partnerName} </p>
         <div className="messageWindow">
           <ul>
             {messages}
           </ul>
         </div>
-        <MessageBox to={this.state.partner} from="samin" />
+        <MessageBox to={this.state.partnerId} from={userId} />
       </div>
     )
   }

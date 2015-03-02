@@ -60,6 +60,7 @@ var reviewStore = Reflux.createStore({
 		      	$('#reviewBoxText').val("");
 						$('#reviewRating').val("");
 		        alert('Thanks for the review!');
+						actions.fetchPendingReviews();
 		      }
 		     });
 		// request()
