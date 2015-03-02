@@ -8,9 +8,11 @@ var Sequelize = require('sequelize');
 var ReviewInstance = require('../utils/reviewConstructor.js');
 
 var calculateAvg = function(userId, cb) {
+  var sum;
   Review.sum('rating', {
     where: { reviewee_id: userId },
   }).then(function(sum) {
+    sum = sum;
     Review.count({
       where: { 
         reviewee_id: userId,
