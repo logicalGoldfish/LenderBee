@@ -28,7 +28,7 @@ api.messages = {
 api.reviews = {
 	getReviews: '/api/reviews/user/:user',
 	fetchOutstandingReviews: '/api/reviews/:user',
-	createPending: '/api/reviews/users/:lender_id/:borrower_id',
+	createPending: '/api/reviews/users/:lender_id/:borrower_id/:item_id',
 	updateReview: '/api/reviews/:reviewId/update'
 };
 

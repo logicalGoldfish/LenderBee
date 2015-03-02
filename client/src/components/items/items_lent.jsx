@@ -11,17 +11,12 @@ var LentItem = React.createClass({
 					// sets borrower_id to null
 			//  
 	returnItem: function(lender_id, borrower_id, item_id){
-		// [Refactor] actions.returnItem.apply(this, Array.prototype.slice.call(arguments))
-		console.log('-------------------------------');
-		console.log('attempting to return item from component', arguments);
-		console.log('-------------------------------');
-
 		actions.returnItem(lender_id, borrower_id, item_id);
 	},
 
 	// TODO: I want to be able to show lender information including avatar and name, so we need our endpoint to also fetch user data 
 	render: function() {
-		var lender_id = userStore.getProp('user_id');
+		var lender_id = userStore.getProp('id');
 		var borrower_id = this.props.item.borrower_id;
 		var item_id = this.props.item.id;
 		// console.log(lender_id, borrower_id, item_id);
