@@ -23,7 +23,7 @@ var PostPage = React.createClass({
   handlePostSubmit: function(e) {
    e.preventDefault();
    actions.postFormSubmitted($('#itemPostTitle').val(), $('#itemPostDescription').val(), 
-    $('#itemPostPollenPrice').val(), $('#itemPostPhotos').val());
+    $('#itemPostBeeBucks').val(), $('#itemPostPhotos').val());
 
    // request
    //    .post('/api/items/christine')
@@ -52,8 +52,8 @@ var PostPage = React.createClass({
         <textarea className="form-control" id="itemPostDescription" rows="3" placeholder="Describe Your Item" name="description"></textarea>
         </div>
         <div className="form-group">
-          <label for="exampleInputEmail1">Enter Pollen Price</label>
-          <input type="number" min="1" step="1" className="form-control" id="itemPostPollenPrice" placeholder="$$$" name="pollenprice" />
+          <label for="exampleInputEmail1">Enter BeeBucks</label>
+          <input type="number" min="1" step="1" className="form-control" id="itemPostBeeBucks" placeholder="$$$" name="beebucks" />
         </div>
         <div className="form-group">
           <label for="exampleInputFile">Add Photos</label>

@@ -14,7 +14,6 @@ var singleItem = React.createClass({
   },
 
   handleItemRequest: function() {
-    //hard-coded borrower ID ******************
     var userId = userStore.getProp('id');
     actions.itemRequestSubmitted(this.state.item.id, userId);
   },
@@ -32,8 +31,6 @@ var singleItem = React.createClass({
         <p>Description: {this.state.item.description}</p>
         <p>BeeBucks: {this.state.item.beebucks}</p>
         <span>Lender: {this.state.lender.username+ " "}</span>
-        <span>{this.state.lender.firstname + " "}</span>
-        <span>{this.state.lender.lastname + " "}</span>
         <img src={this.state.lender.fbpicture}/>
         <button name="messageLender" onClick={this.handleMessageLender}>Message Lender</button>
         <button name="requestItem" onClick={this.handleItemRequest}>Request Item</button>

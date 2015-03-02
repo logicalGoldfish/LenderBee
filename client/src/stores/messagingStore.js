@@ -22,7 +22,7 @@ var messagingStore = Reflux.createStore({
     request("/api/messages/" + userId + "", function(res) {
       that.data.messages = JSON.parse(res.text).filter(function(message) { 
         return ((message.to_id === userId || message.from_id === userId) && (message.from_id === lenderId || message.to_id === lenderId)) 
-        })
+        });
         that.trigger(that.data);
     });
     request("/api/users/" + userId + "", function(res) {

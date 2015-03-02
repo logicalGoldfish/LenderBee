@@ -21,7 +21,7 @@ var postItemStore = Reflux.createStore({
             
         $('#itemPostTitle').val("")
         $('#itemPostDescription').val("")
-        $('#itemPostPollenPrice').val("")
+        $('#itemPostBeeBucks').val("")
         $('#itemPostPhotos').val("")
 
        alert('Your item is now posted!');

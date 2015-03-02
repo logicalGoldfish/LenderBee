@@ -8,33 +8,37 @@ var makeUrl   = require('make-url');
 
 var messagingUsersStore = Reflux.createStore({
 
-  data: {conversations: [], partners: []},
+  data: {conversations: [], partners: [], partnerNames: [], partnerName: null, partnerId: null},
 
   //listens to actions
   listenables: [actions],
 
-  onConversationCalled: function(partner) {
-    this.data.partner = partner;
+  onConversationCalled: function(partnerId, partnerName) {
+    this.data.partnerName = partnerName;
+    this.data.partnerId = partnerId;
     this.trigger(this.data);
   },
 
   onMessageFormSubmitted: function() {
-    this.init();
+    actions.fetchConversations();
   },
 
   //gets the item info from the database and sets the data to the item info
-  init: function(){
+  onFetchConversations: function(){
     var that = this;
     var userId = userStore.getProp("id");
+    var userName = userStore.getProp("username");
     request("/api/messages/" + userId + "", function(res) {
       that.data.conversations = JSON.parse(res.text);
+      
       that.data.conversations.forEach(function(conversation) { 
-        if (that.data.partners.indexOf(conversation.to) === -1 && conversation.to !== "null") {
+        if (that.data.partnerNames.indexOf(conversation.to.username) === -1 && conversation.to.username !== "null" && conversation.to.username !== "undefined" && conversation.to.username !== userName) {
+          that.data.partnerNames.push(conversation.to.username);
           that.data.partners.push(conversation.to);
         }
-      })
+      });
       that.trigger(that.data);
-    })
+    });
   },
 
   //sets the state to the item data

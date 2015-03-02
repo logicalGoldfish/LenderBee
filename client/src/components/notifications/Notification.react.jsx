@@ -17,7 +17,7 @@ var Notification = React.createClass({
 	}, 
 
 	handleDecline: function() {
-		actions.itemRequestDeclined(this.props.borrowerId, this.props.itemId);
+	 actions.itemRequestDeclined(this.props.borrowerId, this.props.itemId);
 		// this.refs.notif.getDOMNode().remove();
 	},
 

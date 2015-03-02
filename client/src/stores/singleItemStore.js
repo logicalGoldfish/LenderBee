@@ -16,12 +16,7 @@ var singleItemStore = Reflux.createStore({
   onSelectItem: function(item, lender) {
    this.data.item = item;
    this.data.lender= lender;
-    // that.data.lender.firstname = lenderInfo.firstname;
-    // that.data.lender.lastname = lenderInfo.lastname;
-    // that.data.lender.reputation = lenderInfo.reputation;
-    // that.data.lender.city = lenderInfo.city;
-    // that.data.lender.state = lenderInfo.state;
-    this.trigger(this.data);
+   this.trigger(this.data);
    
   }, 
 
