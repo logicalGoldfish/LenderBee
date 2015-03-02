@@ -49,7 +49,6 @@ controller.getByUser = function(req, res, next){
 
 
 controller.acceptRequest = function(req, res, next){//This should delete all notifications related to the item
-  //Would this have the id of the item? I think so.
   var borrowerId = req.params.borrower;
   //check the cost of an item first
   var cost = 0;
