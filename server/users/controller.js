@@ -50,6 +50,7 @@ controller.getOne = function(req, res, next){
 			res.json(user);
 		}).catch(function(error){
 			console.log('error', error);
+			res.status(500).json({error: 'user.getOne error'});
 	})
 }
 

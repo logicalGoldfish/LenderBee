@@ -7,6 +7,26 @@ var controller = {};
 var Sequelize = require('sequelize');
 var ReviewInstance = require('../utils/reviewConstructor.js');
 
+var calculateAvg = function(userId, cb) {
+  Review.sum('rating', {
+    where: { reviewee_id: userId },
+  }).then(function(sum) {
+    Review.count({
+      where: { 
+        reviewee_id: userId,
+        rating: { ne: null }
+      }
+    }).then(function(count) {
+      var roundedAvg = Math.round((sum/count)*2)/2;
+      cb(roundedAvg);
+    }).catch(function(err) {
+      console.log('\nreview count error:', err);
+    });
+  }).catch(function(err) {
+    console.error('\nreview sum error:', err);
+  });
+};
+
 /* Creates a new review with rating and review.
  * THIS IS NOT BEING USED CURRENTLY.
  */
@@ -77,11 +97,27 @@ controller.updateOne = function(req, res, next) {
       id: id   
     }
   }).catch(function(err){
-    console.log('[error] [review controller] updating review');
+    console.log('\nReview.updateOne error:', err);
     res.status(500).json({error: '[review controller] updating review'});
-  }).then(function(review){
-    console.log(review);
-    res.json(review);
+  }).then(function(){
+    Review.find({ where: {id: id} })
+    .then(function(review) {
+      var revieweeId = review.dataValues.reviewee_id;
+      var revieweeAvg = calculateAvg(revieweeId, function(avg) {
+        console.log('\nreviewee:',revieweeId);
+        console.log('\nrevieweeAvg:', avg);
+        User.update(
+        { rating: avg },
+        { where: {id: revieweeId} }
+        ).catch(function(err) {
+          console.log('\nReview.updateOne error:', err);
+          res.status(500).json({error: 'review.updateOne error'});
+        }).then(function(row){
+          console.log('\nuser review updated');
+          res.json(row);
+        });
+      });
+    });
   });
 };
 
@@ -96,29 +132,31 @@ controller.getReviews = function(req, res, next){
     where: {reviewee_id: userId},
     include: [{model: User, as: 'reviewer'}, {model: Item, as: 'item'}],
   }).catch(function(error){
-    console.log('error getting reviews for user: ' + userId, error);
+    console.log('\nError getting reviews for user: ' + userId, error);
     res.status(500).json({error: 'error getting reviews for user: ' + userId});
   }).then(function(reviews){
     res.json(reviews);
   });
 };
 
-// [Note] Fetches all reviews that a user has to complete, these reviews will be visible in the reviews tab
-// [Note] Working!
+/* Fetches all reviews that a user has to complete.
+ */
 controller.getPendingReviews = function(req, res, next) {
   console.log('fetching pending reviews');
+  var userId = req.params.userId;
   Review.findAll({
-    where: Sequelize.and({reviewer_id: req.params.userId},{rating: null},{review: null}),
+    where: Sequelize.and({reviewer_id: userId},{rating: null},{review: null}),
     include: [
       { model: User, as: 'reviewee' },
       { model: Item, as: 'item' }
     ]
   }).catch(function(err) {
     console.error('\nReview find all error:', err);
+    res.status(500).json({error: 'error getting pending reviews for user: ' + userId});
   }).then(function(reviews) {
     console.log('\nREVIEWS:', reviews);
     res.send(reviews);
-  })
+  });
 };
 
 module.exports = controller;
