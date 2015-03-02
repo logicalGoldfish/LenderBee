@@ -51,18 +51,63 @@ controller.getByUser = function(req, res, next){
 controller.acceptRequest = function(req, res, next){//This should delete all notifications related to the item
   //Would this have the id of the item? I think so.
   var borrowerId = req.params.borrower;
-  Notification.destroy({
+  //check the cost of an item first
+  var cost = 0;
+  var bank = 0;
+  var lender;
+  Item.find({
+    where: {
+      id: req.params.item
+    }
+  }).then(function(item){
+    lender = item.lender_id;
+    cost = item.beebucks;
+    console.log('this is the cost        ', cost);
+    User.find({
       where: {
-        itemreq_id: req.params.item
+        id: borrowerId
       }
-    }).then(function(){
-      Item.update(
-        {borrowed: true, borrower_id: req.params.borrower},
-        {where: {id: req.params.item}}
-      )
-    }).then(function(){
-        res.send('item updated and is now borrowed         *********');
+    }).then(function(user){
+      console.log('This is the user beebucks      ', user.beebucks);
+      bank = user.beebucks;
+      if(user.beebucks >= cost){
+        Notification.destroy({
+            where: {
+              itemreq_id: req.params.item
+            }
+          }).then(function(){
+            Item.update(
+              {borrowed: true, borrower_id: req.params.borrower},
+              {where: {id: req.params.item}}
+            )
+          }).then(function(){
+            var borrowerBucks = bank - cost;
+              User.update(
+                {beebucks: borrowerBucks},
+                {where: {id: req.params.borrower}}
+              )
+          }).then(function(){
+            User.find({
+              where: {
+                id: lender
+              }
+            }).then(function(user){
+              var bank = user.beebucks;
+              var lenderBucks = bank + cost;
+              User.update(
+              {beebucks: lenderBucks},
+              {where: {id: user.id}}
+              )
+            }).then(function(){
+              res.send('This item has been updated and borrowed ');
+            })
+          })
+      }
+      else{
+        res.send('This item cannot be bought');
+      }
     })
+  })
 
 }
 
