@@ -10,7 +10,7 @@ var Reviews = React.createClass({
 	mixins: [Reflux.connect(reviewsStore)],
 
 	componentWillMount: function() {
-		console.log('review componts calls fetchPendingReviews before mount');
+		// console.log('review componts calls fetchPendingReviews before mount');
 		actions.fetchPendingReviews();		
 	},
 
@@ -21,7 +21,7 @@ var Reviews = React.createClass({
 	// [Note] We need to be rendering the pendingReviews, not the reviews for the current user
 	render: function() {
 		var pendingReviews;
-		console.log('review components state', this.state);
+		// console.log('review components state', this.state);
 		if (this.state.pendingReviews) {
 			// [Bug] When there are no pending reviews, this lookup fails and throws an error
 			pendingReviews = this.state.pendingReviews.map(function(review, index){

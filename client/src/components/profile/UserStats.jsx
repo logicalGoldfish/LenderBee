@@ -1,5 +1,7 @@
-var React 	= require('react');
-var Reflux 	= require('reflux');
+var React 						= require('react');
+var Reflux 						= require('reflux');
+var RatingStarStatic 	= require('../review/ratingStarStatic.react.jsx');
+
 
 var UserStats = React.createClass({
 	// [Note] pass props from profile component to user Stats component
@@ -11,6 +13,8 @@ var UserStats = React.createClass({
 		return (
 			<div className="userStats">
 				<img src={user.fbpicture}></img>
+				<RatingStarStatic rating={user.rating} />
+				<p>Current Rating: {user.rating}</p>
 				<p>{user.username}</p>
 				<p>{user.city}{", "}{user.state}</p>
 				{/*<p>{user.state}</p>*/}
