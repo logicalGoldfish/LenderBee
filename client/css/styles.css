@@ -52,7 +52,7 @@ span {
 }
 
 .sideNavBar {
-  background-color: #ddd;
+  background-color: #FFD34E;
 /*  opacity: 0.85;*/
   position: absolute;
   top: 0;
@@ -170,6 +170,24 @@ div .map-container {
 .rating > a {
   text-decoration: none;
 }
+
+.lenderInfoWindow {
+  font-weight: bold;
+  display: block;
+}
+
+#infoClick {
+  text-decoration: bold;
+}
+
+.fa-quote-left, .fa-tag, .fa-user, .fa-star{
+  color: #FFD34E;
+}
+
+.itemBeebucks {
+  display: block;
+}
+
 /* ----------------------- */
 
 

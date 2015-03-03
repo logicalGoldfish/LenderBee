@@ -57,6 +57,7 @@ var userStore = Reflux.createStore({
 
 
 	onMountUser: function(data){
+		console.log('USER INFO ', this.data);
 	  var url = "/api/users/init/" + data.id + "";
 	  request.get(url, function(err, res){
 	    if ( err ) {

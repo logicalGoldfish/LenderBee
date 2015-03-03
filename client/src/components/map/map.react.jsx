@@ -41,6 +41,17 @@ var map = React.createClass({
       $(".carousel").remove();
       var mapOptions = {center: new google.maps.LatLng(37.7836245,-122.4089988), zoom: 13};
       var gMap = new google.maps.Map(this.getDOMNode(), mapOptions);
+//       [
+//   {
+//     "featureType": "landscape",
+//     "stylers": [
+//       { "hue": "#ffff00" },
+//       { "gamma": 1.07 },
+//       { "saturation": 100 },
+//       { "color": "#FFDF08" }
+//     ]
+//   }
+// ]
       actions.mapMounted(gMap);
   },
 

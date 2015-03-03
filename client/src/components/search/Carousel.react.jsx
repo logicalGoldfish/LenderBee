@@ -3,6 +3,9 @@ var Reflux = require('reflux');
 var carouselStore = require('../../stores/CarouselStore.js');
 var actions = require('../../actions/actions.js');
 var searchStore = require('../../stores/searchStore');
+var Router = require('react-router');
+var Link = Router.Link;
+
 var carousel = React.createClass({
 
   mixins: [Reflux.connect(carouselStore)],
