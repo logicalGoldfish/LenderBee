@@ -16,13 +16,24 @@ var review = React.createClass({
 
   mixins: [Router.Navigation],
 
-  // handleReviewSubmit: function(rating, review) {
-  //   actions.reviewSubmit(rating, review);
-  // },
+  
+  selectRating: function(rating){
+    this.setState({
+      selectedRating: rating 
+    });
+  },
+
+  // [Warning] not sure if this is necessary
+  getInitialState: function() {
+    return {
+      selectedRating: null 
+    };
+  },
+
 
   // [Note] We pass the review as this.props.data to the Rating component
   render: function() {
-    console.log('single review props', this.props);
+    // console.log('single review props', this.props);
     // TODO: Add stars above ReviewBox to record user's rating.
     var firstName = this.props.review.reviewee.firstname;
     var lastName  = this.props.review.reviewee.lastname;
@@ -30,12 +41,14 @@ var review = React.createClass({
     lastName[0]   = lastName[0].toUpperCase();
     return (
       <div className="pendingReviewDiv">
-        <Rating data={this.props.review}/>
+        <Rating data={this.props.review} selectRating={this.selectRating} selectedRating={this.state.selectedRating}/> {/* We pass the select rating function to the Rating Component */}
         {/* <img href={this.props.review.reviewee.imgurl}> */}
         <p>{firstName + " " + lastName}</p>
         <img src={this.props.review.reviewee.fbpicture} />
         <p>{this.props.review.item.title}</p>
-        <ReviewBox reviewId={this.props.review.id}/>
+        
+        {/* We pass the selectedRating to the ReviewBox as a property so its avail on the submit event  */}
+        <ReviewBox reviewId={this.props.review.id} selectedRating={this.state.selectedRating}/>
       </div>
     )
   }

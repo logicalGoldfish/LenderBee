@@ -64,6 +64,7 @@ var userStore = Reflux.createStore({
 	    }
 	    else {
 	      this.data = res.body;
+	      // console.log('users userStore data', this.data);
 	      this.trigger(this.data);
 	      this.getProp('id');
 	    }

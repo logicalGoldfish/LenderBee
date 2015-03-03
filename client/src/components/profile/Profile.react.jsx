@@ -12,6 +12,7 @@ var Profile = React.createClass({
   // [Note] Whenever anything is triggered from profileStore, this.state will be set to state
   mixins: [Reflux.connect(profileStore, "data")],
 
+  // [Bug] When you visit the profile before anything else, the state is this.state.data.reviews and doesn't have any pending review info
   componentWillMount: function() {
     if(!this.state.data.reviews) { // if there are no reviews on this components state property
       actions.fetchReviews(); // fetch the reviews from reviewStore
@@ -20,6 +21,7 @@ var Profile = React.createClass({
 
   render: function(){
     var allReviews;
+    console.log('Profile Components State Before Rendering', this.state);
     if(this.state.data.reviews){
       //creates component for each review and loads them into the array reviewGroup
       allReviews = this.state.data.reviews.map(function(review) {

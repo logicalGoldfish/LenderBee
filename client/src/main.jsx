@@ -27,7 +27,7 @@ $(document).ready(function(){
 	var Items 							= require('./components/items/items.jsx');
 	// var Map									= require('./components/map/map.react.jsx');
 	var SingleConversation 	= require('./components/message/SingleConversation.react.jsx');
-	var SearchResults 			= require('./components/search/searchResults.react.jsx');
+	var SearchResults 			= require('./components/search/SearchResults.react.jsx');
 	var SingleItem 					= require('./components/search/singleItem.react.jsx');
 	var Reviews 						= require('./components/review/reviews.react.jsx');
 	var Login        			  = require('./components/login.react.jsx');

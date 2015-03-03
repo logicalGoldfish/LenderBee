@@ -16,37 +16,25 @@ var profileStore = Reflux.createStore({
 
   listenables: [actions],
 
-  //gets the item info from the database and sets the data to the item info
+  // listens to the userStore and updates the user data in the profile store 
   init: function(){
     this.listenTo(userStore, this.updateUserData);
-    this.listenTo(reviewStore, this.updateReviewData);     
   },
 
   // [Note] listens for triggers from userStore and updates it's own state
   updateUserData: function(user){
-    console.log("profile store just updated its user data ", user);
+    // console.log("profile store just updated its user data ", user);
     this.data.user = user;
     this.trigger(this.data);
   },
 
-  // [Note] listens for triggers from the reviewStore and updates it's own state
-  updateReviewData: function(reviews){
-    console.log('profile store just updated its reviews data', reviews);
-    this.data.reviews = reviews;
-    this.trigger(this.data);
-  },
-
-  // TODO: The Profile Store needs to trigger a fetch reviews actions on CWM
-  // [Question] Can multiple stores have handlers for the same action? (action = fetchReviews, multiple stores have onFetchReviews)?    
-  // TODO: Possibly move this to review's store and just listen to that store
   onFetchReviews: function(){
-    console.log('fetching reviews from profile store');
+    console.log('fetching reviews ');
     var userId = userStore.getProp('id');
     request.get(makeUrl(api.reviews.getReviews, {user: userId}), function(err, res){
       if(err) {console.error('error fetching reivew information', err);}
       else {
         this.data.reviews = res.body;
-        console.log('REVIEWS FROM ZEEE PROFILE', res.body);
         this.trigger(this.data);
       }
     }.bind(this));

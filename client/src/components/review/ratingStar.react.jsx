@@ -25,6 +25,13 @@ var ratingStar = React.createClass({
 		// this.props.data.save();
 	},
 
+	selectRating: function(){
+		var rating = this.props.index;
+		this.props.selectRating(rating);
+		console.log('user has select a rating of ', rating);
+	},
+
+
 	// [Note] Assigns classes based on user events and element properties
 	getClasses: function(){
 		var classes = ['fa'];
@@ -45,9 +52,9 @@ var ratingStar = React.createClass({
 	render: function() {
 	var starClasses = this.getClasses().join(' ');
 		return (
-			<a onClick={this.setRating} onMouseOver={this.hoverStar} onMouseLeave={this.leaveStar} href="#">
+			<span onClick={this.selectRating} onMouseOver={this.hoverStar} onMouseLeave={this.leaveStar}>
 				<i className={starClasses}></i>
-			</a>
+			</span>
 		);
 	}
 
