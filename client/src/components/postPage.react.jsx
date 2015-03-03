@@ -13,17 +13,30 @@ var PostPage = React.createClass({
   mixins: [Reflux.connect(postItemStore)],
 
   componentDidMount: function() {
-    // HomePageStore.addChangeListener(this._onChange);
+    
+
+    // $('#itemPostPhotos').unsigned_cloudinary_upload("iqrem4nu", 
+    //     { cloud_name: 'dnfsudmqq', tags: 'browser_uploads'},
+    //     {multiple: true}
+    //     )
+    //   .bind('cloudinarydone', function(e, data) {
+    //     if(e) {
+    //       console.log('CLOUDINARY ERROR', e)
+    //     } else {
+    //       console.log('CLOUDINARY DATA', data);
+    //     }
+    //   });
   },
 
   componentWillUnmount: function() {
+    // $.cloudinary.config({ cloud_name: 'dnfsudmqq', api_key: '885216345699682'})
     // TodoStore.removeChangeListener(this._onChange);
   },
 
   handlePostSubmit: function(e) {
    e.preventDefault();
    actions.postFormSubmitted($('#itemPostTitle').val(), $('#itemPostDescription').val(), 
-    $('#itemPostBeeBucks').val(), $('#itemPostPhotos').val());
+    $('#itemPostBeeBucks').val());
 
    // request
    //    .post('/api/items/christine')
@@ -57,7 +70,7 @@ var PostPage = React.createClass({
         </div>
         <div className="form-group">
           <label for="exampleInputFile">Add Photos</label>
-          <input type="file" id="itemPostPhotos" name="photos" multiple="multiple" />
+          <input type="file" id="itemPostPhotos" name="photos" />
           <p className="help-block">Upload Item Photos</p>
         </div>
         <button type="submit" class="btn btn-warning" onClick={this.handlePostSubmit}>Submit</button>

@@ -74,7 +74,7 @@ var mapStore = Reflux.createStore({
 			     
 			      var link = '<a href="#/singleItem" id="infoClick">'+item.title+'</a>'
 			      // var contentString = "" + link + ": " + item.description + " Price: " + item.beebucks + "" + "Lender: " + item.lender.username + "Lender Rating: " + item.lender.rating + ""
-			      var contentString = '<div>'+'<div>'+ link +'</div>'+'<div>'+item.description+" Price: "+item.beebucks+'</div>'+'<div>'+"Lender: " +item.lender.username + '</div>'+'<div>'+ item.lender.rating + '</div>' + '</div>'
+			      var contentString = '<div>' + '<div>'+ link +'</div>'+'<div class="infoDescription">'+'<i class="fa fa-quote-left"></i>' + " " + item.description+ '<div class="itemBeebucks">' +'<i class="fa fa-tag"></i>'+ " " + item.beebucks+'</div>' + '</div>'+'<div className="lenderInfoWindow">'+'<i class="fa fa-user"></i>' +item.lender.username + '</div>'+'<div>' + '<i class="fa fa-star"></i>' + item.lender.rating + '</div>' + '</div>'
 			 
 			      var infowindow = new google.maps.InfoWindow({
 	            content: contentString,

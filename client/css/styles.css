@@ -2,6 +2,12 @@
 
 }
 
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
+
 html, body, .map-container {
     width: 100%;
     height: 100%;
@@ -52,7 +58,7 @@ span {
 }
 
 .sideNavBar {
-  background-color: #ddd;
+  background-color: #FFD34E;
 /*  opacity: 0.85;*/
   position: absolute;
   top: 0;
@@ -170,6 +176,24 @@ div .map-container {
 .rating > a {
   text-decoration: none;
 }
+
+.lenderInfoWindow {
+  font-weight: bold;
+  display: block;
+}
+
+#infoClick {
+  text-decoration: bold;
+}
+
+.fa-quote-left, .fa-tag, .fa-user, .fa-star{
+  color: #FFD34E;
+}
+
+.itemBeebucks {
+  display: block;
+}
+
 /* ----------------------- */
 
 

@@ -17,6 +17,10 @@ var cookieParser     = require('cookie-parser');
 var methodOverride   = require('method-override');
 var fb               = require('./.ApiKeysFB.js');
 
+/* Cloudinary */
+
+// var cloudinary = require('cloudinary');
+
 // var app = require('express')();
 // var http = require('http').Server(app);
 // var io = require('socket.io').listen(http);
@@ -75,6 +79,15 @@ module.exports = function(app, express){
   });
 
   
+  /*=====================================================
+  =                   Cloudinary                       =
+  =====================================================*/
+
+  // cloudinary.config({ 
+  //   cloud_name: 'dnfsudmqq', 
+  //   api_key: '885216345699682', 
+  //   api_secret: 'pjtyzhJS32WOhXrNi_5_FNLW-8A' 
+  // });
 
   /*==============================
   =            Routes            =
