@@ -2,7 +2,8 @@ var React 	= require('react');
 var Reflux 	= require('reflux');
 var actions = require('../actions/actions');
 var request = require('superagent');
-var Router = require('react-router')
+var Router = require('react-router');
+var userStore   = require('./user.js');
 var ResultsMap = require('../components/map/resultsMap.react.jsx');
 var Link = Router.Link;
 
@@ -24,8 +25,9 @@ var mapStore = Reflux.createStore({
 		var that = this;
 		var geocoder = new google.maps.Geocoder()
 
+		var userId = userStore.getProp("id");
 		//hard-coded user-ID to 1 currently
-		request.get("/api/users/1", function(res) {
+		request.get("/api/users/"+userId, function(res) {
 			if (res.err) {
 				console.log('error', err);
 			} else {
