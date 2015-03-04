@@ -75,6 +75,7 @@ gulp.task('clean', function(done) {
  * the client Javascript/JSX files
  */
 gulp.task('javascript', ['clean'], function() {
+  console.log(path.dest.DEST);
   return browserify({
     entries: [path.sources.ENTRY_POINT],
     transform: [reactify]
