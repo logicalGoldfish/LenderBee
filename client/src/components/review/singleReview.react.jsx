@@ -3,6 +3,7 @@ var Reflux      = require('reflux');
 var reviewStore = require('../../stores/reviewStore.js');
 var actions     = require('../../actions/actions.js');
 var Rating      = require('./rating.react.jsx');
+var RatingStarStatic = require('./ratingStarStatic.react.jsx');
 
 var review = React.createClass({
 
@@ -12,10 +13,14 @@ var review = React.createClass({
     console.log('review from within single review', this.props.review);
     var user = this.props.review.reviewer;
     return (
-      <div>
-        <img src={user.fbpicture}></img>
+      <div className="singleProfileReview">
+        <div className="singleReviewPicDiv"><img src={user.fbpicture} className="singleReviewFBpic"></img></div>
+        <div className="singleReviewContent">
+        <RatingStarStatic rating={user.rating} />
         <p><b>{user.username}</b></p>
-        <p>{this.props.review.review}</p>
+        </div>
+        <div className="singleReviewReview"><p>{this.props.review.review}</p></div>
+        <hr></hr>
         {/* insert rating component here with stars */}
       </div>
     );

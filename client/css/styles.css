@@ -6,7 +6,9 @@ html, body, .map-container {
     width: 100%;
     height: 100%;
     position: relative;
+    background-color: #FDFDFD;
 }
+
 
 .panel-body {
 background-color: #FFD34E;
@@ -188,6 +190,78 @@ div .map-container {
   display: block;
 }
 
+.userStats {
+  margin: auto;
+  text-align: center;
+}
+
+.userStatsName {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 200%;
+}
+
+div.profileFBPicDiv{
+  height:200px;
+  width:200px;
+  overflow:hidden;
+  border-radius:50%;
+  margin: 0 auto;
+  border: 1px solid white
+}
+
+.singleReviewFBpic {
+  height: 80px;
+  width: 80px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 1%;
+  border: 1px solid white;
+}
+
+.profileFBPicDiv img{
+    -webkit-transform:translate(-50%);
+    margin-left:100px;
+}
+
+.profileRating {
+  display: inline;
+  float: right;
+}
+/*
+.circle-image{
+    display:block;
+}*/
+
+.singleProfileReview {
+  margin: 0 auto 1% auto;
+  height: 20%;
+  width: 40%;
+}
+
+.singleReviewPicDiv {
+  display: inline;
+}
+
+.singleReviewContent, .singleReviewReview {
+  display: inline-block;
+}
+
+.fa-usd {
+  display: inline;
+}
+
+
+
+
+
+
+/*.circle-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+*/
 /* ----------------------- */
 
 
