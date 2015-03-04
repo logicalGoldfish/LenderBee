@@ -92,7 +92,8 @@ module.exports = function(app, express){
   // });
 
   app.get('/login', function(req, res) {
-    res.sendFile(path.join(__dirname, '../client/login.html'));
+    res.end('hello world! from inside the config')
+    // res.sendFile(path.join(__dirname, '../client/login.html'));
   });
 
   // app.post('/auth/facebook', function(req, res){
