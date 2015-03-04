@@ -23,7 +23,7 @@ require('./config.js')(app, express);
 // })
 
 http.listen(port, function(){
-  console.log('listening on *:3000');
+  console.log('listening on, port: ' + port);
 });
 
 io.on('connection', function(socket){
