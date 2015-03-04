@@ -12,13 +12,13 @@ var UserStats = React.createClass({
 		var reviews = this.props.data.reviews;
 		return (
 			<div className="userStats">
-				<img src={user.fbpicture}></img>
-				<RatingStarStatic rating={user.rating} />
-				<p>Current Rating: {user.rating}</p>
-				<p>{user.username}</p>
+				<h1 className="lenderProfileInfo"></h1>
+				<p className="userStatsName">{user.username}</p>
+				<div className="profileFBPicDiv"><img src={user.fbpicture} className="circle-image"></img></div>
+				<RatingStarStatic className="profileRating" rating={user.rating} />
 				<p>{user.city}{", "}{user.state}</p>
 				{/*<p>{user.state}</p>*/}
-				<p>BeeBucks: {user.beebucks}</p>
+				<i className="fa fa-usd"></i><p>{user.beebucks}</p>
 			</div>
 		);
 	}

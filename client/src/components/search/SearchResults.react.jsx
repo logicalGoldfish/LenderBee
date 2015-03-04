@@ -53,7 +53,7 @@ var searchResults = React.createClass({
 
     return (
       <div className="resultsContainer">
-      <h1>Results</h1><i className="fa fa-usd"></i>
+      <h1>Results</h1>
       {matchedItems}
       </div>
     )
