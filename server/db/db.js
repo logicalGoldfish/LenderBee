@@ -5,7 +5,7 @@ if (!global.hasOwnProperty('db')) {
   var sequelize = null;
 
   // application executed on local machine
-  sequelize = new Sequelize('mysql://b883e80eef9853:729b431b@us-cdbr-iron-east-01.cleardb.net/heroku_480bfeb7ff74f42?reconnect=true');
+  sequelize = new Sequelize('mysql://b883e80eef9853:729b431b@us-cdbr-iron-east-01.cleardb.net/heroku_480bfeb7ff74f42?reconnect=true', 'b883e80eef9853','729b431b');
 
   global.db = {
     Sequelize: Sequelize,
