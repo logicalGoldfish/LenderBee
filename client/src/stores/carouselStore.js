@@ -61,12 +61,11 @@ var carouselStore = Reflux.createStore({
   getInitialState: function() {
     // var stuff = []
     // for(var i=0; i<60; i++){
-    //   stuff.push({imageurl: "img"+i, beebucks: i, title: "name"+i});
+    //   stuff.push({img: "img"+i, itemid: "itemid"+i, cost: i, disc: "name"+i});
     // }
+    // console.log("BIG STUFF: ", stuff);
     // this.data.items = stuff;    
-
     // var display = {items: []};
-    //comment in user.js line 67
     // for (var i=0; i<3; i++){
     //   display.items.push(this.data.items[i]);
     // }

@@ -1,43 +1,5 @@
-@media (min-width: 960px) {
+@media (min-width: 600px) {
 
-  .randomWrapper {
-    width: 960px;
-  }
-}
-
-.randomWrapper {
-  margin: 0 auto;
-  text-align: center;
-  height: 600px;
-  overflow: auto;
-}
-
-.randomItem {
-  display: inline-block;
-  margin: 7px;
-  position: relative;
-}
-
-.lowText{
-  position: absolute;
-  padding-top: 236px;
-}
-
-.highText{
-  position: absolute;
-  padding-top: 18px;
-}
-
-.greyback { 
-   color: white; 
-   background: rgb(0, 0, 0); /* fallback color */
-   background: rgba(0, 0, 0, 0.7);
-   padding: 10px; 
-}
-
-.randomImage {
-  position: relative;
-  width: 275px
 }
 
 html, body, .map-container {
