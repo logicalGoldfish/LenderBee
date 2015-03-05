@@ -126,7 +126,7 @@ module.exports = function(app, express){
   //  res.sendFile(path.join(__dirname, '../client/login/index.html'));
   // });
 
-  app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login.html' }),
     function(req, res){
       /* redirect to root route if they are logged in */
       res.redirect('/');
