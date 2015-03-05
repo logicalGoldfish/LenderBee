@@ -70,9 +70,9 @@ $(document).ready(function(){
 		render: function(){
 			return (
 					<div>
-						<TopBar toggleSideNavBar={this.toggleSideNavBar}/>
-						{this.state.showSideNavBar ? this.renderSideNavBar() : null}
-						<RouteHandler/>
+							<TopBar toggleSideNavBar={this.toggleSideNavBar}/>
+							{this.state.showSideNavBar ? this.renderSideNavBar() : null}
+							<RouteHandler/>
 					</div>
 				);
 		}

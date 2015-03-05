@@ -13,12 +13,18 @@ var TopBar = React.createClass({
     actions.toggleSideNav();
   },
 
+
+      // <div id="topbar" className="ui menu">
+      //   <div className="item">
+      //   </div>          
+      // </div>
+
   render: function() {
 
     return (
-        <div className="panel-body">
-          <div className="glyphicon glyphicon-menu-hamburger" onClick={this.props.toggleSideNavBar}></div>
-        </div>
+      <div id="topbar" className="ui segment">
+        <i className="align justify icon large" onClick={this.props.toggleSideNavBar}></i>     
+      </div>
     );
   }
 });
