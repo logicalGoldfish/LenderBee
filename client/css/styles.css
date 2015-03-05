@@ -11,18 +11,16 @@ html, body, .map-container {
 
 
 .panel-body {
-background-color: #FFD34E;
-text-align: center;
+  background-color: #FFD34E;
+}
+
+#search-bar {
+  /*position: absolute;*/
 }
 
 span {
   text-align: center;
   margin: auto;
-}
-.panel-body .glyphicon glyphicon-menu-hamburger {
-  position: relative; /* so that the sideNavBar can be absolute relative top-nav-Bar */
-  display: block;
-  color: black;
 }
 
 .input-group {
@@ -54,8 +52,11 @@ span {
 }
 
 .sideNavBar {
-  background-color: #FFD34E;
+  border: none;
+  border-radius: 0px;
+  background-color: black;
 /*  opacity: 0.85;*/
+  color: white;
   position: absolute;
   top: 0;
   left: 0;
@@ -122,10 +123,11 @@ span {
 }
 
 div .map-container {
-  width: 100%;
-  height: 75%;
+  /*width: 100%;*/
+  /*height: 100%;*/
   position: absolute;
-  margin: auto;
+  /*margin: auto;*/
+  /*overflow: hidden;*/
 }
 
 .gm-style > div:first-child > div + div > div:last-child > div > div:first-child > div
@@ -250,24 +252,3 @@ div.profileFBPicDiv{
   display: inline;
 }
 
-
-
-
-
-
-/*.circle-image {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  overflow: hidden;
-}
-*/
-/* ----------------------- */
-
-
-/* positioning of infowindow */
-/*.gm-style-iw
-{
-    top: 22px !important;
-    left: 22px !important;
-}*/

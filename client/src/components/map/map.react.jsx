@@ -58,7 +58,7 @@ var map = React.createClass({
 
   render: function() {
     return (
-      <div className="map-container"/>
+        <div className="map-container"/>
     )
   }
 });

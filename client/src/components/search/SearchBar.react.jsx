@@ -12,20 +12,24 @@ var searchBar = React.createClass({
  mixins: [Reflux.connect(searchStore), Router.Navigation],
  
  handleSubmit: function() {
-  actions.searchSubmit($('#searchBar').val());
+  actions.searchSubmit($('#search-bar').val());
+  console.log($('#searchBar').val());
   this.transitionTo('ResultsMap');
   //TODO: Connect to DB and display items
  },
 
+ // <div className="input-group">
+ //   <input type="text" className="form-control" placeholder="Search for..." id="searchBar" />
+ //     <span className="input-group-btn">
+ //       <button className="btn btn-warning" type="submit" onClick={this.handleSubmit}>Go!</button>
+ //     </span>
+ // </div>
+
   render: function() {
     return (
-      <div>
-        <div className="input-group">
-          <input type="text" className="form-control" placeholder="Search for..." id="searchBar" />
-            <span className="input-group-btn">
-              <button className="btn btn-warning" type="submit" onClick={this.handleSubmit}>Go!</button>
-            </span>
-        </div>
+      <div className="ui fluid icon input">
+        <input type="text" placeholder="Search..." id="search-bar"></input>
+        <i className="circular search icon" onClick={this.handleSubmit}></i>
       </div>
     )
   }

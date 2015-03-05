@@ -29,7 +29,6 @@ var ReviewBox = React.createClass({
     <div>
     <form className="reviewBox" onSubmit={this.handleSubmit}>
       <div className="form-group">
-        <input type="number" min="1" max="5" step="1" id="reviewRating" name="reviewRating" />
         <textarea className="form-control" id="reviewBoxText" rows="3" placeholder="Review Your Lender" name="review"></textarea>
       </div>
       <button type="submit" className="btn btn-warning" onClick={this.handleSubmit}>Submit</button>
