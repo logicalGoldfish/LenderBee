@@ -111,13 +111,13 @@ module.exports = function(app, express){
   //  }
   // });
 
-  app.get('/', ensureAuthenticated, function(req, res){
-   // [Warning] Don't we want this to point to the dist folder? (for deployment)
-   // TODO: somehow we need to be able to send back the user data and note that it is attached to the request object
-   console.log('--------------------------- root route');
-   // res.render('../client/index.html', {user: req.user});
-   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-  });
+  // app.get('/', ensureAuthenticated, function(req, res){
+  //  // [Warning] Don't we want this to point to the dist folder? (for deployment)
+  //  // TODO: somehow we need to be able to send back the user data and note that it is attached to the request object
+  //  console.log('--------------------------- root route');
+  //  // res.render('../client/index.html', {user: req.user});
+  //  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  // });
 
   // app.get('/login', function(req, res){
   //  console.log('attempts to render login page---------------');
