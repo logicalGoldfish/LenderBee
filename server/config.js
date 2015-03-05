@@ -142,7 +142,7 @@ module.exports = function(app, express){
   function ensureAuthenticated(req, res, next) {
     console.log('ensureAuthenticated Called -------------');
     if(req.isAuthenticated()) {return next();}
-    res.redirect('/login');
+    res.sendFile(path.join('../client/dist/login.html'));
   };
 
   // [Note] Not sure how we will handle logging out yet...don't want a seperate static file
