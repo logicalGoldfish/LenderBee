@@ -91,9 +91,9 @@ module.exports = function(app, express){
   //  res.send('../client/login.html')
   // });
 
-  app.get('/login', function(req, res) {
-    res.end('hello world! from inside the config');
-    // res.sendFile(path.join(__dirname, '../client/login.html'));
+  app.get('/', function(req, res) {
+    // res.end('hello world! from inside the config');
+    res.sendFile(path.join(__dirname, '../client/dist/login.html'));
   });
 
   // app.post('/auth/facebook', function(req, res){
