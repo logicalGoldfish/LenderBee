@@ -93,7 +93,7 @@ module.exports = function(app, express){
 
   app.get('/', function(req, res) {
     // res.end('hello world! from inside the config');
-    res.sendFile(path.join(__dirname, '../client/dist/login.html'));
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
   });
 
   // app.post('/auth/facebook', function(req, res){
@@ -129,7 +129,7 @@ module.exports = function(app, express){
   app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login.html' }),
     function(req, res){
       /* redirect to root route if they are logged in */
-      res.redirect('/');
+      res.redirect('');
     });
 
   app.get('/auth/facebook',

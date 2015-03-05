@@ -75,7 +75,7 @@ controller.testUser = function(req, res, next){
 		}
 	}).then(function(user){
 		if(user){		
-			if(user.city){
+			if(user.city !== null){
 				res.json("inside");
 			}
 		}
