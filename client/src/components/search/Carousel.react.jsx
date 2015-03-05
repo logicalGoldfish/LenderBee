@@ -17,12 +17,13 @@ var InnerImage = React.createClass({
   },
 
   render: function(){
+    console.log("HO HO HO: ", this.props.itemInfo);
     return (
-      <div className="randomItem">
+      <div>
         <Link to="SingleItem" onClick={this.handleClick}>
-          <p className="highText"><span className="greyback">{this.props.itemInfo.title}</span></p>
-          <p className="lowText"><span className="greyback">Beebucks: {this.props.itemInfo.beebucks}</span></p>
-          <img className="randomImage" src={this.props.itemInfo.imageurl} />
+          <p>{this.props.itemInfo.title}</p>
+          <img src={this.props.itemInfo.imageurl} alt={this.props.itemInfo.title} />
+          <p>{this.props.itemInfo.beebucks}</p>
         </Link>
       </div>
     )
@@ -41,12 +42,16 @@ var carousel = React.createClass({
     actions.nextCarousel();
   },
 
+  // componentDidMount: function(){
+  //   actions.randomItems("ha");
+  // },
+
   render: function() {
     var items = this.state.items.map(function(item) {
       return (<InnerImage itemInfo={item} />);
     });
     return (
-    <div className="randomWrapper">
+    <div className="carousel">
       {items}
     </div>
     )
