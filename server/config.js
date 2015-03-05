@@ -84,17 +84,17 @@ module.exports = function(app, express){
     // res.sendFile(path.join(__dirname, '../client/index.html'));
   //route for the homepage
   // app.get('/', function(req, res){
-  //  res.render('../client/index.html')
+  //  res.render('../client/distindex.html')
   // });
 
   // app.get('/login', function(req, res){
   //  res.send('../client/login.html')
   // });
 
-  app.get('/', function(req, res) {
-    // res.end('hello world! from inside the config');
-    res.sendFile(path.join(__dirname, '../client/dist/login.html'));
-  });
+  // app.get('/', function(req, res) {
+  //   // res.end('hello world! from inside the config');
+  //   res.sendFile(path.join(__dirname, '../client/dist/login.html'));
+  // });
 
   // app.post('/auth/facebook', function(req, res){
   //  console.log("response: ", req.body);
@@ -111,13 +111,13 @@ module.exports = function(app, express){
   //  }
   // });
 
-  // app.get('/', ensureAuthenticated, function(req, res){
-  //  // [Warning] Don't we want this to point to the dist folder? (for deployment)
-  //  // TODO: somehow we need to be able to send back the user data and note that it is attached to the request object
-  //  console.log('--------------------------- root route');
-  //  // res.render('../client/index.html', {user: req.user});
-  //  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-  // });
+  app.get('/', ensureAuthenticated, function(req, res){
+   // [Warning] Don't we want this to point to the dist folder? (for deployment)
+   // TODO: somehow we need to be able to send back the user data and note that it is attached to the request object
+   console.log('--------------------------- root route');
+   // res.render('../client/index.html', {user: req.user});
+   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
 
   // app.get('/login', function(req, res){
   //  console.log('attempts to render login page---------------');
@@ -143,7 +143,6 @@ module.exports = function(app, express){
     console.log('ensureAuthenticated Called -------------');
     if(req.isAuthenticated()) {return next();}
     res.redirect('/login');
-
   };
 
   // [Note] Not sure how we will handle logging out yet...don't want a seperate static file
