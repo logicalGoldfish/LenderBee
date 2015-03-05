@@ -88,7 +88,7 @@ module.exports = function(app, express){
   // });
 
   // app.get('/login', function(req, res){
-  //  res.send('../client/login.html')
+  //  res.send('../client/dist/login.html');
   // });
 
   // app.get('/', function(req, res) {
@@ -139,11 +139,12 @@ module.exports = function(app, express){
       // function will not be called.
     });
 
-  function ensureAuthenticated(req, res, next) {
-    console.log('ensureAuthenticated Called -------------');
-    if(req.isAuthenticated()) {return next();}
-    res.sendFile(path.join('../client/dist/login.html'));
-  };
+  // function ensureAuthenticated(req, res, next) {
+  //   console.log(req);
+  //   console.log('ensureAuthenticated Called -------------');
+  //   if(req.isAuthenticated()) {return next();}
+  //   res.sendFile(path.join('../client/dist/login.html'));
+  // };
 
   // [Note] Not sure how we will handle logging out yet...don't want a seperate static file
   // app.get('/logout', function(req, res){
