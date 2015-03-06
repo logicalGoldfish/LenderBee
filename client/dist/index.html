@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <!-- <link rel="stylesheet" href="/css/styles.css"> -->
   <!-- <link rel="stylesheet" href="/dist/bower_components/font-awesome/css/font-awesome.css"> -->
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
@@ -59,13 +59,13 @@
         testAPI();
       } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
-        document.location.href = "/login";
+        document.location.href = "/login.html";
         document.getElementById('status').innerHTML = 'Please log ' +
           'into this app.';
       } else {
         // The person is not logged into Facebook, so we're not sure if
         // they are logged into this app or not.
-        document.location.href = "/login";
+        document.location.href = "/login.html"; //change to reroute to login
         document.getElementById('status').innerHTML = 'Please log ' +
           'into Facebook.';
       }

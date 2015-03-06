@@ -5,10 +5,16 @@ if (!global.hasOwnProperty('db')) {
   var sequelize = null;
 
   // application executed on local machine
-  sequelize = new Sequelize('mysql://b883e80eef9853:729b431b@us-cdbr-iron-east-01.cleardb.net/heroku_480bfeb7ff74f42?reconnect=true', {
-    username: 'b883e80eef9853',
-    password: '729b431b'
-  });
+  // sequelize = new Sequelize('mysql://b883e80eef9853:729b431b@us-cdbr-iron-east-01.cleardb.net/heroku_480bfeb7ff74f42?reconnect=true', {
+  //   username: 'b883e80eef9853',
+  //   password: '729b431b'
+  // });
+
+sequelize = new Sequelize('LenderBee', 'root', '', {
+  dialect: 'mysql',
+  port: 3306,
+  logging: false
+});
 
   global.db = {
     Sequelize: Sequelize,

@@ -5,7 +5,7 @@ var Logout = React.createClass({
 
   render: function(){
     FB.logout(function(response) {
-      document.location.href = "/login";
+      document.location.href = "/login.html";
     });
     return (
       <div> </div>
