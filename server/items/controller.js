@@ -108,8 +108,8 @@ controller.getOneByUser = function(req, res, next){
       { borrower_id: userId }
     ),
     include: [ 
-      {model: User, as: 'borrower', required: true},
-      {model: User, as: 'lender', required: true},
+      {model: User, as: 'borrower'},
+      {model: User, as: 'lender'},
     ]
   }).
   then(function(items){
