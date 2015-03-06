@@ -1,9 +1,9 @@
 // var Item = require('./models.js');
-var db 				 = require('../db/db.js');
+var db         = require('../db/db.js');
 var Sequelize  = require('sequelize')
-var User 			 = global.db.User;
-var Item 			 = global.db.Item;
-var Message 	 = global.db.Message;
+var User       = global.db.User;
+var Item       = global.db.Item;
+var Message    = global.db.Message;
 
 var controller = {};
 
@@ -100,11 +100,17 @@ controller.getItemByCity = function(req, res, next){
 
 controller.getOneByUser = function(req, res, next){
   console.log('fetching items for user --------', req.params.user);
+  var userId = req.params.userId;
+
   Item.findAll({
     where: Sequelize.or(
-      { lender_id: req.params.userId },
-      { borrower_id: req.params.userId}
-    )
+      { lender_id: userId },
+      { borrower_id: userId }
+    ),
+    include: [ 
+      {model: User, as: 'borrower', required: true},
+      {model: User, as: 'lender', required: true},
+    ]
   }).
   then(function(items){
     console.log('test test test', items);
