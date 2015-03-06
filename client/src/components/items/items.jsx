@@ -43,6 +43,7 @@ var Items = React.createClass({
 	},
 
 	render: function() {
+		console.log('state from within the items component', this.state);
 		var items;
 		// console.log('items component state', this.state);
 		if (this.state.items) {

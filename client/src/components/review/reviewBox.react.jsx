@@ -22,18 +22,30 @@ var ReviewBox = React.createClass({
     }
   },
 
+  // <div>
+  // <form className="reviewBox" onSubmit={this.handleSubmit}>
+  //   <div className="form-group">
+  //     <textarea className="form-control" id="reviewBoxText" rows="3" placeholder="Review Your Lender" name="review"></textarea>
+  //   </div>
+  //   <button type="submit" className="btn btn-warning" onClick={this.handleSubmit}>Submit</button>
+  // </form>
+  // </div>
+
   render: function(){
     //creates component for each message and loads them into the array messageGroup
     // var url = "/api/messages/samin"+ "/" + this.props.to + ""
+
+    var backgroundColorBlue = {
+      borderColor: "#AAD6DF",
+      backgroundColor: "#E9FAFF"
+    }
     return (
-    <div>
-    <form className="reviewBox" onSubmit={this.handleSubmit}>
-      <div className="form-group">
-        <textarea className="form-control" id="reviewBoxText" rows="3" placeholder="Review Your Lender" name="review"></textarea>
-      </div>
-      <button type="submit" className="btn btn-warning" onClick={this.handleSubmit}>Submit</button>
-    </form>
-    </div>
+      <div className="ui form">
+        <div className="field">
+          <textarea style={backgroundColorBlue} id="reviewBoxText" placeholder="Leave Review..."></textarea>
+        </div> 
+        <div className="ui left submit button" onClick={this.handleSubmit}>Submit</div>
+      </div>   
     )
   }
 });

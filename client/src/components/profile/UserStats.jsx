@@ -4,21 +4,28 @@ var RatingStarStatic 	= require('../review/ratingStarStatic.react.jsx');
 
 
 var UserStats = React.createClass({
-	// [Note] pass props from profile component to user Stats component
-	// this.props.data
+
 	render: function() {
 		var user = this.props.data.user;
 		console.log('userStats for profile', user);
 		var reviews = this.props.data.reviews;
+
 		return (
-			<div className="userStats">
-				<h1 className="lenderProfileInfo"></h1>
-				<p className="userStatsName">{user.username}</p>
-				<div className="profileFBPicDiv"><img src={user.fbpicture} className="circle-image"></img></div>
+			<div>
+				<img className="ui small centered circular bordered image" src={user.fbpicture}></img>
 				<RatingStarStatic className="profileRating" rating={user.rating} />
-				<p>{user.city}{", "}{user.state}</p>
-				{/*<p>{user.state}</p>*/}
-				<i className="fa fa-money"></i><span>{user.beebucks}</span>
+				<div>
+					<i className="circular user icon"></i>
+					<span>{user.username}</span>
+				</div>
+				<div>
+					<i className="circular marker icon"></i>
+					<span>{user.city}{", "}{user.state}</span>
+				</div>
+				<div>
+					<i className="circular money icon"></i>
+					<span>{user.beebucks}</span>
+				</div>
 			</div>
 		);
 	}

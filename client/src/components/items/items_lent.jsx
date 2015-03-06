@@ -26,7 +26,7 @@ var LentItem = React.createClass({
 				<p>Item: {this.props.item.title}</p>
 				<p>Item_ID: {this.props.item.id}</p>
 				<p>Description: {this.props.item.description}</p>
-				<p>Pollen Price: {this.props.item.pollenprice}</p>
+				<p>BeeBucks: {this.props.item.beebucks}</p>
 				<p>Borrower: {this.props.item.borrower_id}</p>
 				{/* [Warning] somehow we need to pass props to this.returnItem using bind, not sure how to handle with jsx*/}
 				<button onClick={this.returnItem.bind(this, lender_id, borrower_id, item_id)}>Item Was Returned</button>

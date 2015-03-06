@@ -29,8 +29,7 @@ var Reviews = React.createClass({
 			});
 		}
 		return (
-			<div>
-				<h1>MY PENDING REVIEWS</h1>
+			<div className="ui center aligned segment">
 				{pendingReviews}
 			</div>
 		);

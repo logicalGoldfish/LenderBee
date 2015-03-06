@@ -4,13 +4,20 @@ var _			= require('lodash');
 var ItemBorrowed = React.createClass({
 	render: function(){
 		return (
-			<div>
+			<div className="ui vertical segment">
 				{/* I want to be able to show lender information including avatar and name, so we need our endpoint to also fetch user data */}
-				<p>Item: {this.props.item.title}</p>
-				<p>Description: {this.props.item.description}</p>
-				<p>Pollen Price: {this.props.item.pollenprice}</p>
-				<p>Lender: {this.props.item.lender_id}</p>
-				<hr></hr>
+				<div>
+					<i className="circular gift icon"></i>
+					<span>{this.props.item.title}</span>
+					<div>
+						<span>Description: {this.props.item.description}</span>
+					</div>
+					<div>
+						<i className="circular money icon"></i>
+						<span>{this.props.item.beebucks}</span>
+					</div>
+					<p>Lender: {this.props.item.lender_id}</p>
+				</div>
 			</div>
 		);
 	}
@@ -26,8 +33,10 @@ var AllItemsBorrowed = React.createClass({
 		});
 
 		return (
-			<div>
-			<h5>Borrowed Items</h5>
+			<div className="ui center aligned segment">
+				<h2 className="ui horizontal header divider">
+			  	Currently Borrowed
+				</h2>
 				{borrowedItems}
 			</div>
 		);
