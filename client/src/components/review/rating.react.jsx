@@ -57,7 +57,7 @@ var rating = React.createClass({
 		}
 		// console.log(stars);
 		return (
-			<div className="rating pull-left">
+			<div className="rating">
 				{stars}
 			</div>
 		);

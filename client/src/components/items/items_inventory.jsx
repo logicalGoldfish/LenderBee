@@ -9,7 +9,7 @@ var InventoryItem = React.createClass({
 			<div>
 				<p>Item: {this.props.item.title}</p>
 				<p>Description: {this.props.item.description}</p>
-				<p>Pollen Price: {this.props.item.pollenprice}</p>
+				<p>BeeBucks: {this.props.item.beebucks}</p>
 				<hr></hr>
 			</div>
 		);

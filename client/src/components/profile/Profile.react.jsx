@@ -30,13 +30,13 @@ var Profile = React.createClass({
       });
     }
     return (
-      <div>
-        <UserStats data={this.state.data}/>
-        {/*<Link to="reviews">Reviews</Link>*/}
-        {/* add rating component here */}
-        {/* add amazonish rating graph - see dailyjs for react d3 plugin */}
-        {allReviews}
-      </div>
+        <div className="ui center aligned segment">
+          <UserStats data={this.state.data}/>
+          <h2 className="ui horizontal header divider">
+             Reviews
+          </h2>
+          {allReviews}
+        </div>  
     )
   }
 });
