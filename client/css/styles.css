@@ -14,9 +14,10 @@ html, body, .map-container {
   background-color: #FFD34E;
 }
 
-#search-bar {
+input#search-bar {
   /*position: absolute;*/
 }
+
 
 span {
   text-align: center;
@@ -206,7 +207,7 @@ div .map-container {
 div.profileFBPicDiv {
   height:200px;
   width:200px;
-  background-size: cover;
+  object-fit: cover;
   overflow:hidden;
   border-radius:50%;
   margin: 0 auto;
@@ -220,6 +221,7 @@ div.profileFBPicDiv {
   border-radius:50%;
   margin: 0 auto;
   border: 1px solid white
+  object-fit: cover;
 }
 
 .singleReviewFBpic {
@@ -229,6 +231,7 @@ div.profileFBPicDiv {
   border-radius: 50%;
   margin: 1%;
   border: 1px solid white;
+  object-fit: cover;
 }
 
 .profileFBPicDiv img{
@@ -261,5 +264,9 @@ div.profileFBPicDiv {
 
 .fa-money {
   font-size: 24px;
+}
+
+.singleItemDescription {
+  margin: 1% auto;
 }
 

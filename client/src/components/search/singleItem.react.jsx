@@ -42,7 +42,7 @@ var singleItem = React.createClass({
       <div className="ui grid">
         <div className="sixteen wide column">
             <img className="singleItemPic" src={this.state.item.imageurl} alt="item" />
-              <div><i className="fa fa-quote-left"></i><span>{"  " + this.state.item.description}</span></div>
+              <div className="ui compact segment"><i className="fa fa-quote-left"></i><span>{"  " + this.state.item.description}</span></div>
               <i className="fa fa-money"/><span>{" " + this.state.item.beebucks}</span>
               <h3 className="ui header">Lender: {this.state.lender.username+ " "}</h3>
               <RatingStarStatic className="profileRating" rating={this.state.lender.rating} />
