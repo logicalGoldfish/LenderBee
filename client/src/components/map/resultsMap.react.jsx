@@ -26,6 +26,7 @@ var resultsMap = React.createClass({
 
     return (
       <div>
+      <SearchResults />
       <div id="mapPanel">
         <button className="btn btn-warning" onClick={this.showList}>View as List</button>
       </div>
