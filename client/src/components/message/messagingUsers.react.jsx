@@ -16,7 +16,11 @@ var User = React.createClass({
   
   render: function(){
     return (
-        <div><Link to="messageUser" partnerName={this.props.partnerName} partnerId={this.props.partnerId} onClick={this.handleClick}>{this.props.partnerName}</Link></div>
+        <div>
+        <Link to="messageUser" partnerName={this.props.partnerName} partnerId={this.props.partnerId} >
+        <div className="ui teal button" onClick={this.handleClick}>{this.props.partnerName}</div>
+        </Link>
+        </div>
         //onClick, call handler with this.props.partner
         //on store, save state's current user as partner. 
         //trigger current user.
@@ -45,10 +49,10 @@ var MessagingUsers = React.createClass({
 
     return (
       <div>
-        <p>Your Messages</p>
-        <ul>
+        <div className="ui center aligned segment">
+          <h2 className="ui horizontal header divider">Messages</h2>
+          </div>
         {partners}
-        </ul>
       </div>
     )
   }

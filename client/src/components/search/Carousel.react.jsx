@@ -63,7 +63,7 @@ var carousel = React.createClass({
     });
     return (
    <div className="ui stackable four column page grid carousel">
-   <h3 className="ui teal header">Browse Items Near You</h3>
+   <h2 className="ui centered teal header">Browse Items Near You</h2>
       {items}
     </div>
     )

@@ -1,3 +1,4 @@
+
 #topbar {
 	background-color: #FFD34E;
   z-index: 5;
@@ -28,6 +29,10 @@ div.searchBar {
   width: 900px;
   overflow: hidden;
   object-fit: cover;
+}
+
+.ui.tiny.image {
+  opacity: 1;
 }
 
 h3 {

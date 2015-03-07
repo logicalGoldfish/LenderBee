@@ -1,6 +1,29 @@
 @media (min-width: 600px) {
 
 }
+/*
+@media (max-width: 350px) {
+  div.searchResultsList {
+    display: none;
+  }
+}
+*/
+@media only screen and (min-width : 320px) and (max-width : 480px) {
+  div.searchResultsList {
+    display: none;
+  }
+
+  div#mapPanel {
+    visibility: visible;
+      color: red;
+      float: right;
+      background-color: yellow;
+      margin-right: 3%;
+      z-index: 5;
+      margin: auto;
+      border: 1px solid #999;
+  }
+}
 
 html, body, .map-container {
     width: 100%;
@@ -112,16 +135,6 @@ span {
   margin: auto;
 }
 
-#mapPanel {
- position: absolute;
- top: 15%;
- color: red;
- background-color: yellow;
- right: 5%;
- z-index: 5;
- margin: auto;
- border: 1px solid #999;
-}
 
 div .map-container {
   top: 0px;
@@ -271,7 +284,25 @@ div.profileFBPicDiv {
 }
 
 div.messageWindow {
-  height: 200px;
+  height: 350px;
   overflow: scroll;
+}
+
+div.searchResultsList {
+  position: relative;
+  float: right;
+  margin-right: 3%;
+  width: 20%;
+  height: 400px;
+  overflow: scroll;
+  opacity: 0.8;
+  z-index: 5;
+  background-color: white;
+  padding: 1%;
+  border: 1px solid #FDFDFD;
+}
+
+div#mapPanel {
+  visibility: visible;
 }
 

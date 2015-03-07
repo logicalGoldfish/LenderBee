@@ -5,7 +5,6 @@ var Message = global.db.Message;
 
 var controller = {};
 controller.create = function(req, res, next){
-	console.log(req.body);
 	var newUser = {};
 	newUser.fbid = req.body.id;
 	newUser.username = req.body.name;
@@ -26,7 +25,6 @@ controller.create = function(req, res, next){
 			fbid: newUser.fbid
 		}
 	}).then(function(user){
-		console.log(user);
 		if(!user){
 			User.create(newUser).then(function(user){
 				res.send(user);
@@ -68,7 +66,6 @@ controller.init = function(req, res, next){
 }
 
 controller.testUser = function(req, res, next){
-	console.log("IT'S A TEST ", req.query.authResponse.userID);
 	User.find({
 		where: {
 			fbid: req.query.authResponse.userID
