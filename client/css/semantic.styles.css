@@ -33,3 +33,7 @@ div.searchBar {
 h3 {
   margin: 1%;
 }
+
+div.ui.comments:last-child {
+  margin: auto;
+}

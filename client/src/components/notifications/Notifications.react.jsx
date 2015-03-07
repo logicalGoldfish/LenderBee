@@ -16,12 +16,14 @@ var Notifications = React.createClass({
 	render: function() {
 		var notifications = this.state.notifications.map(function(notification) {
 			// TODO: Check to see if these properties are correct (userReq/username)
-			return <Notification borrowerName={notification.Users[0].username} borrowerId={notification.Users[0].id} itemName={notification.title} itemId={notification.id} />
+			return <Notification fbpicture={notification.Users[0].fbpicture} borrowerName={notification.Users[0].username} borrowerId={notification.Users[0].id} itemName={notification.title} itemId={notification.id} />
 		});
 		return (
 			<div>
-				<h1>Notifications</h1>
+				<div className="ui center aligned segment">
+					<h2 className="ui horizontal header divider">Notifications</h2>
 				{notifications}
+				</div>
 			</div>
 		)
 	}

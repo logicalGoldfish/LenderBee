@@ -21,12 +21,18 @@ var Notification = React.createClass({
 		// this.refs.notif.getDOMNode().remove();
 	},
 
+	// <div ref="notif">
+	// 	<p>{this.props.borrowerName} wants to borrow your {this.props.itemName}</p>
+	// 	<button itemId={this.props.itemId} name={this.props.name} onClick={this.handleAccept}>Accept</button>
+	// 	<button itemId={this.props.itemId} name={this.props.name} onClick={this.handleDecline}>Decline</button>
+	// </div>
+
 	render: function() {
 		return (
-			<div ref="notif">
-				<p>{this.props.borrowerName} wants to borrow your {this.props.itemName}</p>
-				<button itemId={this.props.itemId} name={this.props.name} onClick={this.handleAccept}>Accept</button>
-				<button itemId={this.props.itemId} name={this.props.name} onClick={this.handleDecline}>Decline</button>
+			<div className="ui compact segment" ref="notif">
+			  <img className="ui avatar image" src={this.props.fbpicture} /><p>{this.props.borrowerName} wants to borrow your {this.props.itemName + "   "}  </p>
+			  <div className="positive ui toggle button" itemId={this.props.itemId} name={this.props.name} onClick={this.handleAccept}>Accept</div>
+				<div className="negative ui toggle button" itemId={this.props.itemId} name={this.props.name} onClick={this.handleDecline}>Decline</div>
 			</div>
 		);
 	}

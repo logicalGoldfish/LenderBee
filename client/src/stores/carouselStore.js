@@ -37,7 +37,6 @@ var carouselStore = Reflux.createStore({
   },
 
   onRandomItems: function(info){
-    console.log("COOL BEANS: ", info);
     var that = this;
     request.get('/api/items/allcity/'+info, function(res){
       console.log(res.body);

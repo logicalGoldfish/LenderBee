@@ -37,6 +37,7 @@ var messagingUsersStore = Reflux.createStore({
           that.data.partners.push(conversation.to);
         }
       });
+      console.log('lES CONVERSIONES YO', that.data.conversations);
       that.trigger(that.data);
     });
   },
