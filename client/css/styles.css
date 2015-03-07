@@ -270,3 +270,8 @@ div.profileFBPicDiv {
   margin: 1% auto;
 }
 
+div.messageWindow {
+  height: 200px;
+  overflow: scroll;
+}
+

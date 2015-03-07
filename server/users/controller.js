@@ -32,11 +32,11 @@ controller.create = function(req, res, next){
 				res.send(user);
 			})
 		}
-		// else{
-		// 	User.update(newUser).then(function(user){
-		// 		res.send(user);
-		// 	})
-		// }
+		else{
+			user.updateAttributes({fbpicture: newUser.fbpicture}).then(function(user){
+				res.send(user);
+			})
+		}
 	})
 }
 

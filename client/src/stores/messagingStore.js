@@ -23,10 +23,12 @@ var messagingStore = Reflux.createStore({
       that.data.messages = JSON.parse(res.text).filter(function(message) { 
         return ((message.to_id === userId || message.from_id === userId) && (message.from_id === lenderId || message.to_id === lenderId)) 
         });
+        console.log('THAT.DATAaaaa', that.data.messages);
         that.trigger(that.data);
     });
     request("/api/users/" + userId + "", function(res) {
       that.data.userName = JSON.parse(res.text).username;
+      that.data.fbpic = JSON.parse(res.text).fbpicture;
       that.trigger(that.data);
     });
     request("/api/users/" + lenderId + "", function(res) {

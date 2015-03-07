@@ -21,18 +21,24 @@ var SingleConversation = React.createClass({
     var userId = userStore.getProp("id");
     // console.log('USERNAME FROM THE SINGLE CONVO', userName);
 
+    // <div>
+    //   <p>Chatting: {this.state.partnerName} </p>
+    //   <div className="messageWindow">
+    //       {messages}
+    //   </div>
+    //   <MessageBox  />
+    // </div>
+
     var messages = this.state.conversations.filter(function(singleMessage) {
       return (singleMessage.to.username === that.state.partnerName || singleMessage.from.username === that.state.partnerName);
     }).map(function(singleMessage) {
-    return <div>{singleMessage.from.username + ":"}{" " +singleMessage.message}</div>
+    return <Message message={singleMessage.message} to={singleMessage.to_id} fromName={singleMessage.from.username} fbpicture={singleMessage.from.fbpicture}/>
     })
     return (
-      <div>
-        <p>Chatting: {this.state.partnerName} </p>
+      <div className="ui minimal comments">
+      <h3 className="ui dividing teal header">Messaging: {this.state.partnerName}</h3>
         <div className="messageWindow">
-          <ul>
-            {messages}
-          </ul>
+          {messages}
         </div>
         <MessageBox to={this.state.partnerId} from={userId} />
       </div>
