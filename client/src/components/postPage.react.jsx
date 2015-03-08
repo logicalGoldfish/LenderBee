@@ -1,6 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var postItemStore = require('../stores/postItemStore');
+var SuccessMessage = require('../components/app/successMessage.react.jsx');
 var actions = require('../actions/actions');
 
 var PostPage = React.createClass({
@@ -40,7 +41,8 @@ var PostPage = React.createClass({
    */
   render: function() {
     return (
-      //later: plug in " + session.username + "
+      <div>
+      <SuccessMessage message="Your Item is Posted!  " />
       <form className="postForm" onSubmit={this.handlePostSubmit}>
         <div className="form-group">
           <label for="itemName">Enter Item</label>
@@ -61,6 +63,7 @@ var PostPage = React.createClass({
         </div>
         <button type="submit" class="btn btn-warning" onClick={this.handlePostSubmit}>Submit</button>
         </form>
+        </div>
     );
   },
 

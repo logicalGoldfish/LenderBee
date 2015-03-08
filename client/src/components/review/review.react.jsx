@@ -59,10 +59,9 @@ var review = React.createClass({
     lastName[0]   = lastName[0].toUpperCase();
     var fbpic = this.props.review.reviewee.fbpicture;
     // console.log('props from reviews', this.props);
-
     return (
       <div className="ui vertical segment">
-        <img className="ui small centered circular bordered image" src={fbpic}></img>
+        <img className="ui small centered circular bordered image" src={fbpic} />
         <i className="user icon"></i>
         <span>{firstName + lastName}</span>
         <div>
@@ -71,8 +70,7 @@ var review = React.createClass({
         </div>
         <Rating data={this.props.review} selectRating={this.selectRating} selectedRating={this.state.selectedRating}/>
         <ReviewBox reviewId={this.props.review.id} selectedRating={this.state.selectedRating}/>
-      </div>
-      
+      </div> 
     )
   }
 });

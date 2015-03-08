@@ -8,6 +8,7 @@ var Carousel = require('./Carousel.react.jsx');
 var SearchResults = require('./SearchResults.react.jsx');
 var PostPage = require('../postPage.react.jsx');
 var SingleItem = require('./singleItem.react.jsx');
+var SuccessMessage = require('../app/successMessage.react.jsx');
 var Router = require('react-router')
 var Link = Router.Link;
 var Route = Router.Route;

@@ -1,5 +1,6 @@
 var React 			= require('react');
 var navStore 		= require('../../stores/navStore.js');
+var userStore = require('../../stores/user.js');
 var actions 	  = require('../../actions/actions.js');
 var Reflux 			= require('reflux');
 var Router			= require('react-router');
@@ -9,9 +10,11 @@ var SideNavBarElement = React.createClass({
 
 	render: function(){
 		return (
-				<li onClick={this.props.toggleSideNavBar}>
-					<Link to={this.props.to}>{this.props.text}</Link>
-				</li>
+				<Link to={this.props.to} onClick={this.props.toggleSideNavBar} >
+				<p className="sideNavBarLink">
+					{this.props.text}
+				</p>
+				</Link>
 			);
 	}
 });
@@ -41,18 +44,21 @@ var SideNavBar = React.createClass({
 	},
 
 	render: function() {
+		var pic = userStore.getProp('fbpicture');
+		var name = userStore.getProp('username');
 		return (
 			<div className="sideNavBar panel panel-default" onClick={this.handleClick}>
-				<ul className="nav nav-pills nav-stacked">
-					<SideNavBarElement text="PROFILE" to="profile" toggleSideNavBar={this.props.toggleSideNavBar}/>
-					<SideNavBarElement text="SEARCH" to="search" toggleSideNavBar={this.props.toggleSideNavBar}/>
-					<SideNavBarElement text="MESSAGES" to="messages" toggleSideNavBar={this.props.toggleSideNavBar}/>
-					<SideNavBarElement text="NOTIFICATIONS" to="notifications" toggleSideNavBar={this.props.toggleSideNavBar} />
-					<SideNavBarElement text="REVIEWS" to="reviews-pending" toggleSideNavBar={this.props.toggleSideNavBar}/>
-					<SideNavBarElement text="ITEMS" to="items" toggleSideNavBar={this.props.toggleSideNavBar}/>
-					<SideNavBarElement text="POST AN ITEM" to="postItem" toggleSideNavBar={this.props.toggleSideNavBar}/>
-					<SideNavBarElement text="LOG OUT" to="logout" toggleSideNavBar={this.props.toggleSideNavBar}/>
-				</ul>
+			<div className="sideNavBarProfile"><img className="ui avatar image" src={pic} /><a href="#">{name}</a></div>
+				<div className="nav nav-pills nav-stacked">
+					<SideNavBarElement text="Profile" to="profile" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="Search" to="search" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="Messages" to="messages" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="Notifications" to="notifications" toggleSideNavBar={this.props.toggleSideNavBar} />
+					<SideNavBarElement text="Reviews" to="reviews-pending" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="Items" to="items" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="Post An Item" to="postItem" toggleSideNavBar={this.props.toggleSideNavBar}/>
+					<SideNavBarElement text="Log Out" to="logout" toggleSideNavBar={this.props.toggleSideNavBar}/>
+				</div>
 			</div>
 		);
 	}

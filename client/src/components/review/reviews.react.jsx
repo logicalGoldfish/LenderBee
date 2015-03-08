@@ -21,10 +21,10 @@ var Reviews = React.createClass({
 	// [Note] We need to be rendering the pendingReviews, not the reviews for the current user
 	render: function() {
 		var pendingReviews;
-		// console.log('review components state', this.state);
-		if (this.state.pendingReviews) {
+		console.log('review components state', this.state.pendingReviews);
+		if (this.state.pendingReviews !== null) {
 			// [Bug] When there are no pending reviews, this lookup fails and throws an error
-			pendingReviews = this.state.pendingReviews.map(function(review, index){
+			var pendingReviews = this.state.pendingReviews.map(function(review){
 				return <Review review={review} />
 			});
 		}

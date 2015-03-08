@@ -1,6 +1,7 @@
 var React = require('react');
 var Reflux = require('reflux');
 var singleItemStore = require('./../../stores/singleItemStore.js');
+var SuccessMessage = require('../app/successMessage.react.jsx');
 var actions = require('./../../actions/actions.js');
 var Messaging = require('../message/messaging.react.jsx');
 var userStore   = require('./../../stores/user.js');
@@ -21,7 +22,7 @@ var singleItem = React.createClass({
 
   handleMessageLender: function() {
     actions.lenderMessaged(this.state.lender.id);
-     this.transitionTo('Messaging')
+     this.transitionTo('Messaging');
   },
 
   // <div>
@@ -39,9 +40,11 @@ var singleItem = React.createClass({
 
   render: function(){
     return (
+      <div>
+      <SuccessMessage message="Item Requested!  "/>
       <div className="ui grid">
         <div className="sixteen wide column">
-            <img className="singleItemPic" src={this.state.item.imageurl} alt="item" />
+            <img className="ui medium image singleItem" src={this.state.item.imageurl} alt="item" />
               <div className="ui compact segment"><i className="fa fa-quote-left"></i><span>{"  " + this.state.item.description}</span></div>
               <i className="fa fa-money"/><span>{" " + this.state.item.beebucks}</span>
               <h3 className="ui header">Lender: {this.state.lender.username+ " "}</h3>
@@ -50,6 +53,7 @@ var singleItem = React.createClass({
                 <div className="ui teal button" name="messageLender" onClick={this.handleMessageLender}>Message</div>
                 <div className="ui yellow button" name="requestItem" onClick={this.handleItemRequest}>Request</div>
         </div>
+      </div>
       </div>
     )
   }

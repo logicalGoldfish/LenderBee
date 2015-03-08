@@ -30,6 +30,7 @@ var singleItemStore = Reflux.createStore({
     // console.log('item requested', "/api/notifications/" + "" + itemName + "/" + borrower + "");
     request.post("/api/notifications/" + "" + itemId + "/" + userId + "", function(res) {
       if (res.ok) {
+        $('#successMessage').addClass("success");
         console.log('Request sent for item')
       } else {
         console.log('error!')
