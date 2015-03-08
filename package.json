@@ -84,6 +84,7 @@
     "react": "^0.12.2",
     "reactify": "^1.0.0",
     "requirejs": "^2.1.16",
+    "run-sequence": "^1.0.2",
     "sequelize": "^2.0.3",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
