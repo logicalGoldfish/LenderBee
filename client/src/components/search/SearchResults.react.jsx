@@ -48,10 +48,10 @@ var ResultDiv = React.createClass({
           </div>
           <div className="middle aligned content">
             <span onClick={this.handleClick}>{this.props.itemName}</span>
-                 <div><i className="fa fa-quote-left"/><span>{"   " + this.props.item.description}</span></div>
-                 <div><i className="fa fa-tag"/><span>{"   " + this.props.item.beebucks}</span></div>
-                 <div><i className="fa fa-user"/><span>{"   " + this.props.item.lender.username}</span></div>
-                 <div><i className="fa fa-star"/><span>{"   " + this.props.item.lender.rating}</span></div>
+                 <div><i className="tiny quote left icon"/><span>{"   " + this.props.item.description}</span></div>
+                 <div><i className="tiny money icon"></i><span>{"   " + this.props.item.beebucks}</span></div>
+                 <div><i className="tiny user icon"/><span>{"   " + this.props.item.lender.username}</span></div>
+                 <div><i className="tiny star icon"/><span>{"   " + this.props.item.lender.rating}</span></div>
           </div>
         </div>
       )
