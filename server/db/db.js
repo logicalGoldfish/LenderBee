@@ -4,14 +4,12 @@ if (!global.hasOwnProperty('db')) {
   var Sequelize = require('sequelize');
   var sequelize = null;
 
-
-// sequelize = new Sequelize('LenderBee', 'root', '', {
-//   dialect: 'mysql',
-//   port: 3306,
-//   logging: false
-// });
-  sequelize = new Sequelize('mysql://be8b04c15d063f:1239fcaf@us-cdbr-iron-east-02.cleardb.net/heroku_f031b85a60b0717?reconnect=true');
-
+  // application executed on local machine
+  sequelize = new Sequelize('LenderBee', 'root', '', {
+    dialect: 'mysql',
+    port: 3306,
+    logging: false
+  });
 
   global.db = {
     Sequelize: Sequelize,

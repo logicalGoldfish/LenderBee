@@ -22,8 +22,8 @@ require('./config.js')(app, express);
 //   console.log('localhost listening on :' + app.get('port') + ' Ctrl-C to terminate');
 // })
 
-http.listen(port, function(){
-  console.log('listening on, port: ' + port);
+http.listen(3000, function(){
+  console.log('listening on *:3000');
 });
 
 io.on('connection', function(socket){

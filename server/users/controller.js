@@ -19,6 +19,7 @@ controller.create = function(req, res, next){
 		newUser.street = req.body.loc.address;
 		newUser.country = req.body.loc.country;
 	}
+
 	User.find({
 		where: {
 			fbid: newUser.fbid
@@ -71,7 +72,7 @@ controller.testUser = function(req, res, next){
 		}
 	}).then(function(user){
 		if(user){		
-			if(user.city !== null){
+			if(user.city){
 				res.json("inside");
 			}
 		}

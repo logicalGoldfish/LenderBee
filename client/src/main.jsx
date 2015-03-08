@@ -17,7 +17,7 @@ $(document).ready(function(){
 	var Search 			 				= require('./components/search/Search.react.jsx');
 	var Profile 		 				= require('./components/profile/Profile.react.jsx');
 	var TopBar			 				= require('./components/app/TopBar.react.jsx');
-	var SideNavBar	 				= require('./components/app/SideNavBar.react.jsx');
+	var SideNavBar	 				= require('./components/app/sideNavBar.react.jsx');
 	var Logout    	 				= require('./components/app/logout.react.jsx');
 	var Notifications 			= require('./components/notifications/Notifications.react.jsx');
 	var Messaging 					= require('./components/message/messagingUsers.react.jsx');
