@@ -25,15 +25,15 @@ var karma = require('karma').server;
 var path = {
   sources: {
     ENTRY_POINT: __dirname + '/client/src/main.jsx',
-    HTML: [__dirname + '/client/index.html', __dirname + '/client/login.html', __dirname + '/client/'],
+    HTML: [__dirname + '/client/index.html', __dirname + '/client/login.html'],
     CSS: __dirname + '/client/css/*.css',
-    JS: [__dirname + '/client/*.js', __dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js'],
+    JS: [__dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js'],
     ALL: [__dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js', __dirname + '/client/css/*.css', __dirname + '/client/index.html', __dirname + '/client/login.html']
   },
   dest: {
-    OUT: 'LenderBee.js',
+    OUT: 'lenderbee.js',
     MINIFIED_OUT: 'lenderbee.min.js',
-    DEST_SRC: 'client/dist/src',
+    DEST_SRC: 'client/dist',
     DEST_BUILD: 'client/dist/build',
     DEST: 'client/dist'
   },
@@ -180,7 +180,6 @@ gulp.task('watch', function() {
 gulp.task('server', ['watch'], function() {
   gulp.start('nodemon');
 });
-
 
 // Default gulp task
 gulp.task('default', ['server']);
