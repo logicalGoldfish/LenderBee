@@ -31,17 +31,12 @@ var SideNavBar = React.createClass({
 		// if the click occured outside the SideNavBar
 		if (!this.getDOMNode().contains(e.target)) {
 			// Hide the NavBar
-			// this.props.toggleSideNavBar();
-			$(this.getDOMNode()).removeClass('slideInLeft').addClass('slideOutLeft');
+			this.props.toggleSideNavBar();
 		}
 	},
 
 	componentWillMount: function() {
 		document.addEventListener('click', this.handleClick, false);
-	},
-
-	componentDidMount: function() {
-		$(this.getDOMNode()).addClass('animated slideInLeft');
 	},
 
 	componentWillUnmount: function() {

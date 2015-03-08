@@ -1,14 +1,25 @@
 var gulp = require('gulp');
-var karma = require('karma').server;
-var watch = require('gulp-watch');
-var runSequence = require('run-sequence');
-var browserify = require('gulp-browserify');
-var run = require('gulp-run');
-var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var clean = require('gulp-clean');
+var htmlreplace = require('gulp-html-replace');
+var reactify = require('reactify');
+var browserify = require('browserify');
+var del = require('del');
+var source = require('vinyl-source-stream');
+var streamify = require('gulp-streamify');
+var notify = require('gulp-notify');
+var minifyCSS = require('gulp-minify-css');
+// var concat = require('gulp-concat');
+var watchify = require('watchify');
 var nodemon = require('gulp-nodemon');
+// var autoprefixer = require('gulp-autoprefixer');
+// var sourcemaps = require('gulp-sourcemaps');
+var jshint = require('gulp-jshint');
+// var rename = require('gulp-rename');
+var karma = require('karma').server;
+// var rename = require('gulp-rename');
+// var eventStream = require('event-stream');
+// var order = require('gulp-order');
+// var mui = './node_modules/material-ui/src';
 
 
 var path = {
@@ -16,84 +27,109 @@ var path = {
     ENTRY_POINT: __dirname + '/client/src/main.jsx',
     HTML: [__dirname + '/client/index.html', __dirname + '/client/login.html'],
     CSS: __dirname + '/client/css/*.css',
-    JS: [__dirname + '/client/src/**/*.js'],
-    ALL: [__dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js', __dirname + '/client/css/*.css', __dirname + '/client/index.html', __dirname + '/client/login.html'],
-    ASSETS: [__dirname + '/client/assets']
+    JS: [__dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js'],
+    ALL: [__dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js', __dirname + '/client/css/*.css', __dirname + '/client/index.html', __dirname + '/client/login.html']
   },
   dest: {
-    OUT: 'LenderBee.js',
+    OUT: 'lenderbee.js',
     MINIFIED_OUT: 'lenderbee.min.js',
     DEST_SRC: 'client/dist',
     DEST_BUILD: 'client/dist/build',
-    DEST: 'client/dist',
-    DEST_ASSETS: 'client/dist/assets',
-    JS: 'client/dist/src'
+    DEST: 'client/dist'
   },
   karmaConf: __dirname + '/karma.conf.js'
 };
 
-// files to concat into final build
-// TODO: Needs to be updated with correct paths
-var filesToUglify = [
-  // paths.src.bower + '/',
-  // paths.src.bower + '/',
-  // paths.src.bower + '/',
-  // paths.dist.public + '/'
-];
-
 
 var handleError = function(err) {
-  console.log(err.toString());
+  console.log('\nERROR MSG:', err.toString());
   this.emit('end');
 };
 
-// TODO: file paths needs to be updated
-gulp.task('uglify', function() {
-  // return gulp.src(filesToUglify)
-  //   .pipe(concat('lenderbee.js'))
-  //   .pipe(gulp.dest(paths.dist.js));
-});
+// Browserifies client jsx files
+var bundler = watchify(browserify({
+  entries: [path.sources.ENTRY_POINT],
+  transform: [reactify],
+  debug: true,
+  cache: {}, packageCache: {}, fullPaths: true
+}));
 
-// Cleans client/dist folder
-// TODO: confirm this is working...
-gulp.task('clean', function() {
-  return gulp.src(path.dest.DEST)
-    .pipe(clean({
-      force: true
-    }))
-    .on('error', handleError);   
-});
-
-// calls browserify task
-gulp.task('javascript', function(callback) {
-  runSequence('browserify', callback);
-});
-
-// copies html/assets file into dist
-gulp.task('copy', function(){
-  gulp.src(path.sources.HTML, {base: 'client/'}).pipe(gulp.dest(path.dest.DEST));
-  gulp.src('client/assets/**/*').pipe(gulp.dest(path.dest.DEST_ASSETS));
-});
-
-// compiles jsx --> js
-gulp.task('browserify', function() {
-  return gulp.src(path.sources.ENTRY_POINT)
-    .pipe(browserify({
-      debug: false,
-      transform: ['reactify'],
-    }))
+var bundleIt = function() {
+  return bundler.bundle()
+    .on('error', function(err) {
+      console.log('\nBrowserify Error', err);
+    })
+    .pipe(source(path.dest.OUT))
+    .pipe(streamify(uglify(path.dest.MINIFIED_OUT)))
     .on('error', handleError)
-    .pipe(rename(path.dest.OUT))
-    .pipe(gulp.dest(path.dest.JS))
+    .pipe(gulp.dest(path.dest.DEST_SRC))
+    // .pipe(gulp.notify({message: 'Watch rebundled'}));
+};
+
+// bundler.on('update', bundleIt);
+
+gulp.task('js', bundleIt);
+
+/* Minifies the css
+ */
+gulp.task('css', function() {
+  return gulp.src(path.sources.CSS)
+    .pipe(minifyCSS({keepBreaks: true}))
+    .pipe(gulp.dest(path.dest.DEST))
 });
 
-// paths to watch
-gulp.task('watch', function() {
-  gulp.watch(path.sources.JS, ['javascript']);
-  gulp.watch(path.sources.ASSETS + '/**/*', ['image']);
+/* Deletes what's in dist
+ */
+gulp.task('clean', function(done) {
+  del([path.dest.DEST], done);
 });
 
-// starts server and restarts on change
+/* Cleans up distribution files and concats/uglifies
+ * the client Javascript/JSX files
+ */
+gulp.task('javascript', ['clean'], function() {
+  gulp.start('js');
+  // browserify({
+  //   entries: [path.sources.ENTRY_POINT],
+  //   transform: [reactify]
+  // })
+  // .bundle()
+  // .pipe(source(path.dest.OUT))
+  // .pipe(streamify(uglify(path.dest.MINIFIED_OUT)))
+  // .on('error', handleError)
+  // .pipe(gulp.dest(path.dest.DEST_SRC))
+  // .pipe(notify({message: 'Build task complete'}));
+});
+
+/* Copies the html files into distribution folder 
+ * Replace anything in html files? gulp.useref or html-replace (better?)
+ */
+gulp.task('copy', function(){
+  gulp.src(path.sources.HTML, {base: 'client/'}).pipe(gulp.dest(path.dest.DEST)); // copies main index.html
+  // gulp.src(path.sources.html).pipe(gulp.dest(path.login.DEST)); // copies login's index.html
+});
+
+
+// Watches for changes and rebuilds production files
+// [Warning] We need to figure out how to do this for our login's index.html
+gulp.task('rebuild', function() {
+  gulp.watch(path.HTML, ['copy']);
+  gulp.watch(path.LESS_WATCH, ['less']); // [Refactor] I think we can get rid of this task
+
+  return bundler.on('update', function() {
+    bundler.bundle()
+      .pipe(source(path.dest.OUT))
+      .pipe(streamify(uglify(path.dest.MINIFIED_OUT)))  
+      .pipe(gulp.dest(path.dest.DEST_SRC));
+    console.log('\nUpdated');
+  })
+    .bundle()
+    .pipe(source(path.dest.OUT))
+    .pipe(streamify(uglify(path.dest.MINIFIED_OUT)))  
+    .pipe(gulp.dest(path.dest.DEST_SRC));
+});
+
+// Starts server and restarts on change
 gulp.task('nodemon', function() {
   nodemon({
     script: 'server/app.js',
@@ -101,21 +137,49 @@ gulp.task('nodemon', function() {
       'NODE_ENV': 'development'
     }
   })
-  .on('restart');
+    .on('restart');
 });
 
+/* Lints the distribution Javascript file
+ */
+gulp.task('lint', function() {
+  return gulp.src(path.dest.OUT)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(jshint.reporter('fail'));
+});
+
+/* Runs lint and Karma tests
+ */
+gulp.task('test', ['lint'], function(done) {
+  karma.start({
+    configFile: path.karmaConf,
+    singleRun: true
+  }, function() {
+    done();
+  });
+});
+
+
+
+// Builds production files
+gulp.task('production', ['javascript'], function() {
+  gulp.start('copy', ['css']);
+});
+
+gulp.task('testProduction', ['production'], function() {
+  gulp.start('test');
+})
+
+gulp.task('watch', function() {
+  gulp.start('rebuild');
+})
+
+
 // Makes sure nodemon is run after build
-gulp.task('server', function() {
+gulp.task('server', ['watch'], function() {
   gulp.start('nodemon');
 });
 
-// deployment build
-gulp.task('build', function() {
-  runSequence('clean', 'javascript');
-});
-
-// Default Task
-gulp.task('default', function(cb){
-  runSequence('copy', 'build', 'watch', 'server', cb)
-});
-
+// Default gulp task
+gulp.task('default', ['server']);
