@@ -44,9 +44,7 @@ module.exports = function(app, express){
   app.use(passport.session());
 
 
-  app.use(express.static(path.join(__dirname, '../client/dist')));
-  app.use('/bower_components', express.static(path.join(__dirname, '../client/dist/bower_components/')));
-  console.log('the path were sending: ', (path.join(__dirname, '../client/dist')));
+  app.use(express.static(path.join(__dirname, '../client')));
 
 
 
@@ -99,16 +97,15 @@ module.exports = function(app, express){
     // res.sendFile(path.join(__dirname, '../client/index.html'));
   //route for the homepage
   // app.get('/', function(req, res){
-  //  res.render('../client/distindex.html')
+  //  res.render('../client/index.html')
   // });
 
   // app.get('/login', function(req, res){
-  //  res.send('../client/dist/login.html');
+  //  res.send('../client/login.html')
   // });
 
-  app.get('/', function(req, res) {
-    // res.end('hello world! from inside the config');
-    res.sendFile(path.join(__dirname, '../client/dist/'));
+  app.get('/login', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client/login.html'));
   });
 
   // app.post('/auth/facebook', function(req, res){
@@ -141,10 +138,10 @@ module.exports = function(app, express){
   //  res.sendFile(path.join(__dirname, '../client/login/index.html'));
   // });
 
-  app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login.html' }),
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
     function(req, res){
       /* redirect to root route if they are logged in */
-      res.redirect('');
+      res.redirect('/');
     });
 
   app.get('/auth/facebook',
@@ -154,12 +151,12 @@ module.exports = function(app, express){
       // function will not be called.
     });
 
-  // function ensureAuthenticated(req, res, next) {
-  //   console.log(req);
-  //   console.log('ensureAuthenticated Called -------------');
-  //   if(req.isAuthenticated()) {return next();}
-  //   res.sendFile(path.join('../client/dist/login.html'));
-  // };
+  function ensureAuthenticated(req, res, next) {
+    console.log('ensureAuthenticated Called -------------');
+    if(req.isAuthenticated()) {return next();}
+    res.redirect('/login');
+
+  };
 
   // [Note] Not sure how we will handle logging out yet...don't want a seperate static file
   // app.get('/logout', function(req, res){

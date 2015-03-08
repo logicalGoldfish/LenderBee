@@ -99,7 +99,6 @@ gulp.task('javascript', ['clean'], function() {
   // .on('error', handleError)
   // .pipe(gulp.dest(path.dest.DEST_SRC))
   // .pipe(notify({message: 'Build task complete'}));
-
 });
 
 /* Copies the html files into distribution folder 
@@ -161,15 +160,7 @@ gulp.task('test', ['lint'], function(done) {
   });
 });
 
-gulp.task('copySemantic', function(done){
-  gulp.src('client/dist/bower_components/semantic-ui/dist/semantic.min.css').pipe(gulp.dest(path.dest.DEST));
-    console.log(('from inside gulp', path.dest.DEST));
-});
 
-gulp.task('copySemanticJS', function(done){
-  gulp.src('client/dist/bower_components/semantic-ui/dist/semantic.min.js').pipe(gulp.dest(path.dest.DEST));
-    console.log(('from inside gulp', path.dest.DEST));
-});
 
 // Builds production files
 gulp.task('production', ['javascript'], function() {

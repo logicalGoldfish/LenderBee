@@ -1,9 +1,0 @@
-#topbar,div.searchBar{background-color:#FFD34E}
-#topbar{z-index:5}
-.input.searchBar{border:1px solid #FFD34E;width:70%;margin:1% auto 3%;z-index:5;opacity:.8}
-.ui.grid>.column:not(.row),.ui.grid>.row>.column{text-align:center}
-.ui.segment{margin:1% auto}
-.ui.huge.image{height:200px;width:900px;overflow:hidden;object-fit:cover}
-.ui.tiny.image{opacity:1}
-h3{margin:1%}
-div.ui.comments:last-child{margin:auto}

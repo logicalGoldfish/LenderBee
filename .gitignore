@@ -6,7 +6,6 @@ bower_components/
 *.log
 
 build/
-
-
+dist/
 
 .ApiKeysFB.js
