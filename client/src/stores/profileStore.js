@@ -6,6 +6,7 @@ var makeUrl   = require('make-url');
 var api       = require('../utils/url-paths');
 var userStore = require('./user.js');
 var reviewStore = require('./reviews.js');
+var _         = require('lodash');
 
 var profileStore = Reflux.createStore({
 
@@ -34,7 +35,10 @@ var profileStore = Reflux.createStore({
     request.get(makeUrl(api.reviews.getReviews, {user: userId}), function(err, res){
       if(err) {console.error('error fetching reivew information', err);}
       else {
-        this.data.reviews = res.body;
+        this.data.reviews = _.filter(res.body, function(review){
+          return review.review !== null;
+        });
+
         this.trigger(this.data);
       }
     }.bind(this));
