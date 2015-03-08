@@ -12,7 +12,7 @@ var UserStats = React.createClass({
 
 		return (
 			<div>
-				<img className="ui small centered circular bordered image" src={user.fbpicture}></img>
+				<img className="ui profilePic centered circular bordered image" src={user.fbpicture}></img>
 				<RatingStarStatic className="profileRating" rating={user.rating} />
 				<div>
 					<i className="circular user icon"></i>

@@ -1,5 +1,11 @@
-@media (min-width: 600px) {
+.profilePic {
+  width: 200px;
+}
 
+@media (min-width: 600px) {
+  .profilePic {
+    width: 350px;
+  }
 }
 /*
 @media (max-width: 350px) {
