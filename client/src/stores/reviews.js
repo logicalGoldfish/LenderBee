@@ -54,14 +54,13 @@ var reviewStore = Reflux.createStore({
 		request.put("/api/reviews/"+ reviewId + "/update")
 			.send({'review': review, 'rating': rating})
 			.end(function(err, res) {
-		      if(err) {
-		          // console.log("error on review: ", err)
-		      } else {
+		      // if(err) {
+		      //     // console.log("error on review: ", err)
+		      // } else {
 		      	$('#reviewBoxText').val("");
-						$('#reviewRating').val("");
-		        alert('Thanks for the review!');
+		      	$('#successMessage').addClass("success");
 						actions.fetchPendingReviews();
-		      }
+		      // }
 		     });
 		// request()
 	},

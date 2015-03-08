@@ -17,6 +17,7 @@ var navStore = Reflux.createStore({
   onToggleSideNav: function() {
     console.log('side-nav clicked');
     this.showSideBar = !this.showSideBar;
+    $('#sideNav').addClass('animated slideInRight');
     this.trigger({showSideBar: this.showSideBar});
   },
 

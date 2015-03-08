@@ -29,7 +29,7 @@ var path = {
   dest: {
     OUT: 'LenderBee.js',
     MINIFIED_OUT: 'lenderbee.min.js',
-    DEST_SRC: 'client/dist',
+    DEST_SRC: 'client/dist/src',
     DEST_BUILD: 'client/dist/build',
     DEST: 'client/dist',
     DEST_ASSETS: 'client/dist/assets',

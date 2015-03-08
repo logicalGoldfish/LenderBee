@@ -43,6 +43,7 @@ var PostPage = React.createClass({
     return (
       //later: plug in " + session.username + "
       <div>
+      <SuccessMessage message="Item Posted!" /> 
       <div className="ui center aligned segment"><h2 className="ui horizontal header divider">Post an Item</h2></div>
       <form className="postForm" onSubmit={this.handlePostSubmit}>
       <div className="ui fluid form yellow segment">

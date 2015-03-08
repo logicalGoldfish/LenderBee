@@ -72,3 +72,12 @@ h3 {
 div.ui.comments:last-child {
   margin: auto;
 }
+
+.ui.warning.message {
+  background-color: #FFD34E;
+  color: black;
+}
+
+form.ui.reply.form.messageBox {
+  height: 5%;
+}

@@ -23,7 +23,6 @@ var messagingStore = Reflux.createStore({
       that.data.messages = JSON.parse(res.text).filter(function(message) { 
         return ((message.to_id === userId || message.from_id === userId) && (message.from_id === lenderId || message.to_id === lenderId)) 
         });
-        console.log('THAT.DATAaaaa', that.data.messages);
         that.trigger(that.data);
     });
     request("/api/users/" + userId + "", function(res) {
@@ -44,14 +43,13 @@ var messagingStore = Reflux.createStore({
             .post("/api/messages/"+ userId + "/" + recipient + "")
             .send({'message': message})
             .end(function(err, res) {
-              if (err) {
-                console.log("send message error", err);
-              }
-              else {
+              // if (err) {
+              //   console.log("send message error", err);
+              // }
+              // else {
                 $('#messageBoxText').val("");
-                console.log('Your message was sent!');
                 actions.lenderMessaged(recipient);
-              }
+              // }
 
             });
   },

@@ -18,9 +18,9 @@ var postItemStore = Reflux.createStore({
     request.post(makeUrl(api.items.create, {userId: userId}))
      .send({'title': title, 'description': description, 'beebucks': price})
      .end(function(err, res) {
-        if(err) {
-            console.log("error on post: ", err);
-        } else {
+        // if(err) {
+        //     console.log("error on post: ", err);
+        // } else {
             
         $('#itemPostTitle').val("");
         $('#itemPostDescription').val("");
@@ -39,7 +39,7 @@ var postItemStore = Reflux.createStore({
         //   });
         // .transition('fade down')
         // .transition('fade up')
-      }
+      // }
      });
     }
 });
