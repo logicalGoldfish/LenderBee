@@ -78,7 +78,9 @@ span {
 .sideNavBar {
   border: none;
   border-radius: 0px;
-  background-color: black;
+  font-size: 20px;
+  padding: 3%;
+  background-color: #2A2C2B;
 /*  opacity: 0.85;*/
   color: white;
   position: absolute;
@@ -87,6 +89,22 @@ span {
   height: 100%; /* needs to take up 100% of the view height */
   width: 250px; /* needs to take up 75% or so of the view width */
   z-index: 9999; /* so sideNav renders on top of everything else */  
+}
+
+div.nav.nav-pills.nav-stacked {
+  margin-top: 10%
+}
+
+.sideNavBarLink {
+  color: white;
+}
+
+p.sideNavBarLink {
+  padding-bottom: 8%;
+}
+
+p.sideNavBarLink:hover {
+  color: #FFD34E;
 }
 
 .postForm {
@@ -294,7 +312,7 @@ div.searchResultsList {
   margin-right: 3%;
   width: 20%;
   height: 400px;
-  overflow: scroll;
+  overflow-y: auto;
   opacity: 0.8;
   z-index: 5;
   background-color: white;
@@ -304,6 +322,29 @@ div.searchResultsList {
 
 div#mapPanel {
   visibility: visible;
+}
+/*
+#successMessage {
+  visibility: hidden;
+}
+*/
+div#successMessage {
+  display: none;
+}
+
+div#successMessageContainer {
+  position: relative;
+  margin: 1% 45%;
+  opacity: 0.8;
+  z-index: 5;
+  width: 20%;
+}
+
+div#successMessage.success {
+  position: absolute;
+  display: block;
+ /* top: 0;
+  z-index: 5;*/
 }
 
 .bee-fill {

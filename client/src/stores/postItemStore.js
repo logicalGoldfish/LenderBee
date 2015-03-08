@@ -16,7 +16,7 @@ var postItemStore = Reflux.createStore({
   onPostFormSubmitted: function(title, description, price, photos) {
     var userId = userStore.getProp('id');
     request.post(makeUrl(api.items.create, {userId: userId}))
-     .send({'title': title, 'description': description, 'beebucks': price, 'imageurl': 'https://res.cloudinary.com/dnfsudmqq/image/upload/v1425334340/hxyw7ryvrg13uemy5b9e.png'})
+     .send({'title': title, 'description': description, 'beebucks': price})
      .end(function(err, res) {
         if(err) {
             console.log("error on post: ", err);
@@ -26,8 +26,20 @@ var postItemStore = Reflux.createStore({
         $('#itemPostDescription').val("");
         $('#itemPostBeeBucks').val("");
 
-        alert('Your item is now posted!');
-        }
+        $('#successMessage').addClass("success");
+        $('#successMessage').fadeIn(5000, function() {});
+
+        // $('#successMessage')
+        //   .transition({
+        //     animation  : 'fade down',
+        //     duration   : '2s',
+        //     onComplete : function() {
+        //       alert('done');
+        //     }
+        //   });
+        // .transition('fade down')
+        // .transition('fade up')
+      }
      });
     }
 });
