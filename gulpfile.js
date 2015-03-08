@@ -20,9 +20,9 @@ var buffer = require('vinyl-buffer');
 var path = {
   sources: {
     ENTRY_POINT: __dirname + '/client/src/main.jsx',
-    HTML: [__dirname + '/client/index.html', __dirname + '/client/login.html'],
+    HTML: [__dirname + '/client/index.html', __dirname + '/client/login.html', __dirname + '/client/'],
     CSS: __dirname + '/client/css/*.css',
-    JS: [__dirname + '/client/src/**/*.js'],
+    JS: [__dirname + '/client/*.js', __dirname + '/client/src/**/*.js'],
     ALL: [__dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js', __dirname + '/client/css/*.css', __dirname + '/client/index.html', __dirname + '/client/login.html'],
     ASSETS: [__dirname + '/client/assets']
   },
@@ -149,4 +149,3 @@ gulp.task('server', function() {
 gulp.task('default', ['clean'], function(cb){
   runSequence('copy', 'javascript', 'server', cb)
 });
-
