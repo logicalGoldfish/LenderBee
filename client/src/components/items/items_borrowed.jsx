@@ -2,29 +2,62 @@ var React = require('react');
 var _			= require('lodash');
 
 var ItemBorrowed = React.createClass({
+
 	render: function(){
+
+		var lender = this.props.item.lender;
+
+		// <i className="circular tiny gift icon bee-fill"></i>
+		// <span>{this.props.item.title}</span>
+
+		// <i className="quote tiny left icon"></i>
+		// <span>{this.props.item.description}</span>
+		// <i className="quote tiny right icon"></i>			
+		var beeColor = {
+			backgroundColor: "#FFD34E"
+		}
+
+		var elementStyle = {
+		  position: "absolute",
+		  bottom: "10%",
+		  textAlign: "left",
+		  left: "7%",
+		  color: "white",
+		  backgroundColor: "black",
+		  opacity: "0.75",
+		  padding: "2%",
+		  borderRadius: "5px"
+		};
+
 		return (
-			<div className="ui vertical segment">
-				{/* I want to be able to show lender information including avatar and name, so we need our endpoint to also fetch user data */}
-				<div>
-					<i className="circular gift icon"></i>
-					<span>{this.props.item.title}</span>
-					<div>
-						<span>Description: {this.props.item.description}</span>
+				<div className="column">
+					<div className="ui segment">
+						<div>
+							<img className="ui fluid image crop" src={this.props.item.imageurl}></img>
+							<div style={elementStyle}>
+								<div>
+									<i className="tiny user icon"></i>
+									<span>{lender.firstname + " " +lender.lastname}</span>
+								</div>
+								<div>
+									<i className="tiny money icon"></i>
+									<span>{this.props.item.beebucks}</span>
+								</div>
+							</div>
+						</div>	
 					</div>
-					<div>
-						<i className="circular money icon"></i>
-						<span>{this.props.item.beebucks}</span>
-					</div>
-					<p>Lender: {this.props.item.lender_id}</p>
 				</div>
-			</div>
 		);
 	}
+
 });
 
 
 var AllItemsBorrowed = React.createClass({
+
+		// <h2 className="ui horizontal header divider">
+	 //  	Currently Borrowed
+		// </h2>
 
 	render: function() {
 		// console.log('Items container with props', this.props.item);
@@ -33,11 +66,13 @@ var AllItemsBorrowed = React.createClass({
 		});
 
 		return (
-			<div className="ui center aligned segment">
-				<h2 className="ui horizontal header divider">
-			  	Currently Borrowed
-				</h2>
-				{borrowedItems}
+			<div>
+				<h1 className="ui horizontal header divider">
+					Borrowed
+				</h1>
+				<div className="ui center aligned stackable four column grid">
+						{borrowedItems}
+				</div>
 			</div>
 		);
 	}

@@ -16,10 +16,29 @@ div.searchBar {
   background-color: #FFD34E;
 }
 
+/* For Top Bar Alignment */
+
+.alignleft {
+    float: left;
+    text-align:left;
+    width:33.33333%;
+}
+.aligncenter {
+    float: left;
+    text-align:center;
+    width:33.33333%;
+}
+.alignright {
+    float: left;
+    text-align:right;
+    width:33.33333%;
+}
+
+/*----------------------*/
+
 .ui.grid>.column:not(.row), .ui.grid>.row>.column {
   text-align: center;
 }
-
 .ui.segment {
   margin: 1% auto;
 }
@@ -28,6 +47,11 @@ div.searchBar {
   height: 200px;
   width: 900px;
   overflow: hidden;
+  object-fit: cover;
+}
+
+.ui.fluid.image.crop {
+  height: 200px;
   object-fit: cover;
 }
 

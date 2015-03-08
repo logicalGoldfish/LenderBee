@@ -306,3 +306,16 @@ div#mapPanel {
   visibility: visible;
 }
 
+.bee-fill {
+  background-color: #FFD34E;
+}
+
+.txt-over-pic {
+  position: absolute;
+  bottom: 25%;
+  left: 7%;
+  background-color: black;
+  color: white;
+  opacity: 0.4;
+}
+
