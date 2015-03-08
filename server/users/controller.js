@@ -31,9 +31,24 @@ controller.create = function(req, res, next){
 			})
 		}
 		else{
-			user.updateAttributes({fbpicture: newUser.fbpicture}).then(function(user){
-				res.send(user);
-			})
+			if(req.body.loc!==undefined){
+				user.updateAttributes({
+					fbpicture: newUser.fbpicture,
+					city: newUser.city,
+					state: newUser.state,
+					street: newUser.street,
+					country: newUser.country,
+					zipcode: newUser.zipcode
+				}).then(function(user){
+					res.send(user);
+				})
+			}else{			
+				user.updateAttributes({
+					fbpicture: newUser.fbpicture
+				}).then(function(user){
+					res.send(user);
+				})
+			}
 		}
 	})
 }
