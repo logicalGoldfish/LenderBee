@@ -71,12 +71,3 @@ var carousel = React.createClass({
 })
 
 module.exports = carousel;
-
-// <p>{this.state}</p>
-// <img src="#" href="#" alt="previous item set" className="inline arrow" onClick={this.handleLeftArrowClick}/>
-// <ul className="inline">
-//   <li><img src="#" href="#" alt="image A"/></li>
-//   <li><img src="#" href="#" alt="image B"/></li>
-//   <li><img src="#" href="#" alt="image C"/></li>
-// </ul>
-// <img src="#" href="#" alt="next item set" className="inline arrow" onClick={this.handleRightArrowClick}/>
