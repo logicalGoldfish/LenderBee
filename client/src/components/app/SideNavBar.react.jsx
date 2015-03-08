@@ -38,6 +38,7 @@ var SideNavBar = React.createClass({
 
 	componentWillMount: function() {
 		document.addEventListener('click', this.handleClick, false);
+		// $('#sideNav').addClass('animated slideInRight');
 	},
 
 	componentDidMount: function() {
@@ -46,13 +47,14 @@ var SideNavBar = React.createClass({
 
 	componentWillUnmount: function() {
 		document.removeEventListener('click', this.handleClick, false);
+		// $('#sideNav').addClass('animated slideOutLeft');
 	},
 
 	render: function() {
 		var pic = userStore.getProp('fbpicture');
 		var name = userStore.getProp('username');
 		return (
-			<div className="sideNavBar panel panel-default" onClick={this.handleClick}>
+			<div className="sideNavBar panel panel-default" id="sideNav"onClick={this.handleClick}>
 			<div className="sideNavBarProfile"><img className="ui avatar image" src={pic} /><a href="#">{name}</a></div>
 				<div className="nav nav-pills nav-stacked">
 					<SideNavBarElement text="Profile" to="profile" toggleSideNavBar={this.props.toggleSideNavBar}/>

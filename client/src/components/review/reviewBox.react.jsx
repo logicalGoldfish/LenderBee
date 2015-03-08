@@ -14,7 +14,6 @@ var ReviewBox = React.createClass({
     // [Note] Checks to see if the user has selected a rating, won't submit form if they haven't
     if ( this.props.selectedRating ) {
       // [Refactor] Use Reacts native ref's method (avoid expensive DOM traversal)
-      console.log('user has submitted a review with a rating of ', this.props.selectedRating);
       actions.reviewFormSubmitted(this.props.reviewId, $('#reviewBoxText').val(), this.props.selectedRating);
     } else {
       // [Refactor] Think of a better way of notifying the user
@@ -36,8 +35,9 @@ var ReviewBox = React.createClass({
     // var url = "/api/messages/samin"+ "/" + this.props.to + ""
 
     var backgroundColorBlue = {
-      borderColor: "#AAD6DF",
-      backgroundColor: "#E9FAFF"
+       borderColor: "#FFD34E",
+       backgroundColor: "rgba(254, 249, 233, 1)",
+       width: "60%"
     }
     return (
       <div className="ui form">

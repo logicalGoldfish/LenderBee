@@ -31,7 +31,7 @@ var review = React.createClass({
           </div>  
           <span>{user.username}</span>
           <SmallStarRating rating={user.rating}/>
-          <div className="ui info message">
+          <div className="ui warning message">
             <p>{this.props.review.review}</p>
           </div>
         </div>

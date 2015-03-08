@@ -5,6 +5,7 @@ var actions     = require('../../actions/actions.js');
 var Router      = require('react-router');
 var ReviewBox   = require('./reviewBox.react.jsx');
 var Rating      = require('./rating.react.jsx');
+var SuccessMessage = require('../app/successMessage.react.jsx');
 
 var review = React.createClass({
 
@@ -60,6 +61,8 @@ var review = React.createClass({
     var fbpic = this.props.review.reviewee.fbpicture;
     // console.log('props from reviews', this.props);
     return (
+      <div>
+      <SuccessMessage message="Thanks for Reviewing!  " />
       <div className="ui vertical segment">
         <img className="ui small centered circular bordered image" src={fbpic} />
         <i className="user icon"></i>
@@ -71,6 +74,7 @@ var review = React.createClass({
         <Rating data={this.props.review} selectRating={this.selectRating} selectedRating={this.state.selectedRating}/>
         <ReviewBox reviewId={this.props.review.id} selectedRating={this.state.selectedRating}/>
       </div> 
+      </div>
     )
   }
 });

@@ -20,12 +20,14 @@ var Messaging = React.createClass({
       return (<Message message={singleMessage.message} to={singleMessage.to_id} fromName={singleMessage.from.username} fbpicture={singleMessage.from.fbpicture}/>);
     });
     return (
+      <div>
       <div className="ui minimal comments">
       <h3 className="ui dividing teal header">Messaging: {this.state.lenderName}</h3>
         <div className="messageWindow">
           {messageGroup}
         </div>
         <MessageBox to={this.state.lenderId} from={this.state.userId} />
+      </div>
       </div>
     )
   }

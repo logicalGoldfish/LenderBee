@@ -25,6 +25,9 @@
   }
 }
 
+html {
+  font-size: 15px;
+}
 html, body, .map-container {
     width: 100%;
     height: 100%;
@@ -82,7 +85,7 @@ span {
   border: none;
   border-radius: 0px;
   font-size: 20px;
-  padding: 3%;
+  padding: 20px;
   background-color: #2A2C2B;
 /*  opacity: 0.85;*/
   color: white;
@@ -337,15 +340,17 @@ div#successMessage {
 
 div#successMessageContainer {
   position: relative;
-  margin: 1% 45%;
-  opacity: 0.8;
+  margin: auto;
+  opacity: 0.95;
+  text-align: center;
   z-index: 5;
-  width: 20%;
+  width: 250px;
 }
 
 div#successMessage.success {
   position: absolute;
   display: block;
+  width: 100%;
  /* top: 0;
   z-index: 5;*/
 }
@@ -363,3 +368,10 @@ div#successMessage.success {
   opacity: 0.4;
 }
 
+.ui.yellow.labeled.submit.icon.button {
+  color: black;
+}
+
+#sideNav {
+-vendor-animation-duration: 5s;
+}
