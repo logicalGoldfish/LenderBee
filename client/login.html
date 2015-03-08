@@ -5,6 +5,14 @@
   <title>LenderBee</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/bower_components/semantic-ui/dist/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/semantic.styles.css">
+  
+  <script src="/bower_components/semantic-ui/dist/semantic.min.js"></script>
+
+  
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAna-lnoeF3HTZUEZJTzuccXqvXTZhOHO4"></script>
 </head>
 <body>
   <script>
@@ -151,14 +159,38 @@
     <p>at login area</p>
     <div class="fb-login-button" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
   </div>
-  <div class="signup">
-    <h3>Sign up!</h3>
-    <p>Address: <input type="text" id="address"></p>
-    <p>City: <input type="text" id="city"></p>
-    <p>State: <input type="text" id="state"></p>
-    <p>Country: <input type="text" id="country"></p>
-    <p>Zip code: <input type="text" id="zip"></p>
-    <button id="submit" name="submit">Submit</button>
+  <div class="signupp">
+    <div class="ui center aligned segment"><h2 class="ui horizontal header divider">Sign up!</h2></div>
+    <form class="postForm">
+      <div class="ui fluid form yellow segment">
+        <div class="field">
+          <label>Address</label>
+          <input type="text" class="form-control" id="address" placeholder="Enter address" />
+        </div>
+        <div class="three fields">
+          <div class="field">
+            <label>City</label>
+            <input type="text" class="form-control" id="city" placeholder="Enter city" />
+          </div>
+          <div class="field">
+            <label>State</label>
+            <input type="text" class="form-control" id="state" placeholder="Enter state" />
+          </div>
+          <div class="field">
+            <label>Zip code</label>
+            <input type="text" class="form-control" id="zip" placeholder="Enter zip code" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Country</label>
+          <input type="text" class="form-control" id="country" placeholder="Enter country" />
+        </div>
+        <div class="ui vertical segment">
+          <p></p>
+        </div>
+        <button id="submit" class="massive ui green basic button" name="submit">Submit</button>
+      </div>
+    </form>
   </div>
 </body>
 </html>
