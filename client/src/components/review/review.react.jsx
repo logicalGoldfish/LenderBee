@@ -68,7 +68,7 @@ var review = React.createClass({
         <i className="user icon"></i>
         <span>{firstName + lastName}</span>
         <div>
-          <i className="gift icon"></i>
+          <i className="tag icon"></i>
           {this.props.review.item.title}
         </div>
         <Rating data={this.props.review} selectRating={this.selectRating} selectedRating={this.state.selectedRating}/>
