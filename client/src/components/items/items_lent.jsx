@@ -3,7 +3,6 @@ var actions 		= require('../../actions/actions.js');
 var _						= require('lodash');
 var userStore 	= require('../../stores/user.js');
 var SuccessMessage = require('../app/successMessage.react.jsx');
- 
 var LentItem = React.createClass({
  
 
