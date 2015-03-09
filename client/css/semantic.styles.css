@@ -88,13 +88,12 @@ form.ui.reply.form.messageBox {
 }
 
 .ui.avatar.image.profile {
-    width: 5em;
+  width: 5em;
   height: 5em;
 }
 
-.ui[class*="center aligned"].segment {
- text-align: center;
- font-size: 18px;
+.ui[class*="center aligned"].segment.profile {
+  text-align: center;
+  font-size: 18px;
 }
-
 

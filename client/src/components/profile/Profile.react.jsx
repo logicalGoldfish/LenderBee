@@ -30,7 +30,7 @@ var Profile = React.createClass({
       });
     }
     return (
-        <div className="ui center aligned segment">
+        <div className="ui center aligned segment profile">
           <UserStats data={this.state.data}/>
           <h2 className="ui horizontal header divider">
              Reviews
