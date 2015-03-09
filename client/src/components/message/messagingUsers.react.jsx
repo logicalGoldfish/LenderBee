@@ -18,8 +18,9 @@ var User = React.createClass({
     return (
         <div>
         <Link to="messageUser" partnerName={this.props.partnerName} partnerId={this.props.partnerId} >
-        <div className="ui teal button" onClick={this.handleClick}>{this.props.partnerName}</div>
+        <div className="large fluid ui teal button" onClick={this.handleClick}><i className="mail outline icon"></i>{this.props.partnerName}</div>
         </Link>
+        <div className="ui divider"></div>
         </div>
         //onClick, call handler with this.props.partner
         //on store, save state's current user as partner. 
@@ -44,15 +45,17 @@ var MessagingUsers = React.createClass({
     // });
 
     var partners = this.state.partners.map(function(partner) {
-      return (<User partnerId={partner.id} partnerName={partner.username}/>);
+      return (<div><User partnerId={partner.id} partnerName={partner.username}/></div>);
     });
 
     return (
       <div>
         <div className="ui center aligned segment">
           <h2 className="ui horizontal header divider">Messages</h2>
-          </div>
+        </div>
+        <div className="ui segment messageButton">
         {partners}
+        </div>
       </div>
     )
   }
