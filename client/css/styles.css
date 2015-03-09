@@ -1,7 +1,3 @@
-.profilePic {
-  width: 200px;
-}
-
 .messageButton {
   width: 900px;
 }
@@ -12,11 +8,6 @@
   }
 }
 
-@media (min-width: 600px) {
-  .profilePic {
-    width: 350px;
-  }
-}
 /*
 @media (max-width: 350px) {
   div.searchResultsList {
