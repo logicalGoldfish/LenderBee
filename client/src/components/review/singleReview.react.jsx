@@ -27,7 +27,7 @@ var review = React.createClass({
     return (
         <div className="ui vertical segment">
           <div>
-            <img className="ui bordered avatar image" src={user.fbpicture}></img>
+            <img className="ui bordered avatar image profile" src={user.fbpicture}></img>
           </div>  
           <span>{user.username}</span>
           <SmallStarRating rating={user.rating}/>

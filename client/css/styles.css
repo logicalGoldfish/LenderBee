@@ -371,7 +371,3 @@ div#successMessage.success {
 .ui.yellow.labeled.submit.icon.button {
   color: black;
 }
-
-#sideNav {
--vendor-animation-duration: 5s;
-}
