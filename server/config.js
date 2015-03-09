@@ -44,7 +44,7 @@ module.exports = function(app, express){
   app.use(passport.session());
 
 
-  app.use(express.static(path.join(__dirname, '../client')));
+  app.use(express.static(path.join(__dirname, '../client/dist')));
 
 
 
