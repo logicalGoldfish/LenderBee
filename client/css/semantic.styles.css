@@ -92,7 +92,7 @@ form.ui.reply.form.messageBox {
   height: 5em;
 }
 
-.ui[class*="center aligned"].segment {
+.ui[class*="center aligned"].segment.profile {
   text-align: center;
   font-size: 18px;
 }
