@@ -64,7 +64,7 @@ var review = React.createClass({
       <div>
       <SuccessMessage message="Thanks for Reviewing!  " />
       <div className="ui vertical segment">
-        <img className="ui profilePic centered circular bordered image" src={fbpic} />
+        <img className="ui small centered circular bordered image" src={fbpic} />
         <i className="user icon"></i>
         <span>{firstName + lastName}</span>
         <div>
