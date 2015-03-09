@@ -11,6 +11,7 @@ var LentItem = React.createClass({
 					// sets borrower_id to null
 			//  
 	returnItem: function(lender_id, borrower_id, item_id){
+		$('#successMessage').addClass("success");
 		actions.returnItem(lender_id, borrower_id, item_id);
 	},
 
