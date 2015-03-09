@@ -58,6 +58,7 @@ div.searchBar {
 .ui.medium.image {
   margin: auto;
   height: 300px;
+  width: auto;
   object-fit: cover;
 }
 
@@ -80,4 +81,13 @@ div.ui.comments:last-child {
 
 form.ui.reply.form.messageBox {
   height: 5%;
+}
+
+.ui.grid>.column:not(.row) {
+  font-size: 16px;
+}
+
+.ui.avatar.image.profile {
+    width: 5em;
+  height: 5em;
 }
