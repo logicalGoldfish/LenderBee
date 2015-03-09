@@ -86,3 +86,8 @@ form.ui.reply.form.messageBox {
 .ui.grid>.column:not(.row) {
   font-size: 16px;
 }
+
+.ui.avatar.image.profile {
+    width: 5em;
+  height: 5em;
+}
