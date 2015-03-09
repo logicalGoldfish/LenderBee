@@ -14,7 +14,10 @@ var source = require('vinyl-source-stream');
 var watchify = require('watchify');
 var reactify = require('reactify');
 var buffer = require('vinyl-buffer');
-// var livereload = require('gulp-livereload');
+var minifyCss = require('gulp-minify-css');
+
+// [Warning] use concat instead b/c you can specify load order
+var concatCss = require('gulp-concat-css');
 
 
 var path = {
@@ -22,9 +25,10 @@ var path = {
     ENTRY_POINT: __dirname + '/client/src/main.jsx',
     HTML: [__dirname + '/client/index.html', __dirname + '/client/login.html', __dirname + '/client/'],
     CSS: __dirname + '/client/css/*.css',
-    JS: [__dirname + '/client/*.js', __dirname + '/client/src/**/*.js'],
+    JS: [__dirname + '/client/src/**/*.js'],
     ALL: [__dirname + '/client/src/*.js', __dirname + '/client/src/**/*.js', __dirname + '/client/css/*.css', __dirname + '/client/index.html', __dirname + '/client/login.html'],
-    ASSETS: [__dirname + '/client/assets']
+    ASSETS: [__dirname + '/client/assets'],
+    CSS_IN_ORDER: [__dirname + '/client/css/styles.css', __dirname + '/client/css/semantic.styles.css', __dirname + '/client/css/animate.css']
   },
   dest: {
     OUT: 'LenderBee.js',
@@ -33,35 +37,18 @@ var path = {
     DEST_BUILD: 'client/dist/build',
     DEST: 'client/dist',
     DEST_ASSETS: 'client/dist/assets',
-    JS: 'client/dist/src'
+    JS: 'client/dist/src',
+    CSS: 'client/dist/css'
   },
   karmaConf: __dirname + '/karma.conf.js'
 };
-
-// files to concat into final build
-// TODO: Needs to be updated with correct paths
-var filesToUglify = [
-  // paths.src.bower + '/',
-  // paths.src.bower + '/',
-  // paths.src.bower + '/',
-  // paths.dist.public + '/'
-];
-
 
 var handleError = function(err) {
   console.log(err.toString());
   this.emit('end');
 };
 
-// TODO: file paths needs to be updated
-gulp.task('uglify', function() {
-  // return gulp.src(filesToUglify)
-  //   .pipe(concat('lenderbee.js'))
-  //   .pipe(gulp.dest(paths.dist.js));
-});
-
 // Cleans client/dist folder
-// TODO: confirm this is working...
 gulp.task('clean', function() {
   return gulp.src(path.dest.DEST)
     .pipe(clean({
@@ -70,16 +57,42 @@ gulp.task('clean', function() {
     .on('error', handleError);   
 });
 
+// gulp.task('default', function () {
+//   gulp.src('assets/**/*.css')
+//     .pipe(concatCss("styles/bundle.css"))
+//     .pipe(gulp.dest('out/'));
+// });
+
+// concat and minify css
+gulp.task('css', function(){
+  gulp.src(path.sources.CSS_IN_ORDER)
+    .pipe(concat('bundle.css'))
+    .pipe(gulp.dest(path.dest.CSS))
+    .pipe(minifyCss())
+    .pipe(rename('style.min.css'))
+    .pipe(gulp.dest(path.dest.CSS));
+  
+    // .pipe(minifyCss())
+    // .pipe(rename('style.min.css'))
+    // .pipe(gulp.dest(path.dest.CSS))
+    // .pipe(concat('style.css'))
+    // .pipe(gulp.dest(path.dest.CSS))
+    // .pipe(gulp.dest.CSS);
+});
+
 // calls browserify task
 gulp.task('javascript', function(callback) {
   runSequence('browserify', callback);
 });
 
-// copies html/assets file into dist
+// copies html/assets/login.js file into dist
 gulp.task('copy', function(){
   gulp.src(path.sources.HTML, {base: 'client/'}).pipe(gulp.dest(path.dest.DEST));
   gulp.src('client/assets/**/*').pipe(gulp.dest(path.dest.DEST_ASSETS));
+  gulp.src('client/login.js').pipe(gulp.dest(path.dest.JS));
+  gulp.src('client/css/landing.css').pipe(gulp.dest(path.dest.CSS));
 });
+
 
 // compiles jsx --> js
 gulp.task('browserify', function() {
@@ -108,20 +121,7 @@ gulp.task('browserify', function() {
   .pipe(uglify())
   .pipe(gulp.dest(path.dest.JS));
   console.log('first build');
-  // return gulp.src(path.sources.ENTRY_POINT)
-  //   .pipe(browserify({
-  //     debug: false,
-  //     transform: ['reactify'],
-  //   }))
-  //   .on('error', handleError)
-  //   .pipe(rename(path.dest.OUT))
-  //   .pipe(gulp.dest(path.dest.JS))
-});
 
-// paths to watch
-gulp.task('watch', function() {
-  // gulp.watch(path.sources.JS, ['javascript']);
-  // gulp.watch(path.sources.ASSETS + '/**/*', ['image']);
 });
 
 // starts server and restarts on change
@@ -147,5 +147,5 @@ gulp.task('server', function() {
 
 // Default Task
 gulp.task('default', ['clean'], function(cb){
-  runSequence('copy', 'javascript', 'server', cb)
+  runSequence('copy', 'javascript', 'css', 'server', cb)
 });

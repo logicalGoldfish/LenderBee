@@ -44,8 +44,8 @@ var TopBar = React.createClass({
     return (
       <div style={topbarPadding} id="topbar" className="ui segment">
         <div className="alignleft">
-          <img style={imgStyle} className="ui mini image" src="/dist/assets/hivebar.png" onClick={this.props.toggleSideNavBar}></img>
-          <img style={beeStyle} className="ui tiny image" src="/dist/assets/bee_transparent.png"></img>
+          <img style={imgStyle} className="ui mini image" src="/assets/hivebar.png" onClick={this.props.toggleSideNavBar}></img>
+          <img style={beeStyle} className="ui tiny image" src="/assets/bee_transparent.png"></img>
         </div>  
         <div>
           <span style={titleStyle} className="aligncenter">LenderBee</span>
