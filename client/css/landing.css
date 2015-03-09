@@ -39,10 +39,25 @@
   float: right;
   display: inline;
 }
+.ui.page.grid.boxes {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40vh;
+}
 
 /*body*/
+#blurb {
+  width: 90%;
+  margin: 0 auto 1em auto;
+}
+.ui.basic.compact.left.floated.segment.lbscreen {
+  margin-top: 0;
+}
+.ui.basic.compact.right.floated.segment.lbscreen {
+  margin-top: 0;
+}
 .techused {
-  margin-top: 2em;
+  margin-top: 1em;
 }
 .ui.small.fluid.image, .ui.tiny.fluid.image {
   display: block;
@@ -79,7 +94,7 @@ h3.sub.header {
   background-color: #FFD34E;
 }
 h4{
-  margin-top: 6%;
-  text-align: center;
+  margin-top: 2em;
+  text-align: left;
   line-height: 25px;
 }

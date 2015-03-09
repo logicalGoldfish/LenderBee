@@ -4,10 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LenderBee</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <link rel="stylesheet" href="/css/bundle.css">
+  <!-- <link rel="stylesheet" href="/css/bundle.css"> -->
   <link href="http://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" type="text/css" href="css/landing.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.1/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="css/landing.css">
 </head>
 <body>
   <!-- header -->
@@ -29,15 +29,45 @@
       <div class="loginButton">
         <div class="fb-login-button login" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="false"></div>
       </div>
+
+      <!-- boxes -->
+<!--       <div class="ui page grid boxes">
+        <div class="four wide column">
+          <div class="ui compact segment">
+            Search to borrow
+          </div>
+        </div>
+        <div class="four wide column">
+          <div class="ui compact segment">
+            Share your stuff
+          </div>
+        </div>
+        <div class="four wide column">
+          <div class="ui compact segment">
+            Build community
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 
   <!-- this is content -->
   <div class="loginButton">
   <div id="body-content">
-    <div class="ui basic segment">
-      <img class="ui medium left floated image" src="assets/landing/screenshot-laptop.png" /><h4>
-      LenderBee helps people find what they're looking for from trusted community members, and gives lenders the confidence to share goods with trustworthy borrowers.</h4>
+    <div class="ui basic centered segment" id="blurb">
+      <div class="ui basic centered segment">
+        <div class="ui basic compact left floated segment lbscreen">
+          <img class="ui medium image" src="assets/landing/lb-laptop.png" />
+        </div>
+        <div class="ui basic compact right floated segment lbscreen">
+          <img class="ui small image" src="assets/landing/lb-phone.png" />
+        </div>
+        <div class="ui basic compact segment">
+          <h4>
+            LenderBee helps people find what they're looking for from trusted community members, and gives lenders the confidence to share goods with trustworthy borrowers.
+          </h4>
+        </div>
+      </div>
     </div>
 
     <!-- tech stack section -->
