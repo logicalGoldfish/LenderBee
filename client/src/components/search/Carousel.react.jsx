@@ -16,19 +16,6 @@ var InnerImage = React.createClass({
    actions.selectItem(this.props.itemInfo, this.props.itemInfo.lender);
   },
 
-
-  // <div className="column">
-  //   <div className="ui segment">
-      // <Link to="SingleItem" onClick={this.handleClick}>
-  //     <p>{this.props.itemInfo.title}</p>
-  //     <img className="ui huge image" src={this.props.itemInfo.imageurl} alt={this.props.itemInfo.title} />
-  //     </Link>
-  //     <i className="fa fa-tag"/><span>{"   " + this.props.itemInfo.beebucks}</span>
-  //     <i className="fa fa-user"/><span>{"   " + this.props.itemInfo.lender.username}</span>
-  //     <i className="fa fa-star"/><span>{"   " + this.props.itemInfo.lender.rating}</span>
-  //   </div>
-  // </div>
-
   render: function(){
 
     var elementStyle = {
@@ -90,7 +77,9 @@ var carousel = React.createClass({
 
     return (
    <div className="ui stackable four column page grid carousel">
-      <h2 className="ui horizontal header divider">Items in Your Area</h2>
+      <div className="ui hidden divider"></div>
+      <h2 className="ui center aligned header">Items in Your Area</h2>
+      <div className="ui divider"></div>
       {items}
     </div>
     )
