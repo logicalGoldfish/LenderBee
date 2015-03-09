@@ -17,6 +17,7 @@ var singleItem = React.createClass({
 
   handleItemRequest: function() {
     var userId = userStore.getProp('id');
+    $('#successMessage').addClass("success");
     actions.itemRequestSubmitted(this.state.item.id, userId);
   },
 
