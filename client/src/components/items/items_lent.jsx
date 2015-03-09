@@ -2,15 +2,13 @@ var React 			= require('react');
 var actions 		= require('../../actions/actions.js');
 var _						= require('lodash');
 var userStore 	= require('../../stores/user.js');
-
+var SuccessMessage = require('../app/successMessage.react.jsx');
+ 
 var LentItem = React.createClass({
+ 
 
-	// [Note] ReturnItem Needs to do the following:
-			// make a put request to server which updates the item record with the following:
-					// borrowed set to false
-					// sets borrower_id to null
-			//  
 	returnItem: function(lender_id, borrower_id, item_id){
+		console.log('attempts to return item from lent item component');
 		$('#successMessage').addClass("success");
 		actions.returnItem(lender_id, borrower_id, item_id);
 	},
@@ -35,35 +33,26 @@ var LentItem = React.createClass({
 		  borderRadius: "5px"
 		};
 
-		// <div>
-		// 	<p>Item: {this.props.item.title}</p>
-		// 	<p>Item_ID: {this.props.item.id}</p>
-		// 	<p>Description: {this.props.item.description}</p>
-		// 	<p>BeeBucks: {this.props.item.beebucks}</p>
-		// 	<p>Borrower: {this.props.item.borrower_id}</p>
-		// 	<button onClick={this.returnItem.bind(this, lender_id, borrower_id, item_id)}>Item Was Returned</button>
-		// 	<hr></hr>
-		// </div>
-
 		return (
-			<div className="column">
-				<div className="ui segment">
-					<div>
-						<img className="ui fluid image crop" src={this.props.item.imageurl}></img>
-						<div style={elementStyle}>
-							<div>
-								<i className="tiny user icon"></i>
-								<span>{borrower.firstname + " " +borrower.lastname}</span>
+				<div className="column">
+					<SuccessMessage message="Item Returned!" />
+					<div className="ui segment">
+						<div>
+							<img className="ui fluid image crop" src={this.props.item.imageurl}></img>
+							<div style={elementStyle}>
+								<div>
+									<i className="tiny user icon"></i>
+									<span>{borrower.firstname + " " +borrower.lastname}</span>
+								</div>
+								<div>
+									<i className="tiny money icon"></i>
+									<span>{this.props.item.beebucks}</span>
+								</div>
 							</div>
-							<div>
-								<i className="tiny money icon"></i>
-								<span>{this.props.item.beebucks}</span>
-							</div>
-						</div>
-					</div>	
-				</div>
-				<div className="ui green button" onClick={this.returnItem.bind(this, lender_id, borrower_id, item_id)}>Item Returned</div>
-			</div>			
+						</div>	
+					</div>
+					<div className="ui green button" onClick={this.returnItem.bind(this, lender_id, borrower_id, item_id)}>Item Returned</div>
+				</div>			
 		);
 	}
 });

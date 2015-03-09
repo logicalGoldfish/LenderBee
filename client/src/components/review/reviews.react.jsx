@@ -21,7 +21,11 @@ var Reviews = React.createClass({
 	// [Note] We need to be rendering the pendingReviews, not the reviews for the current user
 	render: function() {
 		var pendingReviews;
-		console.log('review components state', this.state.pendingReviews);
+
+		var fontSize = {
+			fontSize: "18px"
+		}
+
 		if (this.state.pendingReviews !== null) {
 			// [Bug] When there are no pending reviews, this lookup fails and throws an error
 			var pendingReviews = this.state.pendingReviews.map(function(review){
@@ -29,7 +33,7 @@ var Reviews = React.createClass({
 			});
 		}
 		return (
-			<div className="ui center aligned segment">
+			<div className="ui center aligned segment" style={fontSize}>
 				{pendingReviews}
 			</div>
 		);
